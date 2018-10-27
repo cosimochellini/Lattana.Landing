@@ -5,3 +5,4 @@
 let getSession = () => {
     document.write(new Date().toLocaleString("en-us", { month: "long" }));
 }
+
