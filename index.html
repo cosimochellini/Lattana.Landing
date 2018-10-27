@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" type="image/png" href="images/cigar.png" />
   <meta name="theme-color" content="#000000" />
+  <script src="customJs/document.js"></script>
 
 </head>
 
@@ -81,7 +82,8 @@
 
           <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.
             It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-          <p><a href="#" class="btn btn-secondary btn-lg">Learn More About Us</a></p>
+          <p><a href="#" data-toggle="modal" data-target="#lonelinessModal" class="btn btn-secondary btn-lg">Learn More
+              About Me</a></p>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-6 site-animate img" data-animate-effect="fadeInRight">
@@ -99,7 +101,7 @@
       <div class="row">
         <div class="col-md-12 text-center mb-5 site-animate">
           <h4 class="site-sub-title">Our Offers</h4>
-          <h2 class="display-4">Our Offer This Summer</h2>
+          <h2 class="display-4">Our Offer This <script>getSession();</script>           </h2>
           <div class="row justify-content-center">
             <div class="col-md-7">
               <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
@@ -706,11 +708,11 @@
               <li class="site-animate"><a href="https://instagram.com/lattanaoriginal" target="_blank"><span class="icon-instagram"></span></a></li>
               <li class="site-animate"><a href="https://instagram.com/lattanaoriginal" target="_blank"><span class="icon-phone"></span></a></li>
               <li class="site-animate"><a href="https://twitter.com/lattanaoriginal" target="_blank"><span class="icon-twitter"></span></a></li>
-              <li class="site-animate"><a href="https://facebook.com/lattanaoriginal" target="_blank"><span class="icon-facebook" ></span></a></li>
+              <li class="site-animate"><a href="https://facebook.com/lattanaoriginal" target="_blank"><span class="icon-facebook"></span></a></li>
               <li class="site-animate"><a href="mailto://info@lattana.com" target="_blank"><span class="icon-mail"></span></a></li>
               <li class="site-animate"><a href="https://github.com/cosimochellini/Lattana" target="_blank"><span class="icon-github"></span></a></li>
-              <li class="site-animate"><a href="https://github.com/cosimochellini/Lattana" target="_blank"><span class="icon-browser" ></span></a></li>
-              <li class="site-animate"><a href="https://goo.gl/maps/qKAcaXrBuZ72" target="_blank"><span class="icon-map" ></span></a></li>
+              <li class="site-animate"><a href="https://github.com/cosimochellini/Lattana" target="_blank"><span class="icon-browser"></span></a></li>
+              <li class="site-animate"><a href="https://goo.gl/maps/qKAcaXrBuZ72" target="_blank"><span class="icon-map"></span></a></li>
             </ul>
           </div>
         </div>
@@ -795,6 +797,73 @@
                 <div class="row">
                   <div class="col-md-12 form-group">
                     <label for="m_message">Message</label>
+                    <textarea class="form-control" id="m_message" cols="30" rows="7"></textarea>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <!-- <input type="button" class="btn btn-primary btn-lg btn-block" value="Reserve Now"> -->
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Reserve Now">
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FINE Modale panuozzo -->
+
+
+  <!-- Modale About Me -->
+  <div class="modal fade" id="lonelinessModal" tabindex="-1" role="dialog" aria-labelledby="lonelinessModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="bg-image" style="background-image: url(images/reservation_1.jpg);"></div>
+            </div>
+            <div class="col-lg-12 p-5">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <small>LEAVE ME ALONE </small><span aria-hidden="true">&times;</span>
+              </button>
+              <h1 class="mb-4">Wow, I thought nobody cared about me </h1>
+              <p>Are you sure you are in the right section?</p>
+              <p>
+                If you really want to know more about me, please fill out the form, I will be happy to answer your
+                questions
+              </p>
+              <form>
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label for="m_fname">First Name</label>
+                    <input type="text" class="form-control" id="m_fname">
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="m_lname">Last Name</label>
+                    <input type="text" class="form-control" id="m_lname">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label for="m_email">Email</label>
+                    <input type="email" class="form-control" id="m_email">
+                  </div>
+
+                  <div class="col-md-6 form-group">
+                    <label for="m_phone">Phone</label>
+                    <input type="text" class="form-control" id="m_phone">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <label for="m_message">What do you want to know about me</label>
                     <textarea class="form-control" id="m_message" cols="30" rows="7"></textarea>
                   </div>
                 </div>
