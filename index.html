@@ -756,27 +756,44 @@
                 Reserve the <a href="https://it.wikipedia.org/wiki/Panuozzo" target="_blank">
                   Panuozzo&trade;
                 </a></h1>
-              <form action="#" method="post">
+              <form>
                 <div class="row">
                   <div class="col-md-6 form-group">
-                    <label for="m_fname">First Name</label>
-                    <input type="text" class="form-control" id="m_fname">
+                    <label for="panuozzoName">First Name</label>
+                    <input type="text" class="form-control" id="panuozzoName"/>
+                    <p id="panuozzoNameError" class="red" style="display: none;">
+                      Are you sure this is your name? 🤔🤔
+                      <p id="panuozzoNameLong" class="red" style="display: none;">
+                        This name is suspiciously tooo long.... 😒😒
+                      </p>
                   </div>
                   <div class="col-md-6 form-group">
-                    <label for="m_lname">Last Name</label>
-                    <input type="text" class="form-control" id="m_lname">
+                    <label for="panuozzoSurname">Last Name</label>
+                    <input type="text" class="form-control" id="panuozzoSurname" />
+                    <p id="panuozzoSurnameError" class="red" style="display: none;">
+                      Are you sure this is your surname? 🤔🤔
+                    </p>
+                    <p id="panuozzoSurnameLong" class="red" style="display: none;">
+                      This surname is suspiciously tooo long.... 😒😒
+                    </p>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12 form-group">
-                    <label for="m_email">Email</label>
-                    <input type="email" class="form-control" id="m_email">
+                    <label for="panuozzoEmail">Email</label>
+                    <input type="email" class="form-control" id="panuozzoEmail">
+                    <p id="panuozzoEmailError" class="red" style="display: none;">
+                      Are you sure this is your Email? 🤔🤔
+                    </p>
+                    <p id="panuozzoEmailLong" class="red" style="display: none;">
+                      This Email is suspiciously tooo long.... 😒😒
+                    </p>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6 form-group">
-                    <label for="m_people">How Many People</label>
-                    <select name="" id="m_people" class="form-control">
+                    <label for="panuozzoPersone">How Many People</label>
+                    <select name="" id="panuozzoPersone" class="form-control">
                       <option value="1">1 People</option>
                       <option value="2">2 People</option>
                       <option value="3">3 People</option>
@@ -784,33 +801,35 @@
                     </select>
                   </div>
                   <div class="col-md-6 form-group">
-                    <label for="m_phone">Phone</label>
-                    <input type="text" class="form-control" id="m_phone">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-6 form-group">
-                    <label for="m_date">Date</label>
-                    <input type="text" class="form-control" id="m_date">
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <label for="m_time">Time</label>
-                    <input type="text" class="form-control" id="m_time">
+                    <label for="panuozzoPhone">Phone</label>
+                    <input type="text" class="form-control" id="panuozzoPhone">
+                    <p id="panuozzoPhoneError" class="red" style="display: none;">
+                      Are you sure this is your Phone?🤔🤔
+                    </p>
+                    <p id="panuozzoPhoneLong" class="red" style="display: none;">
+                      This Phone is suspiciously tooo long.... 😒😒
+                    </p>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-md-12 form-group">
-                    <label for="m_message">Message</label>
-                    <textarea class="form-control" id="m_message" cols="30" rows="7"></textarea>
+                    <label for="panuozzoMessage">Message</label>
+                    <textarea class="form-control" id="panuozzoMessage" cols="30" rows="7"></textarea>
+                    <p id="panuozzoMessageError" class="red" style="display: none;">
+                      Are you sure this is your Message? 🤔🤔
+                    </p>
+                    <p id="panuozzoMessageLong" class="red" style="display: none;">
+                      This Phone is suspiciously tooo long.... 😒😒
+                    </p>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-md-12 form-group">
                     <!-- <input type="button" class="btn btn-primary btn-lg btn-block" value="Reserve Now"> -->
-                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Reserve Now">
+                    <input type="button" onclick="emailController.reservePanuozzo()" class="btn btn-primary btn-lg btn-block"
+                      value="Reserve Now">
                   </div>
                 </div>
 
@@ -900,7 +919,6 @@
 
   <script src="js/jquery.min.js"></script>
   <script src="js/popper.min.js"></script>
-  <script src="customJs/email.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.easing.1.3.js"></script>
   <script src="js/jquery.waypoints.min.js"></script>
@@ -912,6 +930,8 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
+  <script async src="customJs/email.js"></script>
+  <script async src="customJs/form.js"></script>
 
 
 </body>
