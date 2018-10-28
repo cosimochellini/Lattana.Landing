@@ -1,6 +1,12 @@
 var emailController = {};
 
 
+emailController.recipient = "cosimo.chellini@gmail.com";
+/**
+ * send an email to Don G for telling him that there is a 
+ * reserved piece of panuozzo
+ * @returns {boolean} the esit
+ */
 emailController.reservePanuozzo = () => {
     let form = {
         prefix: 'panuozzo',
@@ -13,9 +19,36 @@ emailController.reservePanuozzo = () => {
         ]
     }
 
-    if (formController.checkForm(form)) {
-        alert("")
+    if (!formController.checkForm(form)) return;
+
+    let formObj = formController.generateObject(form);
+
+    let subject = "Don G, there is a new reserve for the Panuozzo!";
+
+    let body = `
+    Hi Don G, 
+    ${formObj.Name} ${formObj.Surname} want make a reserve for your panuozzo's piece,
+    more info: 
+    email : ${formObj.Email},
+    phone : ${formObj.Phone},
+`;
+
+    if (formObj.Message) {
+        body = `
+       ${body}
+       message : ${formObj.Message}`
     }
+
+    emailController.sendMail(emailController.recipient, subject, body);
+
 };
 
-
+/**
+ * send a full mail
+ * @param recipient {string} recipient
+ * @param subject {string} subject
+ * @param body {string} the body
+ */
+emailController.sendMail = (recipient, subject, body) => {
+    window.location.href = `mailto: ${recipient}?subject = ${subject}& body=${encodeURI(body)} `;
+}

@@ -71,13 +71,34 @@ formController.checkFunctions.phone = (prefix, name) => {
 
     return true;
 }
-
+/**
+ * check if the form's fields are corrects
+ * @param form {object} the object to validate
+ * @param form.prefix {string} the prefix for all the field's Id
+ * @param form.fields {Array<object>} the array of object to validate
+ * @returns {boolean} the result
+ */
 formController.checkForm = ({ prefix, fields = [] }) => {
-   let result = true;
+    let result = true;
 
     fields.forEach(({ name, check, options }) => result = result && formController.checkFunctions[check](prefix, name, options));
 
     return result;
+}
+
+/**
+ * generate the complete object of the form's fields
+ * @param form {object} the object to validate
+ * @param form.prefix {string} the prefix for all the field's Id
+ * @param form.fields {Array<object>} the array of object to validate
+ * @returns {object} the result
+ */
+formController.generateObject = ({ prefix = '', fields = [] }) => {
+    let formObj = {};
+
+    fields.forEach(field => formObj[field.name] = $(`#${prefix}${field.name}`).val());
+
+    return formObj;
 }
 
 /**
@@ -99,3 +120,4 @@ const _isPhone = phone => {
     var re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
     return re.test(String(phone).toLowerCase());
 }
+
