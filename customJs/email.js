@@ -12,7 +12,6 @@ emailController.reservePanuozzo = () => {
         prefix: 'panuozzo',
         fields: [
             { name: 'Name', check: 'text' },
-            { name: 'Surname', check: 'text' },
             { name: 'Email', check: 'email' },
             { name: 'Phone', check: 'phone' },
             { name: 'Message', check: 'text', options: { min: 0, max: 400 } }
@@ -27,18 +26,12 @@ emailController.reservePanuozzo = () => {
 
     let body = `
     Hi Don G, 
-    ${formObj.Name} ${formObj.Surname} want make a reserve for your panuozzo's piece,
+    ${formObj.Name} want make a reserve for your panuozzo's piece,
     more info: 
     email : ${formObj.Email},
     phone : ${formObj.Phone},
+    message : ${formObj.Message || 'nothing  ¯\_(ツ)_/¯'}
 `;
-
-    if (formObj.Message) {
-        body = `
-       ${body}
-       message : ${formObj.Message}`
-    }
-
     emailController.sendMail(emailController.recipient, subject, body);
 
 };
