@@ -9,12 +9,12 @@ emailController.reservePanuozzo = () => {
             { name: 'Surname', check: 'text' },
             { name: 'Email', check: 'email' },
             { name: 'Phone', check: 'phone' },
-            { name: 'Message', check: 'longMessage' }
+            { name: 'Message', check: 'text', options: { min: 0, max: 400 } }
         ]
     }
 
-    if(formController.checkForm(form)){
-        
+    if (formController.checkForm(form)) {
+        alert("")
     }
 };
 
