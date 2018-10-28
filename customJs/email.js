@@ -1,7 +1,6 @@
 var emailController = {};
 
-
-emailController.recipient = "cosimo.chellini@gmail.com";
+emailController.recipient = "giulio.guidotti.1996@gmail.com";
 /**
  * send an email to Don G for telling him that there is a 
  * reserved piece of panuozzo
