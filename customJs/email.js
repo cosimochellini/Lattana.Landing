@@ -43,5 +43,5 @@ emailController.reservePanuozzo = () => {
  * @param body {string} the body
  */
 emailController.sendMail = (recipient, subject, body) => {
-    window.location.href = `mailto: ${recipient}?subject = ${subject}& body=${encodeURI(body)} `;
+    window.location.href = `mailto: ${recipient}?subject=${subject}&body=${encodeURI(body)}`;
 }
