@@ -29,7 +29,7 @@ emailController.reservePanuozzo = () => {
     more info: 
     email : ${formObj.Email},
     phone : ${formObj.Phone},
-    message : ${formObj.Message || 'nothing  ¯\_(ツ)_/¯'}
+    message : ${formObj.Message || 'nothing  ¯\\_(ツ)_/¯'}
 `;
     emailController.sendMail(emailController.recipient, subject, body);
 
