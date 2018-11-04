@@ -1,5 +1,10 @@
 class userController {
     get user() {
-        return userController.a + 1;
+        return this._getUser();
     }
+
+    _getUser(){
+
+    }
+    
 };
