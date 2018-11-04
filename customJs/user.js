@@ -34,7 +34,7 @@ class user {
      * @param {string} role 
      */
     is(role) {
-        return this.roles.map(role => role.toLocaleLowerCase()).contains(role.toLocaleLowerCase());
+        return this.roles.map(role => role.toLocaleLowerCase()).includes(role.toLocaleLowerCase());
     }
 
 };
