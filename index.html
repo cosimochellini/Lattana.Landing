@@ -74,7 +74,7 @@
           </h2>
           <p>
             <a href="https://github.com/cosimochellini/Lattana" target="_blank" class="btn btn-outline-white btn-lg site-animate"
-              data-toggle="modal" data-target="#reservationModal">
+              onclick="reservePanuozzo()" data-toggle="modal" data-target="#reservationModal">
               Reserve the Panuozzo&trade;
             </a>
           </p>
@@ -767,23 +767,18 @@
               <div class="bg-image" style="background-image: url(images/reservation_1.jpg);"></div>
             </div>
             <div class="col-lg-12 p-5">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" id="reservationModalClose" data-dismiss="modal" aria-label="Close">
                 <small>CLOSE </small><span aria-hidden="true">&times;</span>
               </button>
               <h2 class="mb-4">
                 Reserve <a href="https://it.wikipedia.org/wiki/Panuozzo" target="_blank">
                   Panuozzo&trade;
                 </a></h2>
-              <form>
+              <form id="formServePanuozzo">
                 <div class="row">
                   <div class="col-md-12 form-group">
                     <label for="panuozzoName">Complete Name</label>
-                    <input type="text" class="form-control" autocomplete="name" id="panuozzoName" />
-                    <p id="panuozzoNameError" class="red" style="display: none;">
-                      Are you sure this is your name? 🤔🤔
-                      <p id="panuozzoNameLong" class="red" style="display: none;">
-                        This name is suspiciously tooo long.... 😒😒
-                      </p>
+                    <input type="text" class="form-control" autocomplete="name" id="panuozzoName" readonly />
                   </div>
                 </div>
                 <div class="row">
@@ -806,16 +801,6 @@
                       <option value="2">2 Piece</option>
                       <option value="3">3 Piece</option>
                     </select>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <label for="panuozzoPhone">Phone</label>
-                    <input type="tel" class="form-control" autocomplete="tel" id="panuozzoPhone">
-                    <p id="panuozzoPhoneError" class="red" style="display: none;">
-                      Are you sure this is your Phone?🤔🤔
-                    </p>
-                    <p id="panuozzoPhoneLong" class="red" style="display: none;">
-                      This Phone is suspiciously tooo long.... 😒😒
-                    </p>
                   </div>
                 </div>
 
@@ -841,6 +826,14 @@
                 </div>
 
               </form>
+              <div class="containter" id="alertReservePanuozzo" >
+                <p>
+                  I'm sorry but only the logged user can reserve panuozzo
+                </p>
+                <input type="button" onclick="$('#reservationModalClose').click(); User.Login" class="btn btn-primary btn-lg btn-block"
+                value="Login">
+              </div>
+
             </div>
           </div>
 

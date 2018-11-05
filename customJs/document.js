@@ -22,6 +22,26 @@ let checkUserStatus = async () => {
     }
 }
 
+let reservePanuozzo = () => {
+    let currentUser = new User();
+    let $alertReservePanuozzo = $("#alertReservePanuozzo");
+    let $formServePanuozzo = $("#formServePanuozzo");
+
+    if (!currentUser.logged) {
+        $formServePanuozzo.hide();
+        $alertReservePanuozzo.show();
+        return;
+    }
+
+    $formServePanuozzo.show();
+    $alertReservePanuozzo.hide();
+
+    $("#panuozzoEmail").attr('value',currentUser.email)
+    $("#panuozzoName").attr('value',currentUser.username)
+
+}
+
+
 getSession().then(month => $("#month").text(month));
 
 netlifyIdentity.on("init", user => checkUserStatus());
