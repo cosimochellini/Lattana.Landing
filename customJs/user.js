@@ -1,4 +1,4 @@
-class user {
+class User {
     constructor() {
         let currentUser = this._getUser();
         if (!currentUser) {
@@ -9,6 +9,7 @@ class user {
         this.token = currentUser.token.access_token;
         this.roles = currentUser.app_metadata.roles;
         this.email = currentUser.email;
+        this.username = currentUser.user_metadata.full_name;
         this.logged = true;
 
     }
@@ -26,9 +27,19 @@ class user {
             "Admin": "Admin",
             "User": "User",
             "Collaborator": "Collaborator",
-            "Other" : "Other"
+            "Other": "Other"
         }
     }
+
+    static get Login() {
+        netlifyIdentity.open();
+    }
+
+    static get Logout() {
+        netlifyIdentity.logout();
+    }
+
+
     /**
      * return if the user is a specific role
      * @param {string} role 

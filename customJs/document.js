@@ -3,5 +3,18 @@
  * @returns {string} current session
  */
 let getSession = () => {
-    document.write(new Date().toLocaleString("en-us", { month: "long" }));
+    return (new Date().toLocaleString("en-us", { month: "long" }));
 }
+
+
+let currentUser = new User();
+
+if(currentUser.logged){
+    let $adminNavItem = $("#adminNavItem");
+    $adminNavItem.show();
+
+    $adminNavItem.text(currentUser.username);
+
+}
+
+$("#month").text(getSession());
