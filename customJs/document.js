@@ -2,19 +2,32 @@
  * function that return the current session
  * @returns {string} current session
  */
-let getSession = () => {
+let getSession = async () => {
     return (new Date().toLocaleString("en-us", { month: "long" }));
 }
 
-
-let currentUser = new User();
-
-if(currentUser.logged){
+let checkUserStatus = async () => {
+    let currentUser = new User();
     let $adminNavItem = $("#adminNavItem");
-    $adminNavItem.show();
+    let $UserNavItem = $("#UserNavItem");
 
-    $adminNavItem.text(currentUser.username);
+    if (currentUser.logged) {
+        $adminNavItem.show();
+        $adminNavItem.text(currentUser.username);
 
+        $UserNavItem.hide();
+    } else {
+        $UserNavItem.show();
+        $adminNavItem.hide();
+    }
 }
 
-$("#month").text(getSession());
+getSession().then(month => $("#month").text(month));
+
+netlifyIdentity.on("init", user => checkUserStatus());
+
+netlifyIdentity.on("login", user => checkUserStatus());
+
+netlifyIdentity.on("logout", () => checkUserStatus());
+
+netlifyIdentity.on("close", () => checkUserStatus());
