@@ -1,7 +1,8 @@
-exports.handler = function(event, context, callback) {
+exports.handler = function (event, context, callback) {
     console.log(arguments);
+    
     callback(null, {
-    statusCode: 200,
-    body: process.env.mongoPwd
+        statusCode: 200,
+        body: process.env.mongoPwd
     });
 }
