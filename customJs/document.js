@@ -26,7 +26,10 @@ getSession().then(month => $("#month").text(month));
 
 netlifyIdentity.on("init", user => checkUserStatus());
 
-netlifyIdentity.on("login", user => checkUserStatus());
+netlifyIdentity.on("login", user => {
+    checkUserStatus();
+    netlifyIdentity.close();
+});
 
 netlifyIdentity.on("logout", () => checkUserStatus());
 
