@@ -7,7 +7,7 @@ emailController.recipient = "giulio.guidotti.1996@gmail.com";
  * @returns {boolean} the esit
  */
 emailController.reservePanuozzo = () => {
-    let form = {
+    let formValue = {
         prefix: 'panuozzo',
         fields: [
             { name: 'Name', check: 'text' },
@@ -17,9 +17,11 @@ emailController.reservePanuozzo = () => {
         ]
     }
 
-    if (!formController.checkForm(form)) return;
+    let form = new Form(formValue);
 
-    let formObj = formController.generateObject(form);
+    if (!form.checkForm()) return;
+
+    let formObj = form.generateObject();
 
     let subject = "Don G, there is a new reserve for the Panuozzo!";
 
