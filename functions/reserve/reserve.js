@@ -6,6 +6,8 @@ exports.handler = function (event, context, callback) {
 
     const { identity, user } = context.clientContext;
 
+    console.log(user);
+
     console.log(new userClass(user));
 
     console.log('user info');
