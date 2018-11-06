@@ -1,4 +1,5 @@
-const MongoClient = require('mongodb').MongoClient;
+'use strict';
+var MongoClient = require('mongodb').MongoClient;
 
 exports.handler = function (event, context, callback) {
     console.log(arguments);
