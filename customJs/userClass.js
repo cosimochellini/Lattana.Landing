@@ -1,14 +1,18 @@
 class User {
     constructor(currentUser = this._getUser()) {
 
-        this.version = '0.0.2';
+        this.version = '0.0.2.1';
 
         if (!currentUser) {
             this.logged = false;
             console.log("Nessun Utente");
             return;
         }
-        this.token = currentUser.token ? currentUser.token.access_token : '';
+
+        if (currentUser && currentUser.token && currentUser.token.access_token) {
+            this.token = currentUser.token.access_token;
+        }
+
         this.roles = currentUser.app_metadata.roles;
         this.email = currentUser.email;
         this.username = currentUser.user_metadata.full_name;
