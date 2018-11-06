@@ -1,5 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
-var userClass = require('../serverModules/userClass.js');
+var userClass = require('./sharedModules/userClass');
 
 exports.handler = function (event, context, callback) {
     // console.log(arguments);
