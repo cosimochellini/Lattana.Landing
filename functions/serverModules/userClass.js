@@ -1,6 +1,6 @@
 class User {
-    constructor() {
-        let currentUser = this._getUser();
+    constructor(currentUser = this._getUser()) {
+
         if (!currentUser) {
             this.logged = false;
             console.log("Nessun Utente");
