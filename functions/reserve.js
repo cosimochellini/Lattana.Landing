@@ -1,9 +1,9 @@
+const MongoClient = require('mongodb').MongoClient;
 
 exports.handler = function (event, context, callback) {
     console.log(arguments);
-    const MongoClient = require('mongodb').MongoClient;
 
-    if(MongoClient){
+    if (MongoClient) {
         console.log("yeah");
     }
     callback(null, {
