@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/cosimochellini/LattanaWebsite/issues"
   },
-  "homepage": "https://github.com/cosimochellini/LattanaWebsite#readme"
+  "homepage": "https://github.com/cosimochellini/LattanaWebsite#readme",
+  "dependencies": {
+    "mongodb": "^3.1.8"
+  }
 }
