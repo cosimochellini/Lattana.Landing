@@ -23,7 +23,7 @@ class Api {
             method: method,
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
-                "Authorization": `Bearer${new User().token}`
+                "Authorization": `Bearer ${new User().token}`
             },
             body: JSON.stringify(data), // body data type must match "Content-Type" header
 
