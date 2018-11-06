@@ -30,8 +30,12 @@ class Api {
         }
     }
 
-    run() {
-        return fetch(this.url, this.settings).then(response => response.json());
+    async run() {
+        const response = await fetch(this.url, this.settings);
+        return response;
+    }
+    runAsync(callback) {
+        fetch(this.url, this.settings).then(response => callback(response));
     }
 
     generateUrl(controller = '') {
