@@ -50,7 +50,7 @@ class User {
 
 };
 
-
-if(module){
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
     module.exports = User;
-}
+else
+    window.User = User;

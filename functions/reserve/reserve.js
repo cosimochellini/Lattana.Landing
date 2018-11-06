@@ -1,15 +1,15 @@
-'use strict';
 var MongoClient = require('mongodb').MongoClient;
-var userClass = require('../serverModules/userClass');
+var userClass = require('../serverModules/userClass.js');
+
 exports.handler = function (event, context, callback) {
     // console.log(arguments);
-    
+
     const { identity, user } = context.clientContext;
-    
+
     console.log(new userClass(user));
-    
+
     console.log('user info');
-    
+
     // console.log(identity, user);
 
     if (MongoClient) {
@@ -21,3 +21,4 @@ exports.handler = function (event, context, callback) {
     });
 }
 
+// handler();
