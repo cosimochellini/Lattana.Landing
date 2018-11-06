@@ -2,7 +2,7 @@
   "name": "lattana",
   "version": "1.0.0",
   "description": "public website of lattana",
-  "main": "index.js",
+  "main": "index.handler",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
