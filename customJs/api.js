@@ -18,7 +18,7 @@ function postData(url = ``, data = {}) {
 
 class Api {
     constructor(url = '', data = {}, method = 'post') {
-        this.url = url;
+        this.url = this.url(url);
         this.settings = {
             method: method,
             headers: {
@@ -32,5 +32,9 @@ class Api {
 
     run() {
         return fetch(url, this.settings).then(response.json());
+    }
+
+    static get url(controller = ''){
+        return `${window.location.origin}/.netlify/functions/${controller}`;
     }
 }
