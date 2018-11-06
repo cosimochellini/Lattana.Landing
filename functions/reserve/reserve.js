@@ -2,14 +2,15 @@
 var MongoClient = require('mongodb').MongoClient;
 var userClass = require('../serverModules/userClass');
 exports.handler = function (event, context, callback) {
-    console.log(arguments);
+    // console.log(arguments);
+    
     const { identity, user } = context.clientContext;
     
     console.log(new userClass(user));
     
     console.log('user info');
     
-    console.log(identity, user);
+    // console.log(identity, user);
 
     if (MongoClient) {
         console.log("yeah");
