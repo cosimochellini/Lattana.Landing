@@ -1,44 +1,58 @@
-function postData(url = ``, data = {}) {
-    // Default options are marked with *
-    return fetch(url, {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, cors, *same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            // "Content-Type": "application/x-www-form-urlencoded",
-        },
-        redirect: "follow", // manual, *follow, error
-        referrer: "no-referrer", // no-referrer, *client
-        body: JSON.stringify(data), // body data type must match "Content-Type" header
-    })
-        .then(response => response.json()); // parses response to JSON
-}
+class User {
+    constructor(currentUser = this._getUser()) {
 
-class Api {
-    constructor(url = '', data = {}, method = 'post') {
-        this.url = this.generateUrl(url);
-        this.settings = {
-            method: method,
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-                "Authorization": `Bearer ${new User().token}`
-            },
-            body: JSON.stringify(data), // body data type must match "Content-Type" header
+        this.version = '0.0.1';
+            
+        if (!currentUser) {
+            this.logged = false;
+            console.log("Nessun Utente");
+            return;
+        }
+        this.token = currentUser.token.access_token;
+        this.roles = currentUser.app_metadata.roles;
+        this.email = currentUser.email;
+        this.username = currentUser.user_metadata.full_name;
+        this.logged = true;
 
+    }
+
+    _getUser() {
+        try {
+            return JSON.parse(localStorage["gotrue.user"]);
+        } catch (ex) {
+            return null;
         }
     }
 
-    async run() {
-        const response = await fetch(this.url, this.settings);
-        return response.json();
-    }
-    runAsync(callback) {
-        fetch(this.url, this.settings).then(response => callback(response.json()));
+    static get Type() {
+        return {
+            "Admin": "Admin",
+            "User": "User",
+            "Collaborator": "Collaborator",
+            "Other": "Other"
+        }
     }
 
-    generateUrl(controller = '') {
-        return `${window.location.origin}/.netlify/functions/${controller}`;
+    static get Login() {
+        netlifyIdentity.open();
     }
-}
+
+    static get Logout() {
+        netlifyIdentity.logout();
+    }
+
+
+    /**
+     * return if the user is a specific role
+     * @param {string} role 
+     */
+    is(role) {
+        return this.roles.map(role => role.toLocaleLowerCase()).includes(role.toLocaleLowerCase());
+    }
+
+};
+
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
+    module.exports = User;
+else
+    window.User = User;
