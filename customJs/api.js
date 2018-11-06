@@ -31,7 +31,7 @@ class Api {
     }
 
     run() {
-        return fetch(this.url, this.settings).then(response.json());
+        return fetch(this.url, this.settings).then(response => response.json());
     }
 
     generateUrl(controller = '') {
