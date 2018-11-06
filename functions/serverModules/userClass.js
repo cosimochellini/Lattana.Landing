@@ -49,3 +49,8 @@ class User {
     }
 
 };
+
+
+if(module){
+    module.exports = User;
+}
