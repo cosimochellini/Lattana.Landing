@@ -12,7 +12,7 @@ exports.handler = function (event, context, callback) {
 
     console.log('identity ', identity)
 
-    const body = JSON.parse('body', event.body);
+    const body = event.body;
 
     console.log('body', body);
 
