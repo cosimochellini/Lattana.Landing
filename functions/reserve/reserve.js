@@ -3,14 +3,16 @@ var userClass = require('./sharedModules/userClass');
 
 exports.handler = function (event, context, callback) {
     // console.log(arguments);
-    console.log(__dirname);
+
     const { identity, user } = context.clientContext;
 
-    console.log(user);
+    console.log(`event : ${JSON.stringify(event)}`)
 
-    console.log(new userClass(user));
+    console.log(`context : ${JSON.stringify(context)}`)
 
-    console.log('user info');
+    console.log(`identity : ${JSON.stringify(identity)}`)
+
+
 
     // console.log(identity, user);
 
