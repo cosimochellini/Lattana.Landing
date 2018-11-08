@@ -6,12 +6,17 @@ exports.handler = function (event, context, callback) {
 
     const { identity, user } = context.clientContext;
 
-    console.log(`event : ${JSON.stringify(event)}`)
+    console.log("event", event)
 
-    console.log(`context : ${JSON.stringify(context)}`)
+    console.log('context', context)
 
-    console.log(`identity : ${JSON.stringify(identity)}`)
+    console.log('identity ', identity)
 
+    const body = JSON.parse('body', event.body);
+    
+    const queryP = JSON.parse('queryP', event.queryStringParameters);
+
+    console.log('queryP', queryP);
 
 
     // console.log(identity, user);
