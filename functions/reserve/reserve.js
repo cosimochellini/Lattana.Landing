@@ -13,8 +13,10 @@ exports.handler = function (event, context, callback) {
     console.log('identity ', identity)
 
     const body = JSON.parse('body', event.body);
-    
-    const queryP = JSON.parse('queryP', event.queryStringParameters);
+
+    console.log('body', body);
+
+    const queryP = event.queryStringParameters;
 
     console.log('queryP', queryP);
 
