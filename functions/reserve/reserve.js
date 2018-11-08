@@ -3,7 +3,7 @@ var userClass = require('./sharedModules/userClass');
 
 exports.handler = function (event, context, callback) {
     // console.log(arguments);
-
+    console.log(__dirname);
     const { identity, user } = context.clientContext;
 
     console.log(user);
