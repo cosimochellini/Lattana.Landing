@@ -4,21 +4,21 @@ var userClass = require('./sharedModules/userClass');
 exports.handler = function (event, context, callback) {
     // console.log(arguments);
 
-    const { identity, user } = context.clientContext;
+    // const { identity, user } = context.clientContext;
 
-    console.log("event", event)
+    // console.log("event", event)
 
-    console.log('context', context)
+    // console.log('context', context)
 
-    console.log('identity ', identity)
+    // console.log('identity ', identity)
 
-    const body = event.body;
+    // const body = event.body;
 
-    console.log('body', body);
+    // console.log('body', body);
 
-    const queryP = event.queryStringParameters;
+    // const queryP = event.queryStringParameters;
 
-    console.log('queryP', queryP);
+    // console.log('queryP', queryP);
 
 
     // console.log(identity, user);
@@ -28,7 +28,7 @@ exports.handler = function (event, context, callback) {
     }
     callback(null, {
         statusCode: 200,
-        body: process.env.mongoPwd
+        body: ""
     });
 }
 
