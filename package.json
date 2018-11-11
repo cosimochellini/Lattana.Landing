@@ -4,9 +4,9 @@
   "description": "public website of lattana",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:lambda": "netlify-lambda serve functions",
-    "build:lambda": "netlify-lambda build functions",
-    "debug": "export SLS_DEBUG=* && node --debug ./node_modules/.bin/serverless offline -s dev"
+    "start": "netlify-lambda serve functions",
+    "build": "netlify-lambda build functions",
+    "debug": "netlify-lambda build functions && netlify-lambda serve functions"
   },
   "repository": {
     "type": "git",

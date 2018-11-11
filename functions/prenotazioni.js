@@ -6,44 +6,44 @@ import userClass from "../customJs/userClass";
 
 const prenotazioni = require('../schema/prenotazioni');
 
+const prenotazioneCibo = require('../schema/prenotazioneCibo');
+
 exports.handler = function (event, context, callback) {
-    const { db, mongoPwd, url } = process.env;
 
-    console.log(url + mongoPwd + db);
-    const options = {
-        // autoIndex: false, // Don't build indexes
-        reconnectTries: 100, // Never stop trying to reconnect
-        reconnectInterval: 500, // Reconnect every 500ms
-        poolSize: 10, // Maintain up to 10 socket connections
-        // If not connected, return errors immediately rather than waiting for reconnect
-        bufferMaxEntries: 0
-    };
-
-    var www = "mongodb://cosimochellini:1234Lattana@ds151533.mlab.com:51533/lattana";
-
-    mongoose.connect(www, options).then(
-        () => {
-            console.log("connected to mongoDB")
-        },
-        (err) => {
-            console.log("err", err);
+    if (!context && !context.clientContext) {
+        callback(null, {
+            statusCode: 401,
+            body: JSON.stringify(posts)
         });
+    }
+
+    const { identity, user } = context.clientContext;
+
+    mongoose.connect(process.env.db, {});
 
     const prenotazioniContext = mongoose.model('prenotazioni', prenotazioni, 'prenotazioni');
 
-    prenotazioniContext.findOne(function (err, users) {
+    const prenotazioneCiboContext = mongoose.model('prenotazioneCibo', prenotazioneCibo, 'prenotazioneCibo');
 
-        callback(null, {
-            statusCode: 200,
-            body: JSON.stringify(users)
-        });
-    });
+    prenotazioniContext.find({})
+        .exec(function (error, posts) {
+            callback(null, {
+                statusCode: 200,
+                body: JSON.stringify(posts)
+            });
+        })
+
+    // prenotazioneCiboContext.findOne(function (err, users) {
+
+    //     callback(null, {
+    //         statusCode: 200,
+    //         body: JSON.stringify(users)
+    //     });
+    // });
     // console.log(query);
     // console.log(arguments);
 
-    // const { identity, user } = context.clientContext;
-
-    //const currentUser = new userClass(user);
+    const currentUser = new userClass(user);
 
     //console.log("logged", currentUser.logged);
 

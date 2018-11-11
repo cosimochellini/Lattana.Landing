@@ -1,12 +1,13 @@
-import { Schema } from 'mongoose';
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-export default mongoose.model('prenotazioneCibo', new Schema({
+const prenotazioneCibo = new Schema({
     food: String,
     username: String,
     email: String,
     text: String,
     date: { type: Date, default: Date.now },
-    prenotazione: [
-        { type: Schema.Types.ObjectId, ref: 'prenotazioni' }
-    ]
-}));
+    prenotazioneId: String
+});
+
+module.exports = prenotazioneCibo;
