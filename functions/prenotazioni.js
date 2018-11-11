@@ -19,7 +19,7 @@ exports.handler = function (event, context, callback) {
 
     const { identity, user } = context.clientContext;
 
-    mongoose.connect(process.env.db, {}).catch(err => console.log(err));
+    mongoose.connect(process.env.db, { useNewUrlParser: true }).catch(err => console.log(err));
 
     const prenotazioniContext = mongoose.model('prenotazioni', prenotazioni, 'prenotazioni');
 
