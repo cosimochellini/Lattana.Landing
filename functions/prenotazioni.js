@@ -19,7 +19,7 @@ exports.handler = function (event, context, callback) {
 
     const { identity, user } = context.clientContext;
 
-    mongoose.connect(process.env.db, {});
+    mongoose.connect(process.env.db, {}).catch(err => console.log(err));
 
     const prenotazioniContext = mongoose.model('prenotazioni', prenotazioni, 'prenotazioni');
 
@@ -43,7 +43,7 @@ exports.handler = function (event, context, callback) {
     // console.log(query);
     // console.log(arguments);
 
-    const currentUser = new userClass(user);
+    // const currentUser = new userClass(user);
 
     //console.log("logged", currentUser.logged);
 
