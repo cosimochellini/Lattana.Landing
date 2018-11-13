@@ -15,7 +15,7 @@ const headers = {
 };
 
 
-exports.handler = function (event, context, callback) {
+exports.handler = async (event, context) => {
 
     // if (!context && !context.clientContext) {
     //     callback(null, {
@@ -52,10 +52,10 @@ exports.handler = function (event, context, callback) {
 
         console.log('JSON.stringify(posts)', JSON.stringify(posts))
 
-        callback(null, {
+        return {
             statusCode: 200,
             body: JSON.stringify(posts)
-        });
+        };
     });
 
     // prenotazioneCiboContext.findOne(function (err, users) {
