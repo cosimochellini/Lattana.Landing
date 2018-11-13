@@ -47,7 +47,10 @@ exports.handler = function (event, context, callback) {
     console.log('mongoose,model');
 
     prenotazioniContext.find({}, function (error, posts) {
-        console.log('dati trovati');
+
+        console.log('posts', posts);
+
+        console.log('JSON.stringify(posts)', JSON.stringify(posts))
 
         callback(null, {
             statusCode: 200,
