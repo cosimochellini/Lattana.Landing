@@ -30,7 +30,7 @@ exports.handler =  (event, context, callback) => {
         reconnectInterval: 500, // Reconnect every 500ms
         poolSize: 10, // Maintain up to 10 socket connections
         bufferMaxEntries: 0,
-        useNewUrlParser: true
+        // useNewUrlParser: true
     };
 
     mongoose.connect(process.env.db, options).then(success => console.log('db connesso', success)).catch(err => console.log(err));
