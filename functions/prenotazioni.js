@@ -14,7 +14,7 @@ const prenotazioneCiboContext = mongoose.model('prenotazioneCibo', prenotazioneC
 
 exports.handler = async (event, context) => {
 
-    const identity, currentUser;
+    let identity, currentUser;
 
     if (!context && !context.clientContext) {
         return {
@@ -22,12 +22,15 @@ exports.handler = async (event, context) => {
             body: JSON.stringify(posts)
         };
     }
+    try {
+        identity = context.clientContext.identity;
 
-    identity = context.clientContext.identity;
+        currentUser = new user(context.clientContext.user);
 
-    currentUser = new user(context.clientContext.user);
-
-    console.log(identity, user);
+        console.log(identity, currentUser);
+    } catch (ex) {
+        console.log(ex);
+    }
 
     const options = {
         reconnectTries: 100, // Never stop trying to reconnect
