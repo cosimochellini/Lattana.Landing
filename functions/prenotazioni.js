@@ -12,6 +12,14 @@ const prenotazioniContext = mongoose.model('prenotazioni', prenotazioni, 'prenot
 
 const prenotazioneCiboContext = mongoose.model('prenotazioneCibo', prenotazioneCibo, 'prenotazioneCibo');
 
+const options = {
+    reconnectTries: 100, // Never stop trying to reconnect
+    reconnectInterval: 500, // Reconnect every 500ms
+    poolSize: 10, // Maintain up to 10 socket connections
+    bufferMaxEntries: 0,
+    useNewUrlParser: true
+};
+
 exports.handler = async (event, context) => {
 
     let identity, currentUser;
@@ -31,13 +39,6 @@ exports.handler = async (event, context) => {
     } catch (ex) {
         console.log(ex);
     }
-
-    const options = {
-        reconnectTries: 100, // Never stop trying to reconnect
-        reconnectInterval: 500, // Reconnect every 500ms
-        poolSize: 10, // Maintain up to 10 socket connections
-        bufferMaxEntries: 0
-    };
 
     mongoose.connect(process.env.db, options).then(success => console.log('db connesso')).catch(err => console.log(err));
 
