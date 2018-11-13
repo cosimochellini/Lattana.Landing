@@ -33,6 +33,8 @@ exports.handler = async (event, context) => {
     try {
         identity = context.clientContext.identity;
 
+        console.log('user', context.clientContext.user);
+
         currentUser = new user(context.clientContext.user);
 
         console.log(identity, currentUser);
