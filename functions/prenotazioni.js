@@ -17,12 +17,12 @@ const headers = {
 
 exports.handler = function (event, context, callback) {
 
-    if (!context && !context.clientContext) {
-        callback(null, {
-            statusCode: 401,
-            body: JSON.stringify(posts)
-        });
-    }
+    // if (!context && !context.clientContext) {
+    //     callback(null, {
+    //         statusCode: 401,
+    //         body: JSON.stringify(posts)
+    //     });
+    // }
 
     // const { identity, user } = context.  clientContext;
     const options = {
@@ -36,17 +36,24 @@ exports.handler = function (event, context, callback) {
 
     mongoose.connect(process.env.db, options).catch(err => console.log(err));
 
+    console.log('db connesso');
+
     const prenotazioniContext = mongoose.model('prenotazioni', prenotazioni, 'prenotazioni');
+
+    console.log('mongoose,model');
 
     const prenotazioneCiboContext = mongoose.model('prenotazioneCibo', prenotazioneCibo, 'prenotazioneCibo');
 
-    prenotazioniContext.find({})
-        .exec(function (error, posts) {
-            callback(null, {
-                statusCode: 200,
-                body: JSON.stringify(posts)
-            });
-        })
+    console.log('mongoose,model');
+
+    prenotazioniContext.find({}, function (error, posts) {
+        console.log('dati trovati');
+
+        callback(null, {
+            statusCode: 200,
+            body: JSON.stringify(posts)
+        });
+    });
 
     // prenotazioneCiboContext.findOne(function (err, users) {
 
