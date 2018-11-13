@@ -15,7 +15,7 @@ const headers = {
 };
 
 
-exports.handler =  (event, context, callback) => {
+exports.handler = async (event, context) => {
 
     // if (!context && !context.clientContext) {
     //     callback(null, {
@@ -33,7 +33,7 @@ exports.handler =  (event, context, callback) => {
         // useNewUrlParser: true
     };
 
-    mongoose.connect(process.env.db, options).then(success => console.log('db connesso', success)).catch(err => console.log(err));
+    mongoose.connect(process.env.db, options).then(success => console.log('db connesso')).catch(err => console.log(err));
 
     // console.log('db connesso');
 
@@ -45,14 +45,15 @@ exports.handler =  (event, context, callback) => {
 
     console.log('mongoose,model');
 
-    const prenotazioni = prenotazioniContext.find({}).exec();
+    const prenotazioniQuery = await prenotazioniContext.find({}).exec();
 
-    console.log(prenotazioni);
+    console.log(prenotazioniQuery);
 
-    callback(null, {
+    return {
         statusCode: 200,
-        body: JSON.stringify(prenotazioni)
-    });
+        body: JSON.stringify(prenotazioniQuery)
+    };
+    
     // prenotazioneCiboContext.findOne(function (err, users) {
 
     //     callback(null, {
