@@ -1,7 +1,7 @@
 class User {
     constructor(currentUser = this._getUser()) {
 
-        this.version = '0.0.2.1';
+        this.version = '0.0.3';
 
         if (!currentUser) {
             this.logged = false;

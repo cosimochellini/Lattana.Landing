@@ -32,16 +32,12 @@ exports.handler = async (event, context) => {
     }
     try {
         identity = context.clientContext.identity;
-
-        console.log('user', context.clientContext.user);
-
         currentUser = new user(context.clientContext.user);
-
-        console.log(identity, currentUser);
     } catch (ex) {
         console.log(ex);
     }
 
+    
     mongoose.connect(process.env.db, options).then(success => console.log('db connesso')).catch(err => console.log(err));
 
     const prenotazioniQuery = await prenotazioniContext.find({}).exec();
