@@ -5,7 +5,6 @@ class User {
 
         if (!currentUser) {
             this.logged = false;
-            console.log("Nessun Utente");
             return;
         }
 
