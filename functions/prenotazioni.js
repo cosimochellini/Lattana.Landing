@@ -8,6 +8,13 @@ const prenotazioni = require('../schema/prenotazioni');
 
 const prenotazioneCibo = require('../schema/prenotazioneCibo');
 
+
+const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type"
+};
+
+
 exports.handler = function (event, context, callback) {
 
     if (!context && !context.clientContext) {
@@ -17,7 +24,7 @@ exports.handler = function (event, context, callback) {
         });
     }
 
-    const { identity, user } = context.clientContext;
+    // const { identity, user } = context.  clientContext;
     const options = {
         // autoIndex: false, // Don't build indexes
         reconnectTries: 100, // Never stop trying to reconnect
