@@ -15,7 +15,7 @@ const headers = {
 };
 
 
-exports.handler = async (event, context) => {
+exports.handler =  (event, context, callback) => {
 
     // if (!context && !context.clientContext) {
     //     callback(null, {
@@ -26,17 +26,16 @@ exports.handler = async (event, context) => {
 
     // const { identity, user } = context.  clientContext;
     const options = {
-        // autoIndex: false, // Don't build indexes
         reconnectTries: 100, // Never stop trying to reconnect
         reconnectInterval: 500, // Reconnect every 500ms
         poolSize: 10, // Maintain up to 10 socket connections
-        // If not connected, return errors immediately rather than waiting for reconnect
-        bufferMaxEntries: 0
+        bufferMaxEntries: 0,
+        useNewUrlParser: true
     };
 
-    mongoose.connect(process.env.db, options).catch(err => console.log(err));
+    mongoose.connect(process.env.db, options).then(success => console.log('db connesso', success)).catch(err => console.log(err));
 
-    console.log('db connesso');
+    // console.log('db connesso');
 
     const prenotazioniContext = mongoose.model('prenotazioni', prenotazioni, 'prenotazioni');
 
@@ -46,18 +45,14 @@ exports.handler = async (event, context) => {
 
     console.log('mongoose,model');
 
-    prenotazioniContext.find({}, function (error, posts) {
+    const prenotazioni = prenotazioniContext.find({}).exec();
 
-        console.log('posts', posts);
+    console.log(prenotazioni);
 
-        console.log('JSON.stringify(posts)', JSON.stringify(posts))
-
-        return {
-            statusCode: 200,
-            body: JSON.stringify(posts)
-        };
+    callback(null, {
+        statusCode: 200,
+        body: JSON.stringify(prenotazioni)
     });
-
     // prenotazioneCiboContext.findOne(function (err, users) {
 
     //     callback(null, {
