@@ -29,7 +29,7 @@ const importData = (event, context) => {
     }
 
     try {
-        exportData.body = event.body;
+        exportData.body = JSON.parse(event.body);
     } catch (ex) {
         exportData.body = {};
     }

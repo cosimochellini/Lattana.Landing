@@ -9,7 +9,7 @@ const reservePanuozzoToday = ({ identity, currentUser, body, authorized, db }) =
 
     // const prenotazioniCtx = db.prenotazioni;
     // const prenotazioniCiboCtx = db.prenotazioniCibo;
-    console.log('body', JSON.parse(body));
+    // console.log('body', JSON.parse(body));
 
     let prenotazione = new db.prenotazioneCibo({
         food: body.cibo,
