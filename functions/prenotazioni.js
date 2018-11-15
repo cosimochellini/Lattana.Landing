@@ -12,14 +12,14 @@ exports.handler = async (event, context) => {
     const data = immportData(event, context);
 
 
-    
+
     console.log('action', data.action);
 
     switch (data.action) {
-        case '/reservePanuozzoToday':
+        case 'reservePanuozzoToday':
             return reservePanuozzoToday(data);
         default:
-            console.log('Oranges are $0.59 a pound.');
+            console.log('invalid action => ', data.action);
             break;
     }
 
