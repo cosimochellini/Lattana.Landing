@@ -1,5 +1,5 @@
 
-const reservePanuozzoToday = ({ identity, currentUser, body, authorized, db, action }) => {
+const reservePanuozzoToday = ({ identity, currentUser, body, authorized, db }) => {
 
 
     if (!currentUser.logged) {

@@ -11,7 +11,7 @@ exports.handler = async (event, context) => {
     //    const { identity, currentUser, body, parameters, authorized, db, action } = immportData(event, context);
     const data = immportData(event, context);
 
-    switch (action) {
+    switch (data.action) {
         case '/reservePanuozzoToday':
             return reservePanuozzoToday(data);
         default:
