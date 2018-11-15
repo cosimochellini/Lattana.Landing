@@ -14,7 +14,7 @@ let vm = new Vue({
         }
     },
     mounted() {
-        if (!this.user.logged) {
+        if (!this.user.logged && this.user.is(User.Type.Admin)) {
             window.location.href = "./";
         }
     },

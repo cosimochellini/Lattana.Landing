@@ -74,7 +74,7 @@
           </h2>
           <p>
             <a href="https://github.com/cosimochellini/Lattana" target="_blank" class="btn btn-outline-white btn-lg site-animate"
-              onclick="reservePanuozzo()" data-toggle="modal" data-target="#reservationModal">
+              onclick="openReservePanuozzo()" data-toggle="modal" data-target="#reservationModal">
               Reserve the Panuozzo&trade;
             </a>
           </p>
@@ -754,8 +754,6 @@
   </footer>
 
 
-
-
   <!-- Modale panuozzo -->
   <div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel"
     aria-hidden="true">
@@ -781,18 +779,7 @@
                     <input type="text" class="form-control" autocomplete="name" id="panuozzoName" readonly />
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12 form-group">
-                    <label for="panuozzoEmail">Email</label>
-                    <input type="email" class="form-control" autocomplete="email" id="panuozzoEmail">
-                    <p id="panuozzoEmailError" class="red" style="display: none;">
-                      Are you sure this is your Email? 🤔🤔
-                    </p>
-                    <p id="panuozzoEmailLong" class="red" style="display: none;">
-                      This Email is suspiciously tooo long.... 😒😒
-                    </p>
-                  </div>
-                </div>
+
                 <div class="row">
                   <div class="col-md-6 form-group">
                     <label for="panuozzoPiece">How Many Piece</label>
@@ -800,6 +787,15 @@
                       <option value="1">1 Piece</option>
                       <option value="2">2 Piece</option>
                       <option value="3">3 Piece</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="panuozzoCibo">What do you want to eat</label>
+                    <select name="" id="panuozzoCibo" class="form-control">
+                      <option value="paunozzo">Panuozzo</option>
+                      <option value="pizza">Pizza Margherita</option>
+                      <option value="kebab">Kebab </option>
+                      <option value="other">Other</option>
                     </select>
                   </div>
                 </div>
@@ -826,12 +822,12 @@
                 </div>
 
               </form>
-              <div class="containter" id="alertReservePanuozzo" >
+              <div class="containter" id="alertReservePanuozzo">
                 <p>
                   I'm sorry but only the logged user can reserve panuozzo
                 </p>
                 <input type="button" onclick="$('#reservationModalClose').click(); User.Login" class="btn btn-primary btn-lg btn-block"
-                value="Login">
+                  value="Login">
               </div>
 
             </div>
@@ -929,7 +925,6 @@
   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
   <!-- <script src="js/google-map.js"></script> -->
   <script src="customJs/userClass.js"></script>
-  <script defer async src="customJs/email.js"></script>
   <script defer async src="customJs/form.js"></script>
   <script defer async src="customJs/api.js"></script>
   <script src="js/main.js"></script>
