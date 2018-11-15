@@ -48,7 +48,7 @@ let reservePanuozzo = () => {
 
     let currentUser = new User();
 
-    Api('prenotazioni').post('reservePanuozzoToday', {
+    Api().post('prenotazioni?action=reservePanuozzoToday', {
         pezzi: prenotazionePezzi,
         cibo: prenotazioneCibo,
         username: currentUser.username,
