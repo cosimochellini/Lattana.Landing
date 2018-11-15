@@ -11,6 +11,8 @@ exports.handler = async (event, context) => {
     //    const { identity, currentUser, body, parameters, authorized, db, action } = immportData(event, context);
     const data = immportData(event, context);
 
+
+    
     console.log('action', data.action);
 
     switch (data.action) {

@@ -28,8 +28,11 @@ const importData = (event, context) => {
         exportData.currentUser = {};
     }
 
-    exportData.body = event.body ? event.body : {};
-
+    try {
+        exportData.body = JSON.parse(event.body);
+    } catch (ex) {
+        exportData.body = {};
+    }
 
     exportData.parameters = event.queryStringParameters
         ? event.queryStringParameters
