@@ -30,9 +30,12 @@ const importData = (event, context) => {
 
     exportData.body = event.body ? event.body : {};
 
+
     exportData.parameters = event.queryStringParameters
         ? event.queryStringParameters
         : {};
+
+    exportData.action = exportData.parameters ? exportData.parameters.action : '';
 
     exportData.db = {};
 

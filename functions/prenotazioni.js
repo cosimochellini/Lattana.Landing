@@ -7,9 +7,7 @@ import immportData from "../@api/core.js"
 exports.handler = async (event, context) => {
 
 
-    const { identity, currentUser, body, parameters, authorized, db } = immportData(event, context);
-
-    // console.log('identity', identity);
+    const { identity, currentUser, body, parameters, authorized, db, action } = immportData(event, context);
 
     console.log('currentUser', currentUser);
 
@@ -17,9 +15,16 @@ exports.handler = async (event, context) => {
 
     console.log('parameters', parameters);
 
-    // console.log('authorized', authorized);
 
-    // console.log('db', db);
+    switch (action) {
+        case '/action':
+            console.log(identity, currentUser, body, parameters, authorized, db);
+            break;
+        default:
+            console.log('Oranges are $0.59 a pound.');
+            break;
+    }
+
 
     const prenotazioniQuery = await db.prenotazioni.find({}).exec();
 
