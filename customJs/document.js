@@ -47,7 +47,7 @@ let reservePanuozzo = () => {
     const prenotazioneCibo = $('#panuozzoCibo').val()
 
     const prenotazioneNote = $('#panuozzoMessage').val();
-
+  
     const currentUser = new User();
 
     Api('prenotazioni').post('reservePanuozzoToday', {

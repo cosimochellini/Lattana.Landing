@@ -1,3 +1,7 @@
+/**
+ * the default function to get data
+ * @param {string} controller 
+ */
 const Api = (controller) => 
      axios.create({
         baseURL: `${window.location.origin}/.netlify/functions/${controller}?action=`,
