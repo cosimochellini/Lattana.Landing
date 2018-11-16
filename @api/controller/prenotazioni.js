@@ -6,7 +6,8 @@ const reservePanuozzoToday = async ({ identity, currentUser, body, authorized, d
         username: body.username,
         email: body.email,
         date: new Date(),
-        prenotazioneId: '5be1b549e7179a6bbb967c21'
+        prenotazioneId: '5be1b549e7179a6bbb967c21',
+        note : body.note
     });
 
     // console.log(prenotazione);

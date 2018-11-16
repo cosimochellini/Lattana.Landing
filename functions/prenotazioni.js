@@ -13,7 +13,7 @@ exports.handler = async function (event, context) {
     console.log('action', data.action);
 
     switch (data.action) {
-        case 'reservePanuozzoToday':
+        case '/reservePanuozzoToday':
             console.log('entro in reservePanuozzoToday');
             await reservePanuozzoToday(data);
             break;

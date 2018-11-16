@@ -46,14 +46,17 @@ let reservePanuozzo = () => {
 
     const prenotazioneCibo = $('#panuozzoCibo').val()
 
-    let currentUser = new User();
+    const prenotazioneNote = $('#panuozzoMessage').val();
 
-    Api().post('prenotazioni?action=reservePanuozzoToday', {
+    const currentUser = new User();
+
+    Api('prenotazioni').post('reservePanuozzoToday', {
         pezzi: prenotazionePezzi,
         cibo: prenotazioneCibo,
         username: currentUser.username,
         email: currentUser.email,
-        date : new Date().toLocaleDateString("it-IT") //15/11/2018
+        date: new Date().toLocaleDateString("it-IT"), //15/11/2018
+        note: prenotazioneNote
     }).then(response => {
         console.log(response);
     });
