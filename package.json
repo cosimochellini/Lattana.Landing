@@ -1,6 +1,6 @@
 {
   "name": "lattana",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "public website of lattana",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
