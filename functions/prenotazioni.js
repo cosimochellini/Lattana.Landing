@@ -6,19 +6,19 @@ import immportData from "../@api/core.js"
 
 // import reservePanuozzoToday from "../@api/controller/prenotazioni"
 
-exports.handler = async (event, context) => {
+exports.handler = async function (event, context, callback) {
 
     //    const { identity, currentUser, body, parameters, authorized, db, action } = immportData(event, context);
-    const data = immportData(event, context);
-
+    const data = immportData(event, context, callback);
 
 
     console.log('action', data.action);
 
     switch (data.action) {
         case 'reservePanuozzoToday':
-            console.log('entro in reservePanuozzoToday')
-            return _reservePanuozzoToday(data);
+            console.log('entro in reservePanuozzoToday');
+            await _reservePanuozzoToday(data);
+            break;
         default:
             console.log('invalid action => ', data.action);
             break;
@@ -33,7 +33,7 @@ exports.handler = async (event, context) => {
 
 };
 
-const _reservePanuozzoToday = ({ identity, currentUser, body, authorized, db }) => {
+const _reservePanuozzoToday = async ({ identity, currentUser, body, authorized, db, callback }) => {
 
     // if (!currentUser.logged) {
     //     console.log('unathorized', currentUser);
@@ -44,7 +44,7 @@ const _reservePanuozzoToday = ({ identity, currentUser, body, authorized, db }) 
     // const prenotazioniCiboCtx = db.prenotazioniCibo;
     // console.log('body', JSON.parse(body));
 
-    console.log('typeof body', typeof body);
+    //console.log('typeof body', typeof body);
 
     let prenotazione = new db.prenotazioneCibo({
         food: body.cibo,
@@ -55,11 +55,16 @@ const _reservePanuozzoToday = ({ identity, currentUser, body, authorized, db }) 
     });
 
     // console.log(prenotazione);
+    try {
+        await prenotazione.save();
+    } catch (ex) {
+        console.log('err prenotazione.save', ex);
+        callback(ex);
+    }
 
-    prenotazione.save(function (err) {
-        console.log('err prenotazione.save', err);
+    callback(null, {
+        statusCode: 200,
+        body: 'creato correttamente',
     });
 
-    return 'ok';
-
-}
+};

@@ -21,7 +21,7 @@
   "homepage": "https://github.com/cosimochellini/LattanaWebsite#readme",
   "dependencies": {
     "dotenv": "^6.1.0",
-    "mongoose": "^5.3.11",
+    "mongoose": "^5.3.12",
     "netlify-lambda": "^1.0.3"
   }
 }
