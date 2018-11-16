@@ -12,7 +12,6 @@ const options = { reconnectTries: 100, reconnectInterval: 500, poolSize: 10, buf
  * genera tutte le variabili di base per la chiamata
  * @param {Object} event 
  * @param {Object} context 
- * @param {Function} callback 
  */
 const importData = (event, context) => {
     let exportData = {};
@@ -54,4 +53,20 @@ const importData = (event, context) => {
     return exportData;
 };
 
-export default importData;
+/**
+ * return the correct response obj
+ * @param {number} statuscode 
+ * @param {Object} obj 
+ * @returns {Object}
+ */
+const _response = function(statuscode, obj) {
+    return {
+        'statusCode': statuscode,
+        'body': JSON.stringify(obj)
+    };
+};
+
+export {
+    importData,
+    _response
+} ;

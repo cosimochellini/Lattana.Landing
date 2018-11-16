@@ -2,14 +2,14 @@ require('dotenv').config();
 
 const mongoose = require('mongoose');
 
-import immportData from "../@api/core.js"
+import { importData, _response } from "../@api/core.js"
 
 // import reservePanuozzoToday from "../@api/controller/prenotazioni"
 
 exports.handler = async function (event, context) {
 
     //    const { identity, currentUser, body, parameters, authorized, db, action } = immportData(event, context);
-    const data = immportData(event, context);
+    const data = importData(event, context);
 
 
     console.log('action', data.action);
@@ -25,10 +25,7 @@ exports.handler = async function (event, context) {
     }
 
 
-    return {
-        statusCode: 200,
-        body: JSON.stringify('panuozzo salvato correttamente')
-}
+    return _response(200, "tutto ok");
 
     // const prenotazioniQuery = await db.prenotazioni.find({}).exec();
 
@@ -60,12 +57,12 @@ const _reservePanuozzoToday = async ({ identity, currentUser, body, authorized, 
         await prenotazione.save();
     } catch (ex) {
         console.log('err prenotazione.save', ex);
-//        callback(ex);
+        //        callback(ex);
     }
 
-  //  callback(null, {
-   //     statusCode: 200,
-     //   body: 'creato correttamente',
+    //  callback(null, {
+    //     statusCode: 200,
+    //   body: 'creato correttamente',
     //});
 
 };
