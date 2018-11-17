@@ -6,7 +6,7 @@ import dateFns from 'date-fns';
  * @returns {Date} data corretta
  */
 const getFirstMoment = (date = new Date()) => {
-    const firstMoment = dateFns.setHours(date, 0);
+    let firstMoment = dateFns.setHours(date, 0);
     firstMoment = dateFns.setMinutes(firstMoment, 0);
     firstMoment = dateFns.setSeconds(firstMoment, 0);
     return firstMoment;
@@ -18,7 +18,7 @@ const getFirstMoment = (date = new Date()) => {
  * @returns {Date} data corretta
  */
 const getLastMoment = (date = new Date()) => {
-    const lastMoment = getFirstMoment(date);
+    let lastMoment = getFirstMoment(date);
     lastMoment = dateFns.addDays(lastMoment, 1);
     lastMoment = dateFns.addMilliseconds(lastMoment, -1);
 
