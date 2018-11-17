@@ -1,6 +1,6 @@
 import { Model } from "mongoose";
 
-import {generateStartEnd} from "../../utils/date";
+import { generateStartEnd } from "../../utils/date";
 
 /**
  * prenota un panuozzo per oggi, creando anche la prenotazione
@@ -64,7 +64,7 @@ const getPrenotazioniCibo = async ({ identity, currentUser, body, authorized, db
 
     const [dataInizio, dataFine] = generateStartEnd(body.dataInizio, body.dataFine);
 
-    console.log('dataInizio, dataFine',dataInizio, dataFine);
+    console.log('dataInizio, dataFine', dataInizio, dataFine);
 
     const items = await db.prenotazioneCibo.find( //query today up to tonight
         {
