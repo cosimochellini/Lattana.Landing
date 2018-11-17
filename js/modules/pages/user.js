@@ -6,11 +6,15 @@ let currentUser = new User();
 
 netlifyIdentity.on("logout", () => window.location.href = "./");
 
+Vue.use(bootstrapVue);
+
+
 let vm = new Vue({
     el: '#app',
     data() {
         return {
-            user: currentUser
+            user: currentUser,
+            foo : 'bar'
         }
     },
     mounted() {
