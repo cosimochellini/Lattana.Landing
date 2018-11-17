@@ -2,7 +2,7 @@ require('dotenv').config();
 
 // const mongoose = require('mongoose');
 
-import { importData, _response } from "../../@api/core"
+import { _response, importData } from "../../@api/core"
 
 import reservePanuozzoToday from "../../@api/controller/prenotazioni"
 
