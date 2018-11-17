@@ -1,2 +1,2 @@
 [build]
-    functions = ".js/modules/lambda/dist"
+    functions = "js/modules/lambda/dist"
