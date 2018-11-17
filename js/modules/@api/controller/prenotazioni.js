@@ -1,5 +1,7 @@
 import { Model } from "mongoose";
 
+import {generateStartEnd} from "../../utils/date";
+
 /**
  * prenota un panuozzo per oggi, creando anche la prenotazione
  * @param {Object} param0 l'oggetto data generato da importData(...)
@@ -11,7 +13,7 @@ import { Model } from "mongoose";
  * @param {Model<any, {}>} param0.db.prenotazioneCibo context della tabella prenotazioneCibo
  * @param {Model<any, {}>} param0.db.prenotazioni context della tabella prenotazioni
  * @param {Function} param0.callback
- * @returns {Promise<Array><Object>>} l'esito
+ * @returns {boolean} l'esito
  */
 const reservePanuozzoToday = async ({ identity, currentUser, body, authorized, db }) => {
 
@@ -56,24 +58,26 @@ const reservePanuozzoToday = async ({ identity, currentUser, body, authorized, d
  * @param {Model<any, {}>} param0.db.prenotazioneCibo context della tabella prenotazioneCibo
  * @param {Model<any, {}>} param0.db.prenotazioni context della tabella prenotazioni
  * @param {Function} param0.callback
- * @returns {Promise<boolean>} l'esito
+ * @returns {Promise<Array<Object>>} l'esito
  */
 const getPrenotazioniCibo = async ({ identity, currentUser, body, authorized, db }) => {
 
-    console.log('body', body);
+    const [dataInizio, dataFine] = generateStartEnd(body.dataInizio, body.dataFine);
+
+    console.log('dataInizio, dataFine',dataInizio, dataFine);
 
     const items = await db.prenotazioneCibo.find( //query today up to tonight
         {
             "date": {
-                "$gte": new Date(body.dataInizio),
-                "$lt": new Date(body.dataFine)
+                "$gte": dataInizio,
+                "$lt": dataFine
             }
         });
 
     console.log('items', items);
 
     return items;
-}
+};
 
 export {
     reservePanuozzoToday,

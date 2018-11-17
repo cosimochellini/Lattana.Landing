@@ -14,11 +14,10 @@ exports.handler = async function (event, context) {
     let responeData;
     switch (data.action) {
         case '/reservePanuozzoToday':
-            responeData = await reservePanuozzoToday(data);
-
+             await reservePanuozzoToday(data);
             break;
         case '/getPrenotazioniCibo':
-            await getPrenotazioniCibo(data);
+            responeData = await getPrenotazioniCibo(data);
             break;
         default:
             console.log('invalid action => ', data.action);
