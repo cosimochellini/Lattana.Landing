@@ -1,13 +1,6 @@
 let currentUser = new User();
 
-// if (!currentUser.logged && window.location.origin.includes("file://")) {
-//     window.location.href = "./";
-// }
-
-netlifyIdentity.on("logout", () => window.location.href = "./");
-
 Vue.use(bootstrapVue);
-
 
 let vm = new Vue({
     el: '#app',
@@ -23,8 +16,14 @@ let vm = new Vue({
         }
     },
     methods: {
-        closeModal() {
-            $('#reservationModal').modal('hide');
+        getUserRoles(){
+            if (!this.user.lenght){
+                return 'user';
+             }
+
+             return this.user.roles.join(',');
         }
     }
 });
+
+netlifyIdentity.on("logout", () => window.location.href = "./");

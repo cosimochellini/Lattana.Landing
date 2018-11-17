@@ -27,14 +27,31 @@
     <div id="app">
 
         <navbar :user='user'></navbar>
+
+
+        <div class="container-fluid">
+
+
+            <b-card no-body style="max-width: 20rem;">
+                <h4 slot="header">Ben tornato {{user.username}}</h4>
+                <b-card-body>
+                    <p class="card-text">
+                        In this page you can see and manage your bookings and see if you have managed to
+                                                 book the panuozzo
+                    </p>
+                </b-card-body>
+                <b-list-group flush>
+                    <b-list-group-item>email : {{user.email}}</b-list-group-item>
+                    <b-list-group-item>roles : {{getUserRoles()}}</b-list-group-item>
+                </b-list-group>
+            </b-card>
+        </div>
     </div>
-
-
-
-    <script src="../js/cdn/axios.min.js"></script>
     <script src="../js/cdn/vue.js"></script>
     <script src="../js/cdn/bootstrapvue/bv.min.js"></script>
     <script src="../js/modules/utils/userClass.js"></script>
+
+    <script src="../js/cdn/axios.min.js"></script>
     <script src="../js/modules/components/navbar.js"></script>
     <script defer async src="../js/cdn/api.js"></script>
     <script src="../js/modules/pages/user.js"></script>

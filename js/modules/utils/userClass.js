@@ -2,11 +2,11 @@ class User {
     constructor(currentUser = this._getUser()) {
 
         this.version = '0.0.3';
+        this.roles = [];
+        this.logged = false;
 
-        if (!currentUser) {
-            this.logged = false;
-            return;
-        }
+        if (!currentUser)             return;
+
 
         if (currentUser && currentUser.token && currentUser.token.access_token) {
             this.token = currentUser.token.access_token;
