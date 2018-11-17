@@ -59,6 +59,7 @@ let reservePanuozzo = () => {
         note: prenotazioneNote
     }).then(response => {
         console.log(response);
+        alert('success');
     });
 
 };
