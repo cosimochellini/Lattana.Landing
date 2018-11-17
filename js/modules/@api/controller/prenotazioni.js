@@ -13,22 +13,35 @@ import { Model } from "mongoose";
  * @param {Function} param0.callback
  * @returns {Promise<boolean>} l'esito
  */
-const reservePanuozzoToday = async ({ identity, currentUser, body, authorized, db , callback }) => {
+const reservePanuozzoToday = async ({ identity, currentUser, body, authorized, db }) => {
 
-    let prenotazione = new db.prenotazioneCibo({
-        food: body.cibo,
-        username: body.username,
-        email: body.email,
-        date: new Date(),
-        text: body.note
+    let prenotazione = new db.prenotazioni({
+        username: currentUser.username,
+        email: currentUser.email,
+        date: new Date()
     });
 
-    // console.log(prenotazione);
     try {
-        await prenotazione.save();
-    } catch (ex) {
-        console.log('err prenotazione.save', ex);
+         await prenotazione.save();
+        let prenotazioneCibo = new db.prenotazioneCibo({
+            food: body.cibo,
+            username: currentUser.username,
+            email: currentUser.email,
+            date: new Date(),
+            text: body.note,
+            prenotazioneId: prenotazione.id
+        });
+        try {
+            await prenotazioneCibo.save();
+        } catch (ex) {
+            console.log('err prenotazioneCibo.save', ex);
+        }
+    } catch (e) {
+        console.log('err prenotazione.save', e);
+
     }
+
+    // console.log(prenotazione);
 
 };
 
