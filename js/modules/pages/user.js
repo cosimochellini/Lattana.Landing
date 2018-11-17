@@ -17,13 +17,13 @@ let vm = new Vue({
     },
     methods: {
         getUserRoles(){
-            if (!this.user.lenght){
+            if (!this.user.roles.length){
                 return 'user';
-             }
+            }
 
-             return this.user.roles.join(',');
+            return this.user.roles.join(',');
         }
     }
 });
 
-netlifyIdentity.on("logout", () => window.location.href = "./");
+window.netlifyIdentity.on("logout", () => window.location.href = "./");

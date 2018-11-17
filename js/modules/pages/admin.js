@@ -1,26 +1,40 @@
 let currentUser = new User();
 
-if (!currentUser.logged && window.location.origin != "file://") {
-    window.location.href = "./";
-}
+Vue.use(bootstrapVue);
 
-netlifyIdentity.on("logout", () => window.location.href = "./");
-
-let vm = new Vue({
+new Vue({
     el: '#app',
-    data() {
-        return {
-            user: currentUser
+    data:
+    {
+        user: currentUser,
+        form: {
+            prenotazioniCibo: {
+                dataInizio: new Date(),
+                dataFine: new Date()
+            }
+        },
+        items: {
+            prenotazioniCibo: []
         }
     },
     mounted() {
-        if (!this.user.logged && this.user.is(User.Type.Admin)) {
-            window.location.href = "./";
+        if (!this.user.logged) {
+            // window.location.href = "./";
         }
+        Api('data').post('getPrenotazioniCibo', {
+            dataInizio : this.form.prenotazioniCibo.dataInizio,
+            dataFine : this.form.prenotazioniCibo.dataFine
+        }).then(( response ) => this.items.prenotazioniCibo = response.data);
     },
     methods: {
-        closeModal() {
-            $('#reservationModal').modal('hide');
+        getUserRoles() {
+            if (!this.user.roles.length) {
+                return 'user';
+            }
+
+            return this.user.roles.join(',');
         }
     }
 });
+
+window.netlifyIdentity.on("logout", () => window.location.href = "./");
