@@ -4,9 +4,9 @@
   "description": "public website of lattana",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "netlify-lambda serve functions",
-    "build": "netlify-lambda build functions",
-    "debug": "netlify-lambda build functions && netlify-lambda serve functions"
+    "start": "netlify-lambda serve js/modules/lambda/src",
+    "build": "netlify-lambda build js/modules/lambda/src",
+    "debug": "netlify-lambda build js/modules/lambda/src && netlify-lambda serve js/modules/lambda/src"
   },
   "repository": {
     "type": "git",

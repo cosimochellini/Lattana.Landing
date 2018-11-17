@@ -2,9 +2,9 @@ require('dotenv').config();
 
 // const mongoose = require('mongoose');
 
-import { importData, _response } from "../@api/core.js"
+import { importData, _response } from "../../@api/core"
 
-import reservePanuozzoToday from "../@api/controller/prenotazioni"
+import reservePanuozzoToday from "../../@api/controller/prenotazioni"
 
 exports.handler = async function (event, context) {
 

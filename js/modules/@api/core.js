@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-import user from "../customJs/userClass";
+import user from "../utils/userClass";
 
 const prenotazioni = require('../schema/prenotazioni');
 

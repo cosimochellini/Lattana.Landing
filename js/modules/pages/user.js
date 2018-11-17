@@ -1,8 +1,8 @@
 let currentUser = new User();
 
-if (!currentUser.logged && window.location.origin != "file://") {
-    window.location.href = "./";
-}
+// if (!currentUser.logged && window.location.origin.includes("file://")) {
+//     window.location.href = "./";
+// }
 
 netlifyIdentity.on("logout", () => window.location.href = "./");
 
@@ -15,7 +15,7 @@ let vm = new Vue({
     },
     mounted() {
         if (!this.user.logged) {
-            window.location.href = "./";
+            // window.location.href = "./";
         }
     },
     methods: {
