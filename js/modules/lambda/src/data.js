@@ -4,7 +4,9 @@ require('dotenv').config();
 
 import { _response, importData } from "../../@api/core"
 
-import { reservePanuozzoToday, getPrenotazioniCibo } from "../../@api/controller/prenotazioni"
+import { reservePanuozzoToday } from "../../@api/controller/prenotazioni"
+
+import { getPrenotazioniCibo } from "../../@api/controller/prenotazioniCibo"
 
 exports.handler = async function (event, context) {
 

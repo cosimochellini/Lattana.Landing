@@ -11,6 +11,8 @@
     <meta name="revisit-after" content="2 days">
     <meta name="robots" content="index">
     <meta name="msvalidate.01" content="9711E0529A53A545FFEC16864511D537" />
+    <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
 
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700|Raleway" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../js/cdn/bootstrapvue/bootstrapp.min.css" />
@@ -30,8 +32,9 @@
 
         <navbar :user='user'></navbar>
 
-        </br>
+        <br/>
         <b-container>
+
 
             <b-form inline responsive fixed striped class="justify-content-center">
                 <b-row align-v="center" class="mb-2 mr-sm-2 mb-sm-0">
@@ -47,8 +50,7 @@
                     </b-col>
 
                     <b-col md="auto" sm="4">
-                        <b-button type="reset" @@click="form = {}; input = {};" v-b-tooltip.hover title="Resetta campi filtro"
-                            variant="danger">
+                        <b-button type="reset" @@click="form = {}; input = {};" v-b-tooltip.hover title="Resetta campi filtro">
                             <div class="container d-flex h-100">
                                 <div class="justify-content-center align-self-center">
                                     <i class="fas fa-undo"></i>
@@ -60,7 +62,7 @@
                 </b-row>
             </b-form>
         </b-container>
-
+    </br>
         <b-card no-body style="max-width: 20rem;">
             <h4 slot="header">Ben tornato {{user.username}}</h4>
             <b-card-body>

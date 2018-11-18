@@ -4,9 +4,11 @@
  */
 let getSession = async () => {
     return (new Date().toLocaleString("en-us", { month: "long" }));
-}
-
-let checkUserStatus = async () => {
+};
+/**
+ * controlla lo stato dell'utente
+ */
+let checkUserStatus =  () => {
     let currentUser = new User();
     let $adminNavItem = $("#adminNavItem");
     let $UserNavItem = $("#UserNavItem");
@@ -20,7 +22,7 @@ let checkUserStatus = async () => {
         $UserNavItem.show();
         $adminNavItem.hide();
     }
-}
+};
 
 let openReservePanuozzo = () => {
     let currentUser = new User();
@@ -39,7 +41,7 @@ let openReservePanuozzo = () => {
     $("#panuozzoEmail").attr('value', currentUser.email)
     $("#panuozzoName").attr('value', currentUser.username)
 
-}
+};
 
 let reservePanuozzo = () => {
     const prenotazionePezzi = parseInt($('#panuozzoPiece').val());
@@ -65,11 +67,11 @@ let reservePanuozzo = () => {
 };
 getSession().then(month => $("#month").text(month));
 
-netlifyIdentity.on("init", user => checkUserStatus());
+netlifyIdentity.on("init", () => checkUserStatus());
 
-netlifyIdentity.on("login", user => {
-    checkUserStatus();
+netlifyIdentity.on("login", () => {
     netlifyIdentity.close();
+    checkUserStatus();
 });
 
 netlifyIdentity.on("logout", () => checkUserStatus());

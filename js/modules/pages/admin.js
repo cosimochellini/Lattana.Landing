@@ -1,12 +1,10 @@
-let currentUser = new User();
-
 Vue.use(bootstrapVue);
 
 new Vue({
     el: '#app',
     data:
     {
-        user: currentUser,
+        user: new User(),
         form: {
             prenotazioniCibo: {
                 dataInizio: new Date(),
@@ -27,7 +25,6 @@ new Vue({
     methods: {
         getUserRoles() {
             if (!this.user.roles.length) return 'user';
-
             return this.user.roles.join(',');
         },
         fetchData() {
