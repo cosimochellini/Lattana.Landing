@@ -5,93 +5,86 @@
     <title>Lattana, Smoke & Food. Firenze, Since 2014</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Lattana, Smoke and food since 2014. Firenze, Come and taste the original taste, served with a little bit of smoke that is always good for health">
+    <meta name="description"
+          content="Lattana, Smoke and food since 2014. Firenze, Come and taste the original taste, served with a little bit of smoke that is always good for health">
     <meta name="keywords" content="Lattana,Lattana Firenze,Firenze,Smoke e Food, Food, Smoke, Ernesto Punti,Dong G">
     <meta name="author" content="Cosimo Chellini">
     <meta name="revisit-after" content="2 days">
     <meta name="robots" content="index">
-    <meta name="msvalidate.01" content="9711E0529A53A545FFEC16864511D537" />
-    <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+    <meta name="msvalidate.01" content="9711E0529A53A545FFEC16864511D537"/>
+    <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"
+            integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0"
+            crossorigin="anonymous"></script>
 
 
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700|Raleway" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="../js/cdn/bootstrapvue/bootstrapp.min.css" />
+    <link type="text/css" rel="stylesheet" href="../js/cdn/bootstrapvue/bootstrapp.min.css"/>
     <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="../js/cdn/bootstrapvue/bv.min.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="shortcut icon" type="image/png" href="../images/cigar.png" />
-    <meta name="theme-color" content="#000000" />
+    <link rel="shortcut icon" type="image/png" href="../images/cigar.png"/>
+    <meta name="theme-color" content="#000000"/>
     <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
-        body {                padding-top: 60px;}
+        body {
+            padding-top: 60px;
+        }
     </style>
 </head>
 
 <body data-spy="scroll" data-target="#site-navbar" data-offset="200">
-    <div id="app">
+<div id="app">
 
-        <navbar :user='user'></navbar>
+    <navbar :user='user'></navbar>
 
-        <br/>
-        <b-container>
+    <br/>
+    <b-container>
 
 
-            <b-form inline responsive fixed striped class="justify-content-center">
-                <b-row align-v="center" class="mb-2 mr-sm-2 mb-sm-0">
+        <b-form inline responsive fixed striped class="justify-content-center">
+            <b-row align-v="center" class="mb-2 mr-sm-2 mb-sm-0">
 
-                    <b-col md="auto" sm="4" class="form-group mb-2 mr-sm-2 mb-sm-0">
-                        <vuejs-datepicker :bootstrap-styling="true" placeholder="Data Inizio" v-model="form.prenotazioniCibo.dataInizio">
-                        </vuejs-datepicker>
-                    </b-col>
+                <b-col md="auto" sm="4" class="form-group mb-2 mr-sm-2 mb-sm-0">
+                    <vuejs-datepicker :bootstrap-styling="true" placeholder="Data Inizio"
+                                      v-model="form.prenotazioniCibo.dataInizio">
+                    </vuejs-datepicker>
+                </b-col>
 
-                    <b-col md="auto" sm="4" class="form-group mb-2 mr-sm-2 mb-sm-0">
-                        <vuejs-datepicker :bootstrap-styling="true" placeholder="Data Fine" v-model="form.prenotazioniCibo.dataFine">
-                        </vuejs-datepicker>
-                    </b-col>
+                <b-col md="auto" sm="4" class="form-group mb-2 mr-sm-2 mb-sm-0">
+                    <vuejs-datepicker :bootstrap-styling="true" placeholder="Data Fine"
+                                      v-model="form.prenotazioniCibo.dataFine">
+                    </vuejs-datepicker>
+                </b-col>
 
-                    <b-col md="auto" sm="4">
-                        <b-button type="reset" @@click="form = {}; input = {};" v-b-tooltip.hover title="Resetta campi filtro">
-                            <div class="container d-flex h-100">
-                                <div class="justify-content-center align-self-center">
-                                    <i class="fas fa-undo"></i>
-                                </div>
+                <b-col md="auto" sm="4">
+                    <b-button type="reset" @@click="form = {}; input = {};" v-b-tooltip.hover
+                              title="Resetta campi filtro">
+                        <div class="container d-flex h-100">
+                            <div class="justify-content-center align-self-center">
+                                <i class="fas fa-undo"></i>
                             </div>
-                        </b-button>
-                    </b-col>
+                        </div>
+                    </b-button>
+                </b-col>
 
-                </b-row>
-            </b-form>
-        </b-container>
-    </br>
-        <b-card no-body style="max-width: 20rem;">
-            <h4 slot="header">Ben tornato {{user.username}}</h4>
-            <b-card-body>
-                <p class="card-text">
-                    In this page you can see and manage your bookings and see if you have managed to
-                                             book the panuozzo
-                </p>
-            </b-card-body>
-            <b-list-group flush>
-                <b-list-group-item>email : {{user.email}}</b-list-group-item>
-                <b-list-group-item>roles : {{getUserRoles()}}</b-list-group-item>
-            </b-list-group>
-        </b-card>
+            </b-row>
+        </b-form>
+    </b-container>
+    <br/>
 
-        <b-table striped hover responsive :items="items.prenotazioniCibo"></b-table>
+    <h2>PrenotazioniCibo</h2>
+    <b-table striped hover responsive :items="items.prenotazioniCibo"></b-table>
 
+</div>
 
-    </div>
-    </div>
-    <script src="../js/cdn/vue.js"></script>
-    <script src="../js/cdn/bootstrapvue/bv.min.js"></script>
-    <script src="../js/modules/utils/userClass.js"></script>
-    <script src="../js/cdn/axios.min.js"></script>
-    <script src="../js/modules/components/navbar.js"></script>
-    <script src="../js/cdn/api.js"></script>
-    <script src="../js/cdn/vue.timepicker.min.js"></script>
-    <script src="../js/modules/pages/admin.js"></script>
-
+<script src="../js/cdn/vue.js"></script>
+<script src="../js/cdn/bootstrapvue/bv.min.js"></script>
+<script src="../js/modules/utils/userClass.js"></script>
+<script src="../js/cdn/axios.min.js"></script>
+<script src="../js/modules/components/navbar.js"></script>
+<script src="../js/cdn/api.js"></script>
+<script src="../js/cdn/vue.timepicker.min.js"></script>
+<script src="../js/modules/pages/admin.js"></script>
 
 </body>
-
 </html>

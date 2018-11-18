@@ -15,26 +15,18 @@ import {generateStartEnd} from "../../utils/date";
  * @param {Function} param0.callback
  * @returns {Promise<Array<Object>>} l'esito
  */
-
 const getPrenotazioniCibo = async ({identity, currentUser, body, authorized, db}) => {
     try {
         if (!currentUser || !currentUser.is(User.Type.Admin)) return [];
 
         const [dataInizio, dataFine] = generateStartEnd(body.dataInizio, body.dataFine);
 
-        return await db.prenotazioneCibo.find( //query today up to tonight
-            {
-                "date": {
-                    "$gte": dataInizio,
-                    "$lt": dataFine
-                }
-            });
+        return await db.prenotazioneCibo.find({"date": {"$gte": dataInizio, "$lt": dataFine}});
+
     } catch (e) {
         console.log(e);
         return [];
     }
-
-
 };
 
 export {
