@@ -1,5 +1,5 @@
 import {Model} from "mongoose";
-
+import * as User from "../../utils/userClass";
 import {generateStartEnd} from "../../utils/date";
 
 /**
@@ -17,22 +17,24 @@ import {generateStartEnd} from "../../utils/date";
  */
 
 const getPrenotazioniCibo = async ({identity, currentUser, body, authorized, db}) => {
+    try {
+        if (!currentUser || !currentUser.is(User.Type.Admin)) return [];
 
-    const [dataInizio, dataFine] = generateStartEnd(body.dataInizio, body.dataFine);
+        const [dataInizio, dataFine] = generateStartEnd(body.dataInizio, body.dataFine);
 
-    console.log('dataInizio, dataFine', dataInizio, dataFine);
+        return await db.prenotazioneCibo.find( //query today up to tonight
+            {
+                "date": {
+                    "$gte": dataInizio,
+                    "$lt": dataFine
+                }
+            });
+    } catch (e) {
+        console.log(e);
+        return [];
+    }
 
-    const items = await db.prenotazioneCibo.find( //query today up to tonight
-        {
-            "date": {
-                "$gte": dataInizio,
-                "$lt": dataFine
-            }
-        });
 
-    console.log('items', items);
-
-    return items;
 };
 
 export {

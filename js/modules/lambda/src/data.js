@@ -4,7 +4,7 @@ require('dotenv').config();
 
 import { _response, importData } from "../../@api/core"
 
-import { reservePanuozzoToday } from "../../@api/controller/prenotazioni"
+import { reservePanuozzoToday, getPrenotazioni } from "../../@api/controller/prenotazioni"
 
 import { getPrenotazioniCibo } from "../../@api/controller/prenotazioniCibo"
 
@@ -12,7 +12,6 @@ exports.handler = async function (event, context) {
 
     let data = importData(event, context, () => console.log('nessun callback'));
 
-    console.log('action', data.action);
     let responeData;
     switch (data.action) {
         case '/reservePanuozzoToday':
@@ -20,6 +19,9 @@ exports.handler = async function (event, context) {
             break;
         case '/getPrenotazioniCibo':
             responeData = await getPrenotazioniCibo(data);
+            break;
+        case '/getPrenotazioni':
+            responeData = await getPrenotazioni(data);
             break;
         default:
             console.log('invalid action => ', data.action);
