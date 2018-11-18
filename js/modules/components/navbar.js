@@ -1,7 +1,7 @@
 Vue.component('navbar', {
     template:
         `
-    <b-navbar type="dark" variant="dark" toggleable>
+    <b-navbar type="dark" variant="dark" toggleable fixed='top'>
     <b-navbar-toggle target="nav_dropdown_collapse"></b-navbar-toggle>
     <b-navbar-brand tag="h1" class="mb-0">Lattana User: {{user.username}}</b-navbar-brand>
 

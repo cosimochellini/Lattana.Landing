@@ -20,15 +20,46 @@
     <link rel="shortcut icon" type="image/png" href="../images/cigar.png" />
     <meta name="theme-color" content="#000000" />
     <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
+    <style>
+        body {                padding-top: 60px;}
+    </style>
 </head>
 
 <body data-spy="scroll" data-target="#site-navbar" data-offset="200">
-<div id="app">
+    <div id="app">
 
-    <navbar :user='user'></navbar>
+        <navbar :user='user'></navbar>
 
-    <div class="container-fluid">
+        </br>
+        <b-container>
+
+            <b-form inline responsive fixed striped class="justify-content-center">
+                <b-row align-v="center" class="mb-2 mr-sm-2 mb-sm-0">
+
+                    <b-col md="auto" sm="4" class="form-group mb-2 mr-sm-2 mb-sm-0">
+                        <vuejs-datepicker :bootstrap-styling="true" placeholder="Data Inizio" v-model="form.prenotazioniCibo.dataInizio">
+                        </vuejs-datepicker>
+                    </b-col>
+
+                    <b-col md="auto" sm="4" class="form-group mb-2 mr-sm-2 mb-sm-0">
+                        <vuejs-datepicker :bootstrap-styling="true" placeholder="Data Fine" v-model="form.prenotazioniCibo.dataFine">
+                        </vuejs-datepicker>
+                    </b-col>
+
+                    <b-col md="auto" sm="4">
+                        <b-button type="reset" @@click="form = {}; input = {};" v-b-tooltip.hover title="Resetta campi filtro"
+                            variant="danger">
+                            <div class="container d-flex h-100">
+                                <div class="justify-content-center align-self-center">
+                                    <i class="fas fa-undo"></i>
+                                </div>
+                            </div>
+                        </b-button>
+                    </b-col>
+
+                </b-row>
+            </b-form>
+        </b-container>
 
         <b-card no-body style="max-width: 20rem;">
             <h4 slot="header">Ben tornato {{user.username}}</h4>
@@ -48,14 +79,15 @@
 
 
     </div>
-</div>
-<script src="../js/cdn/vue.js"></script>
-<script src="../js/cdn/bootstrapvue/bv.min.js"></script>
-<script src="../js/modules/utils/userClass.js"></script>
-<script src="../js/cdn/axios.min.js"></script>
-<script src="../js/modules/components/navbar.js"></script>
-<script src="../js/cdn/api.js"></script>
-<script src="../js/modules/pages/admin.js"></script>
+    </div>
+    <script src="../js/cdn/vue.js"></script>
+    <script src="../js/cdn/bootstrapvue/bv.min.js"></script>
+    <script src="../js/modules/utils/userClass.js"></script>
+    <script src="../js/cdn/axios.min.js"></script>
+    <script src="../js/modules/components/navbar.js"></script>
+    <script src="../js/cdn/api.js"></script>
+    <script src="../js/cdn/vue.timepicker.min.js"></script>
+    <script src="../js/modules/pages/admin.js"></script>
 
 
 </body>
