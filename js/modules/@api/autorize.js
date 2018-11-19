@@ -9,7 +9,7 @@ const checkAutorize = (event, currentUser, role = '') => {
 
     console.log('header', event.headers);
 
-    const origin = event.headers.host.toString();
+    const origin = event.headers.origin.toString();
 
     if (origin.includes('localhost:') || origin.includes('file:')) return true;
 
