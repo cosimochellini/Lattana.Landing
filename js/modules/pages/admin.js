@@ -26,14 +26,15 @@ new Vue({
             return this.user.roles.join(',');
         },
         fetchData() {
-            Api('data').post('getPrenotazioniCibo', {
-                dataInizio: this.form.dataInizio,
-                dataFine: this.form.dataFine
+
+            const [dataInizio, dataFine] = window.generateStartEnd(this.form.dataInizio, this.form.dataFine);
+
+            Api('data').post('find', {
+                query: {"date": {"$gte": dataInizio, "$lt": dataFine}, "table" : "prenotazioneCibo"}
             }).then((response) => this.items.prenotazioniCibo = response.data);
 
-            Api('data').post('getPrenotazioni', {
-                dataInizio: this.form.dataInizio,
-                dataFine: this.form.dataFine
+            Api('data').post('find', {
+                query: {"date": {"$gte": dataInizio, "$lt": dataFine},  "table" : "prenotazioni"}
             }).then((response) => this.items.prenotazioni = response.data);
         }
     },

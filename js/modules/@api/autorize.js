@@ -13,7 +13,7 @@ const checkAutorize = (event, currentUser, role = '') => {
 
     if (!role) return true;
 
-    return !(!currentUser || !currentUser.is(role));
+    return !(!currentUser && !currentUser.is(role));
 
 };
 

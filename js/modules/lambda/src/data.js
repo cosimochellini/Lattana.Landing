@@ -2,11 +2,9 @@ require('dotenv').config();
 
 // const mongoose = require('mongoose');
 
-import { _response, importData } from "../../@api/core"
+import {_response, importData} from "../../@api/core"
 
-import { reservePanuozzoToday, getPrenotazioni } from "../../@api/controller/prenotazioni"
-
-import { getPrenotazioniCibo } from "../../@api/controller/prenotazioniCibo"
+import {queryFind} from "../../@api/controller/mongooseQuery";
 
 exports.handler = async function (event, context) {
 
@@ -14,14 +12,9 @@ exports.handler = async function (event, context) {
 
     let responeData;
     switch (data.action) {
-        case '/reservePanuozzoToday':
-             await reservePanuozzoToday(data);
-            break;
-        case '/getPrenotazioniCibo':
-            responeData = await getPrenotazioniCibo(data);
-            break;
-        case '/getPrenotazioni':
-            responeData = await getPrenotazioni(data);
+
+        case '/find':
+            responeData = await queryFind(data);
             break;
         default:
             console.log('invalid action => ', data.action);
