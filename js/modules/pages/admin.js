@@ -2,6 +2,7 @@ Vue.use(bootstrapVue);
 
 new Vue({
     el: '#app',
+    mixins : [mixin.mixin()],
     data:
         {
             user: new User(),
@@ -10,10 +11,11 @@ new Vue({
                 dataFine: new Date(),
             },
             items: {
-                prenotazioniCibo: [],
-                prenotazioni: []
+                cibo: [],
+                panuozzo: []
             },
-            selezione: ''
+            selezione: 'cibo',
+            fieldException : ['_id', 'prenotazioneId', '__v']
         },
     mounted() {
         if (!this.user.logged) {
@@ -34,16 +36,18 @@ new Vue({
             Api('data').post('find', {
                 query: {date: {$gte: dataInizio, $lt: dataFine}},
                 table: "prenotazioneCibo"
-            }).then((response) => this.items.prenotazioniCibo = response.data);
+            }).then((response) => this.items.cibo = response.data);
 
             Api('data').post('find', {
                 query: {date: {"$gte": dataInizio, "$lt": dataFine}},
                 table: "prenotazioni"
-            }).then((response) => this.items.prenotazioni = response.data);
+            }).then((response) => this.items.panuozzo = response.data);
         }
     },
-    components: {
-        vuejsDatepicker
+    computed: {
+        computedItems(){
+            return this.items[this.selezione];
+        }
     },
     watch: {
         form: {

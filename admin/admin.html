@@ -77,27 +77,28 @@
         <b-form-radio value="panuozzo">Prenotazioni Panuozzo</b-form-radio>
     </b-form-radio-group>
 
-    <div v-show="selezione ==='cibo'">
-        <p>Prenotazioni Cibo</p>
-        <div v-if="items.prenotazioniCibo.length">
-            <b-table striped hover responsive :items="items.prenotazioniCibo"></b-table>
-        </div>
+    <br>
 
-        <div v-else>
-            <p> Nessun elemento per il range di date selezionato</p>
-        </div>
+    <h2 class="text-center">Prenotazioni {{selezione}}</h2>
+
+    <div v-if="computedItems.length">
+        <b-table hover responsive striped
+                 :sort-by.sync="table.sortBy"
+                 :sort-desc.sync="table.sortDesc"
+                 :per-page="parseInt(table.perPage)"
+                 :current-page="table.currentPage"
+                 :items="computedItems"
+                 :fields="tableFields(items[this.selezione][0])">
+
+            <template slot="date" slot-scope="data">
+                {{data.item.date| date }}
+            </template>
+
+        </b-table>
     </div>
 
-    <div v-show="selezione ==='panuozzo'">
-        <p>Prenotazioni Panuozzo</p>
-
-        <div v-if="items.prenotazioni.length">
-            <b-table striped hover responsive :items="items.prenotazioni"></b-table>
-        </div>
-
-        <div v-else>
-            <p> Nessun elemento per il range di date selezionato</p>
-        </div>
+    <div v-else>
+        <h2 class="text-center"> Nessun elemento per il range di date selezionato</h2>
     </div>
 
 </div>
@@ -109,6 +110,7 @@
 <script src="../js/cdn/date-fns.js"></script>
 <script src="../js/cdn/date-utlis.js"></script>
 <script src="../js/modules/components/navbar.js"></script>
+<script src="../js/modules/components/mixin.js"></script>
 <script src="../js/cdn/api.js"></script>
 <script src="../js/cdn/vue.timepicker.min.js"></script>
 <script src="../js/modules/pages/admin.js"></script>
