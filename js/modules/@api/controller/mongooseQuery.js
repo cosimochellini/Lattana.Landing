@@ -15,7 +15,7 @@ const queryFind = async ({body, db}) => {
     try {
         const {query, table} = body;
 
-        console.log('body', body.table);
+        console.log('typeof body:',  typeof body);
 
         return await db[table].find(query);
 

@@ -1,6 +1,6 @@
 /**
  * the default function to get data
- * @param {string} controller 
+ * @param {string} controller
  */
 const Api = (controller) => {
     let origin = window.location.origin;
@@ -18,6 +18,6 @@ const Api = (controller) => {
             "Content-Type": "application/json; charset=utf-8",
             "Authorization": `Bearer ${new window.User().token}`
         },
-        method: 'post',
+        method: 'post'
     });
 };
