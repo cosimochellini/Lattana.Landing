@@ -7,11 +7,13 @@ new Vue({
             user: new User(),
             form: {
                 dataInizio: new Date(),
-                dataFine: new Date()
+                dataFine: new Date(),
             },
             items: {
-                prenotazioniCibo: []
-            }
+                prenotazioniCibo: [],
+                prenotazioni: []
+            },
+            selezione: ''
         },
     mounted() {
         if (!this.user.logged) {

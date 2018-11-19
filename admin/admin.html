@@ -72,13 +72,33 @@
     </b-container>
     <br/>
 
-    <h2>PrenotazioniCibo</h2>
-    <b-table striped hover responsive :items="items.prenotazioniCibo"></b-table>
+    <b-form-radio-group v-model="selezione" class="text-center" label="Tipo di dati">
+        <b-form-radio value="cibo">Prenotazioni Cibo</b-form-radio>
+        <b-form-radio value="panuozzo">Prenotazioni Panuozzo</b-form-radio>
+    </b-form-radio-group>
 
-    <br/>
+    <div v-show="selezione ==='cibo'">
+        <p>Prenotazioni Cibo</p>
+        <div v-if="items.prenotazioniCibo.length">
+            <b-table striped hover responsive :items="items.prenotazioniCibo"></b-table>
+        </div>
 
-    <h2>Prenotazioni</h2>
-    <b-table striped hover responsive :items="items.prenotazioni"></b-table>
+        <div v-else>
+            <p> Nessun elemento per il range di date selezionato</p>
+        </div>
+    </div>
+
+    <div v-show="selezione ==='panuozzo'">
+        <p>Prenotazioni Panuozzo</p>
+
+        <div v-if="items.prenotazioni.length">
+            <b-table striped hover responsive :items="items.prenotazioni"></b-table>
+        </div>
+
+        <div v-else>
+            <p> Nessun elemento per il range di date selezionato</p>
+        </div>
+    </div>
 
 </div>
 

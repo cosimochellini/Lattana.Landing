@@ -10,21 +10,22 @@ Vue.component('navbar', {
         <b-nav-item href="#">Lattana</b-nav-item>
         <b-nav-item href="/">Home</b-nav-item>
         <b-nav-item href="/admin/admin" v-if="isAdmin">Admin</b-nav-item>
-        <b-nav-item href="#" @click="logout">LogOut</b-nav-item>
+        <b-nav-item href="#" @click="logout">Logout</b-nav-item>
         <!-- Navbar dropdowns -->
-       
-      </b-navbar-nav>
+        </b-navbar-nav>
     </b-collapse>
   </b-navbar>
 
     `,
-    props : ['user'],
+    props: ['user'],
     methods: {
-        isAdmin(){
-            return this.user.is(window.User.Type.Admin);
-        },
-        logout(){
+        logout() {
             netlifyIdentity.logout();
+        }
+    },
+    computed: {
+        isAdmin() {
+            return this.user.is(window.User.Type.Admin);
         }
     }
 });
