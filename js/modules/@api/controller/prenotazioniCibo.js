@@ -7,7 +7,7 @@ import {generateStartEnd} from "../../utils/date";
  * prenota un panuozzo per oggi, creando anche la prenotazione
  * @param {Object} param0 l'oggetto data generato da importData(...)
  * @param {Object} param0.identity
- * @param {Object<user>} param0.currentUser
+ * @param {User} param0.currentUser
  * @param {Object} param0.body
  * @param {boolean} param0.authorized
  * @param {Object} param0.db
@@ -18,7 +18,7 @@ import {generateStartEnd} from "../../utils/date";
  */
 const getPrenotazioniCibo = async ({identity, currentUser, event, body, authorized, db}) => {
     try {
-        if (checkAutorize(event, currentUser, User.Type.Admin)) return [];
+        if (!checkAutorize(event, currentUser, User.Type.Admin)) return [];
 
         const [dataInizio, dataFine] = generateStartEnd(body.dataInizio, body.dataFine);
 
