@@ -2,6 +2,7 @@ import {Model} from "mongoose";
 
 import {generateStartEnd} from "../../utils/date";
 import * as User from "../../utils/userClass";
+import {checkAutorize} from "../autorize";
 
 /**
  * prenota un panuozzo per oggi, creando anche la prenotazione
@@ -58,9 +59,9 @@ const reservePanuozzoToday = async ({identity, currentUser, body, authorized, db
  * @returns {Promise<Array<Object>>} l'esito
  */
 
-const getPrenotazioni = async ({identity, currentUser, body, authorized, db}) => {
+const getPrenotazioni = async ({identity, event, currentUser, body, authorized, db}) => {
     try {
-        if (!currentUser || !currentUser.is(User.Type.Admin)) return [];
+        if (checkAutorize(event,currentUser, User.Type.Admin)) return [];
 
         const [dataInizio, dataFine] = generateStartEnd(body.dataInizio, body.dataFine);
 

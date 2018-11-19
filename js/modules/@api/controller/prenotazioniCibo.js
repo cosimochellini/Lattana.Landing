@@ -1,4 +1,5 @@
 import {Model} from "mongoose";
+import {checkAutorize} from "../autorize";
 import * as User from "../../utils/userClass";
 import {generateStartEnd} from "../../utils/date";
 
@@ -15,9 +16,9 @@ import {generateStartEnd} from "../../utils/date";
  * @param {Function} param0.callback
  * @returns {Promise<Array<Object>>} l'esito
  */
-const getPrenotazioniCibo = async ({identity, currentUser, body, authorized, db}) => {
+const getPrenotazioniCibo = async ({identity, currentUser, event, body, authorized, db}) => {
     try {
-        if (!currentUser || !currentUser.is(User.Type.Admin)) return [];
+        if (checkAutorize(event, currentUser, User.Type.Admin)) return [];
 
         const [dataInizio, dataFine] = generateStartEnd(body.dataInizio, body.dataFine);
 

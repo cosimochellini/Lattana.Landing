@@ -9,6 +9,10 @@ new Vue({
             prenotazioniCibo: {
                 dataInizio: new Date(),
                 dataFine: new Date()
+            },
+            prenotazioni: {
+                dataInizio: new Date(),
+                dataFine: new Date()
             }
         },
         items: {
@@ -32,6 +36,11 @@ new Vue({
                 dataInizio: this.form.prenotazioniCibo.dataInizio,
                 dataFine: this.form.prenotazioniCibo.dataFine
             }).then((response) => this.items.prenotazioniCibo = response.data);
+
+            Api('data').post('getPrenotazioni', {
+                dataInizio: this.form.prenotazioni.dataInizio,
+                dataFine: this.form.prenotazioni.dataFine
+            }).then((response) => this.items.prenotazioni = response.data);
         }
     },
     components: {

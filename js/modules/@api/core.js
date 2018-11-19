@@ -20,7 +20,7 @@ const importData = (event, context, callback) => {
 
     mongoose.connect(process.env.db, options).then(success => console.log('db connesso')).catch(err => console.log(err));
 
-    exportData.authorized = !!context && !!context.clientContext
+    exportData.authorized = !!context && !!context.clientContext;
 
     if (exportData.authorized) {
         exportData.identity = context.clientContext.identity;
@@ -45,6 +45,10 @@ const importData = (event, context, callback) => {
     exportData.action = exportData.parameters ? exportData.parameters.action : '';
 
     exportData.db = {};
+
+    exportData.event = event;
+
+    exportData.context = context;
 
     exportData.db.prenotazioni = mongoose.model('prenotazioni', prenotazioni, 'prenotazioni');
 
