@@ -3,22 +3,16 @@ Vue.use(bootstrapVue);
 new Vue({
     el: '#app',
     data:
-    {
-        user: new User(),
-        form: {
-            prenotazioniCibo: {
+        {
+            user: new User(),
+            form: {
                 dataInizio: new Date(),
                 dataFine: new Date()
             },
-            prenotazioni: {
-                dataInizio: new Date(),
-                dataFine: new Date()
+            items: {
+                prenotazioniCibo: []
             }
         },
-        items: {
-            prenotazioniCibo: []
-        }
-    },
     mounted() {
         if (!this.user.logged) {
             // window.location.href = "./";
@@ -33,13 +27,13 @@ new Vue({
         },
         fetchData() {
             Api('data').post('getPrenotazioniCibo', {
-                dataInizio: this.form.prenotazioniCibo.dataInizio,
-                dataFine: this.form.prenotazioniCibo.dataFine
+                dataInizio: this.form.dataInizio,
+                dataFine: this.form.dataFine
             }).then((response) => this.items.prenotazioniCibo = response.data);
 
             Api('data').post('getPrenotazioni', {
-                dataInizio: this.form.prenotazioni.dataInizio,
-                dataFine: this.form.prenotazioni.dataFine
+                dataInizio: this.form.dataInizio,
+                dataFine: this.form.dataFine
             }).then((response) => this.items.prenotazioni = response.data);
         }
     },
