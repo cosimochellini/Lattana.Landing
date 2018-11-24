@@ -6,6 +6,8 @@ import {_response, importData} from "../../@api/core"
 
 import {queryFind} from "../../@api/controller/mongooseQuery";
 
+import {reservePanuozzoToday} from "../../@api/controller/prenotazioni";
+
 exports.handler = async function (event, context) {
 
     let data = importData(event, context, () => console.log('nessun callback'));
@@ -15,6 +17,9 @@ exports.handler = async function (event, context) {
 
         case '/find':
             responeData = await queryFind(data);
+            break;
+        case '/reservePanuozzoToday':
+            responeData = await reservePanuozzoToday(data);
             break;
         default:
             console.log('invalid action => ', data.action);

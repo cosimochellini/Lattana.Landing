@@ -11,7 +11,7 @@ import {Model} from "mongoose";
  * @param {Model<any, {}>} param0.db.prenotazioneCibo context della tabella prenotazioneCibo
  * @param {Model<any, {}>} param0.db.prenotazioni context della tabella prenotazioni
  * @param {Function} param0.callback
- * @returns {boolean} l'esito
+ * @returns {boolean|Object} l'esito
  */
 const reservePanuozzoToday = async ({identity, currentUser, body, authorized, db}) => {
 
@@ -33,12 +33,16 @@ const reservePanuozzoToday = async ({identity, currentUser, body, authorized, db
         });
         try {
             await prenotazioneCibo.save();
+            return prenotazioneCibo;
         } catch (ex) {
             console.log('err prenotazioneCibo.save', ex);
+            return false;
         }
     } catch (e) {
         console.log('err prenotazione.save', e);
+        return false;
     }
+    return false;
 };
 
 export {

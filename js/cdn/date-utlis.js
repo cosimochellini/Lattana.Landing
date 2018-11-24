@@ -30,8 +30,7 @@ window.getLastMoment = (date = new Date()) => {
  * @param {Date} dataFine
  * @returns {Array<Date>} [DataInizio, DataFine]
  */
-window.generateStartEnd = (dataInizio = new Date(), dataFine) => {
-    dataFine = dataFine || dataInizio;
+window.generateStartEnd = (dataInizio = new Date(), dataFine = dataInizio) => {
 
     return [
         getFirstMoment(dataInizio),

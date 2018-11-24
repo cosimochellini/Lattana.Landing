@@ -3,12 +3,12 @@
  * @returns {string} current session
  */
 let getSession = async () => {
-    return (new Date().toLocaleString("en-us", { month: "long" }));
+    return (new Date().toLocaleString("en-us", {month: "long"}));
 };
 /**
  * controlla lo stato dell'utente
  */
-let checkUserStatus =  () => {
+let checkUserStatus = () => {
     let currentUser = new User();
     let $adminNavItem = $("#adminNavItem");
     let $UserNavItem = $("#UserNavItem");
@@ -22,6 +22,20 @@ let checkUserStatus =  () => {
         $UserNavItem.show();
         $adminNavItem.hide();
     }
+};
+
+let getCurrentPrenotazione = async () => {
+    const [dataInizio, dataFine] = window.generateStartEnd(new Date(2018, 1, 1), new Date(2019, 1, 1));
+
+    const response = await Api('data').post('find', {
+        query: {
+            date: {$gte: dataInizio, $lt: dataFine},
+            email: 'cosimo.chellini@gmail.com'
+        },
+        table: "prenotazioneCibo"
+    });
+
+    return response;
 };
 
 let openReservePanuozzo = () => {
@@ -38,18 +52,18 @@ let openReservePanuozzo = () => {
     $formServePanuozzo.show();
     $alertReservePanuozzo.hide();
 
-    $("#panuozzoEmail").attr('value', currentUser.email)
-    $("#panuozzoName").attr('value', currentUser.username)
+    $("#panuozzoEmail").attr('value', currentUser.email);
+    $("#panuozzoName").attr('value', currentUser.username);
 
 };
 
 let reservePanuozzo = () => {
     const prenotazionePezzi = parseInt($('#panuozzoPiece').val());
 
-    const prenotazioneCibo = $('#panuozzoCibo').val()
+    const prenotazioneCibo = $('#panuozzoCibo').val();
 
     const prenotazioneNote = $('#panuozzoMessage').val();
-  
+
     const currentUser = new User();
 
     Api('data').post('reservePanuozzoToday', {
