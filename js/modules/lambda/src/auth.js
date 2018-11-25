@@ -3,7 +3,8 @@ import {check} from "../../@api/controller/auth";
 import {_response, importData} from "../../@api/core"
 
 exports.handler = async function (event, context) {
-    let data = importData(event, context, () => console.log('nessun callback'));
+
+    let data = importData(event, context);
 
     let responeData;
     switch (data.action) {

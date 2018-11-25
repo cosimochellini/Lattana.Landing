@@ -17,7 +17,7 @@ const queryFind = async ({body, db}) => {
         return await db[table].find(query);
 
     } catch (e) {
-        console.log(e);
+        console.log('queryFind eccezione', e);
         return [];
     }
 };

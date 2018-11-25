@@ -34,7 +34,7 @@ const reservePanuozzoToday = async ({currentUser, body, db}) => {
 
     try {
         if (!prenotazione) {
-            console.log('prenotazione non trovata');
+
             prenotazione = new db.prenotazioni({
                 username: currentUser.username,
                 email: currentUser.email,
@@ -43,7 +43,6 @@ const reservePanuozzoToday = async ({currentUser, body, db}) => {
             await prenotazione.save();
         }
         if (!prenotazioneCibo) {
-            console.log('prenotazioneCibo non trovata');
 
             prenotazioneCibo = new db.prenotazioneCibo({
                 food: body.cibo,
