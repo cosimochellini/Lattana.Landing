@@ -23,18 +23,19 @@ const reservePanuozzoToday = async ({currentUser, body, db}) => {
 
     console.log('email', currentUser.email);
 
-    let prenotazione = db.prenotazioni.findOne({
+    let prenotazione = await db.prenotazioni.findOne({
         date: {$gte: dataInizio, $lt: dataFine},
         username: currentUser.username,
         email: currentUser.email
     });
     console.log('prenotazione già esistente : ', prenotazione);
 
-    let prenotazioneCibo = db.prenotazioneCibo.findOne({
+    let prenotazioneCibo = await db.prenotazioneCibo.findOne({
         date: {$gte: dataInizio, $lt: dataFine},
         username: currentUser.username,
         email: currentUser.email
     });
+    
     console.log('prenotazioneCibo già esistente : ', prenotazioneCibo);
 
     try {
