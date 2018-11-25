@@ -46,7 +46,7 @@ let openReservePanuozzo = async () => {
         $alertReservePanuozzo.show();
         return;
     }
-    
+
     let $messageFormPanuozzo = $('#messageFormPanuozzo');
     let $btnReservePanuozzo = $('#btnReservePanuozzo');
 
@@ -64,8 +64,7 @@ let openReservePanuozzo = async () => {
 
         const oraPrenotazione = window.dateFns.format(prenotazione.date, 'HH:mm:ss');
 
-        $messageFormPanuozzo.html(
-            ` 
+        $messageFormPanuozzo.html(` 
         <b class="text-center">  The reservation for today has already been made at ${oraPrenotazione}</b>
         `);
     } else {
@@ -85,17 +84,34 @@ let reservePanuozzo = () => {
     const prenotazioneNote = $('#panuozzoMessage').val();
 
     const currentUser = new User();
-
-    Api('data').post('reservePanuozzoToday', {
-        pezzi: prenotazionePezzi,
-        cibo: prenotazioneCibo,
-        username: currentUser.username,
-        email: currentUser.email,
-        date: new Date().toLocaleDateString("it-IT"), //15/11/2018
-        note: prenotazioneNote
-    }).then(response => {
-        alert('success');
-    });
+    try {
+        Api('data').post('reservePanuozzoToday', {
+            pezzi: prenotazionePezzi,
+            cibo: prenotazioneCibo,
+            username: currentUser.username,
+            email: currentUser.email,
+            date: new Date().toLocaleDateString("it-IT"), //15/11/2018
+            note: prenotazioneNote
+        }).then(response => {
+            $('.modal').modal('hide');
+            $('#esitoPrenotazione').modal('open');
+            const $titoloEsito = $('#titoloEsito');
+            const $testoEsito = $('#testoEsito');
+            let date = false;
+            if (response.data || response.data.date) {
+                date = response.data.date;
+            }
+            $titoloEsito.html(date ? 'Your reservation has been completed ' : 'Ops, during your reservation something has gone wrong');
+            $testoEsito.html(date ? `Your reservation has been completed at ${window.dateFns.format(prenotazione.date, 'HH:mm:ss')}` : '¯\\_(ツ)_/¯');
+        });
+    } catch (e) {
+        $('.modal').modal('hide');
+        $('#esitoPrenotazione').modal('open');
+        const $titoloEsito = $('#titoloEsito');
+        const $testoEsito = $('#testoEsito');
+        $titoloEsito.html('Ops, during your reservation something has gone wrong');
+        $testoEsito.html(e);
+    }
 
 };
 if (new window.User().logged) {
