@@ -12,13 +12,12 @@ const options = { reconnectTries: 100, reconnectInterval: 500, poolSize: 10, buf
  * genera tutte le variabili di base per la chiamata
  * @param {Object} event 
  * @param {Object} context 
- * @param {function} callback
  * @returns {Object}
  */
-const importData = (event, context, callback) => {
+const importData = (event, context) => {
     let exportData = {};
 
-    mongoose.connect(process.env.db, options).then(success => console.log('db connesso')).catch(err => console.log(err));
+    mongoose.connect(process.env.db, options).then().catch(err => console.log(err));
 
     exportData.authorized = !!context && !!context.clientContext;
 
@@ -35,8 +34,6 @@ const importData = (event, context, callback) => {
     } catch (ex) {
         exportData.body = {};
     }
-
-    exportData.callback = callback;
 
     exportData.parameters = event.queryStringParameters
         ? event.queryStringParameters

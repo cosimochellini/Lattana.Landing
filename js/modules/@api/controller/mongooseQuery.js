@@ -8,14 +8,11 @@
  * @param {Object} param0.db
  * @param {Model<any, {}>} param0.db.prenotazioneCibo context della tabella prenotazioneCibo
  * @param {Model<any, {}>} param0.db.prenotazioni context della tabella prenotazioni
- * @param {Function} param0.callback
  * @returns {Promise<Array<Object>>} l'esito
  */
 const queryFind = async ({body, db}) => {
     try {
         const {query, table} = body;
-
-        console.log('typeof body:',  typeof body);
 
         return await db[table].find(query);
 

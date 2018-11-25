@@ -10,7 +10,7 @@ import {reservePanuozzoToday} from "../../@api/controller/prenotazioni";
 
 exports.handler = async function (event, context) {
 
-    let data = importData(event, context, () => console.log('nessun callback'));
+    let data = importData(event, context);
 
     let responeData;
     switch (data.action) {

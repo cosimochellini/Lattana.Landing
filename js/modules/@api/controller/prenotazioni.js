@@ -5,36 +5,32 @@ import {generateStartEnd} from "../../utils/date";
 /**
  * prenota un panuozzo per oggi, creando anche la prenotazione
  * @param {Object} param0 l'oggetto data generato da importData(...)
- * @param {Object} param0.identity
  * @param {Object<user>} param0.currentUser
  * @param {Object} param0.body
- * @param {boolean} param0.authorized
  * @param {Object} param0.db
  * @param {Model<any, {}>} param0.db.prenotazioneCibo context della tabella prenotazioneCibo
  * @param {Model<any, {}>} param0.db.prenotazioni context della tabella prenotazioni
- * @param {Function} param0.callback
  * @returns {boolean|Object} l'esito
  */
-const reservePanuozzoToday = async ({identity, currentUser, body, authorized, db}) => {
+const reservePanuozzoToday = async ({currentUser, body, db}) => {
 
     const [dataInizio, dataFine] = generateStartEnd();
 
     //controllo se c'è già una prenotazione di quell
     //utente per ogggi
-    let prenotazione = db.prenotazioni.find({
+    let prenotazione = db.prenotazioni.findOne({
         date: {$gte: dataInizio, $lt: dataFine},
         username: currentUser.username,
         email: currentUser.email
     });
     console.log('prenotazione già esistente : ', prenotazione);
 
-    let prenotazioneCibo = db.prenotazioneCibo.find({
+    let prenotazioneCibo = db.prenotazioneCibo.findOne({
         date: {$gte: dataInizio, $lt: dataFine},
         username: currentUser.username,
         email: currentUser.email
     });
     console.log('prenotazioneCibo già esistente : ', prenotazioneCibo);
-
 
     try {
         if (!prenotazione) {

@@ -74,7 +74,6 @@ let reservePanuozzo = () => {
         date: new Date().toLocaleDateString("it-IT"), //15/11/2018
         note: prenotazioneNote
     }).then(response => {
-        console.log(response);
         alert('success');
     });
 
