@@ -30,7 +30,7 @@ let getCurrentPrenotazione = async () => {
     return await Api('data').post('find', {
         query: {
             date: {$gte: dataInizio, $lt: dataFine},
-            email: 'cosimo.chellini@gmail.com'
+            email: new window.User().email
         },
         table: "prenotazioneCibo"
     });
@@ -102,7 +102,7 @@ let reservePanuozzo = () => {
                 date = response.data.date;
             }
             $titoloEsito.html(date ? 'Your reservation has been completed ' : 'Ops, during your reservation something has gone wrong');
-            $testoEsito.html(date ? `Your reservation has been completed at ${window.dateFns.format(prenotazione.date, 'HH:mm:ss')}` : '¯\\_(ツ)_/¯');
+            $testoEsito.html(date ? `Your reservation has been completed at ${window.dateFns.format(date, 'HH:mm:ss')}` : '¯\\_(ツ)_/¯');
         });
     } catch (e) {
         $('.modal').modal('hide');
