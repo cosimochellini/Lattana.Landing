@@ -81,7 +81,7 @@ let reservePanuozzo = () => {
 if(new window.User().logged){
 
     Api('auth').post('check').then((response) => {
-        if(!response) netlifyIdentity.logout();
+        if(!response.data) netlifyIdentity.logout();
     });
 
 }
