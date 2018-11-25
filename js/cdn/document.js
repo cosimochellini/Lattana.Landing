@@ -94,7 +94,7 @@ let reservePanuozzo = () => {
             note: prenotazioneNote
         }).then(response => {
             $('.modal').modal('hide');
-            $('#esitoPrenotazione').modal('open');
+            $('#esitoPrenotazione').modal('show');
             const $titoloEsito = $('#titoloEsito');
             const $testoEsito = $('#testoEsito');
             let date = false;
