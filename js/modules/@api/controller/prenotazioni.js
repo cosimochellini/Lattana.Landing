@@ -18,6 +18,11 @@ const reservePanuozzoToday = async ({currentUser, body, db}) => {
 
     //controllo se c'è già una prenotazione di quell
     //utente per ogggi
+
+    console.log('username', currentUser.username);
+
+    console.log('email', currentUser.email);
+
     let prenotazione = db.prenotazioni.findOne({
         date: {$gte: dataInizio, $lt: dataFine},
         username: currentUser.username,
