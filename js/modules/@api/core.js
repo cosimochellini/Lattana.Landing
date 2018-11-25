@@ -17,7 +17,7 @@ const options = { reconnectTries: 100, reconnectInterval: 500, poolSize: 10, buf
 const importData = (event, context) => {
     let exportData = {};
 
-    mongoose.connect(process.env.db, options).then().catch(err => console.log(err));
+    mongoose.connect(process.env.db, options).then(() => console.log('db connesso')).catch(err => console.log(err));
 
     exportData.authorized = !!context && !!context.clientContext;
 

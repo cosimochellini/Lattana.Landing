@@ -12,21 +12,21 @@ exports.handler = async function (event, context) {
 
     let data = importData(event, context);
 
-    let responeData;
+    let responseData;
     switch (data.action) {
 
         case '/find':
-            responeData = await queryFind(data);
+            responseData = await queryFind(data);
             break;
         case '/reservePanuozzoToday':
-            responeData = await reservePanuozzoToday(data);
+            responseData = await reservePanuozzoToday(data);
             break;
         default:
             console.log('invalid action => ', data.action);
             break;
     }
 
-    return _response(200, responeData ? responeData : "tutto ok");
+    return _response(200, responseData);
 
     // const prenotazioniQuery = await db.prenotazioni.find({}).exec();
 
