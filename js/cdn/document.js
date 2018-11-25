@@ -25,20 +25,18 @@ let checkUserStatus = () => {
 };
 
 let getCurrentPrenotazione = async () => {
-    const [dataInizio, dataFine] = window.generateStartEnd(new Date(2018, 1, 1), new Date(2019, 1, 1));
+    const [dataInizio, dataFine] = window.generateStartEnd();
 
-    const response = await Api('data').post('find', {
+    return await Api('data').post('find', {
         query: {
             date: {$gte: dataInizio, $lt: dataFine},
             email: 'cosimo.chellini@gmail.com'
         },
         table: "prenotazioneCibo"
     });
-
-    return response;
 };
 
-let openReservePanuozzo = () => {
+let openReservePanuozzo = async () => {
     let currentUser = new User();
     let $alertReservePanuozzo = $("#alertReservePanuozzo");
     let $formServePanuozzo = $("#formServePanuozzo");
@@ -48,9 +46,31 @@ let openReservePanuozzo = () => {
         $alertReservePanuozzo.show();
         return;
     }
+    
+    let $messageFormPanuozzo = $('#messageFormPanuozzo');
+    let $btnReservePanuozzo = $('#btnReservePanuozzo');
 
     $formServePanuozzo.show();
     $alertReservePanuozzo.hide();
+
+    const {data} = await getCurrentPrenotazione();
+    const [prenotazione] = data;
+
+    $btnReservePanuozzo.prop('disabled', !!prenotazione);
+    $btnReservePanuozzo.val(!prenotazione ? 'Reserve Now' : 'Reservation already done');
+
+    if (prenotazione) {
+        $messageFormPanuozzo.show();
+
+        const oraPrenotazione = window.dateFns.format(prenotazione.date, 'HH:mm:ss');
+
+        $messageFormPanuozzo.html(
+            ` 
+        <b class="text-center">  The reservation for today has already been made at ${oraPrenotazione}</b>
+        `);
+    } else {
+        $messageFormPanuozzo.hide();
+    }
 
     $("#panuozzoEmail").attr('value', currentUser.email);
     $("#panuozzoName").attr('value', currentUser.username);
@@ -78,10 +98,10 @@ let reservePanuozzo = () => {
     });
 
 };
-if(new window.User().logged){
+if (new window.User().logged) {
 
     Api('auth').post('check').then((response) => {
-        if(!response.data) netlifyIdentity.logout();
+        if (!response.data) netlifyIdentity.logout();
     });
 
 }
