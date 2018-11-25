@@ -16,23 +16,17 @@ const reservePanuozzoToday = async ({currentUser, body, db}) => {
 
     const [dataInizio, dataFine] = generateStartEnd();
 
-    //controllo se c'è già una prenotazione di quell
-    //utente per ogggi
-
     let prenotazione = await db.prenotazioni.findOne({
         date: {$gte: dataInizio, $lt: dataFine},
         username: currentUser.username,
         email: currentUser.email
     });
-    console.log('prenotazione già esistente : ', prenotazione);
 
     let prenotazioneCibo = await db.prenotazioneCibo.findOne({
         date: {$gte: dataInizio, $lt: dataFine},
         username: currentUser.username,
         email: currentUser.email
     });
-
-    console.log('prenotazioneCibo già esistente : ', prenotazioneCibo);
 
     try {
         if (!prenotazione) {
@@ -67,10 +61,8 @@ const reservePanuozzoToday = async ({currentUser, body, db}) => {
         console.log('err prenotazione.save', e);
         return false;
     }
-
 };
 
 export {
-    reservePanuozzoToday,
-    getPrenotazioni
+    reservePanuozzoToday
 };
