@@ -12,16 +12,6 @@
     <meta name="revisit-after" content="2 days">
     <meta name="robots" content="index">
     <meta name="msvalidate.01" content="9711E0529A53A545FFEC16864511D537"/>
-    <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"
-            integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0"
-            crossorigin="anonymous"></script>
-
-
-    <link type="text/css" rel="stylesheet" href="../js/cdn/bootstrapvue/bootstrapp.min.css"/>
-    <link rel="stylesheet" href="../js/cdn/bootstrapvue/bv.min.css">
-    <link rel="shortcut icon" type="image/png" href="../images/cigar.png"/>
-    <meta name="theme-color" content="#000000"/>
-    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
         body {
             padding-top: 60px;
@@ -31,6 +21,15 @@
             display: none;
         }
     </style>
+    <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"
+            integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0"
+            crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="../js/cdn/bootstrapvue/bootstrapp.min.css"/>
+    <link rel="stylesheet" href="../js/cdn/bootstrapvue/bv.min.css">
+    <link rel="shortcut icon" type="image/png" href="../images/cigar.png"/>
+    <meta name="theme-color" content="#000000"/>
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
 </head>
 
 <body data-spy="scroll" data-target="#site-navbar" data-offset="200">
@@ -58,7 +57,7 @@
                 </b-col>
 
                 <b-col md="auto" sm="4">
-                    <b-button type="reset" @@click="form = {}; input = {};" v-b-tooltip.hover
+                    <b-button type="reset" @click="form = {}; input = {};" v-b-tooltip.hover
                               title="Resetta campi filtro">
                         <div class="container d-flex h-100">
                             <div class="justify-content-center align-self-center">
@@ -66,6 +65,16 @@
                             </div>
                         </div>
                     </b-button>
+
+                    <b-button @click="showCommensali" v-b-tooltip.hover variant="success"
+                              title="Genera lista commensali">
+                        <div class="container d-flex h-100">
+                            <div class="justify-content-center align-self-center">
+                                <i class="far fa-list-alt"></i>
+                            </div>
+                        </div>
+                    </b-button>
+
                 </b-col>
 
             </b-row>
@@ -101,15 +110,40 @@
     <div v-else>
         <h2 class="text-center"> Nessun elemento per il range di date selezionato</h2>
     </div>
-    <div>
-        <a href="intent:#Intent;action=android.intent.action.VIEW;data?data=https://keep.google.com/u/0/#LIST/1FVdOw2lirtshPz40Qd0xtqVn0a-gCIQHdnHuS2i4didjtouvJAabmXUgFDL_mlBmyLcR;package=com.google.android.keep;end">
-            Launch App
-        </a>
-        https://joaoapps.com/AutoApps/AutoShare/intents/
-    </div>
-    <a href="https://keep.google.com/u/0/#NOTE/1UMBpnMwiQGOLL9zmB_CGUfGUyt5RBn_f2B02f-FksZZxoi-ywbsNyHrAVsudHM1XBqlo">
-        Keep url
-    </a>
+
+
+    <b-modal ref="modalCommensali" title="Food to order" centered >
+        <div class="d-block text-center">
+            <b-list-group>
+                <b-list-group-item v-for="item in commensaliList">
+                    <b-row>
+                        <b-col>
+                            {{item.username}}
+                        </b-col>
+                        <b-col>
+                            {{item.food}}
+                        </b-col>
+                        <b-col>
+                            {{item.price}} €
+                        </b-col>
+                        <b-col title="Add to lista nnera" v-if="item.username !== 'Cosximo' && item.username !== user.username">
+                            <b-button href="#" variant="warning">
+                                <i class="far fa-lightbulb"></i>
+                            </b-button>
+                        </b-col>
+                    </b-row>
+                </b-list-group-item>
+            </b-list-group>
+            <br>
+
+            <b-list-group>
+                <b-list-group-item>
+                    Totale :
+                    {{commensaliList.map(item => item.price).reduce((sum, x) => parseInt(sum) + parseInt(x),0)}}€
+                </b-list-group-item>
+            </b-list-group>
+        </div>
+    </b-modal>
 </div>
 
 <script src="../js/cdn/vue.js"></script>
