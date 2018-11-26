@@ -5,23 +5,25 @@
     <title>Lattana, Smoke & Food. Firenze, Since 2014</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Lattana, Smoke and food since 2014. Firenze, Come and taste the original taste, served with a little bit of smoke that is always good for health">
+    <meta name="description"
+          content="Lattana, Smoke and food since 2014. Firenze, Come and taste the original taste, served with a little bit of smoke that is always good for health">
     <meta name="keywords" content="Lattana,Lattana Firenze,Firenze,Smoke e Food, Food, Smoke, Ernesto Punti,Dong G">
     <meta name="author" content="Cosimo Chellini">
     <meta name="revisit-after" content="2 days">
     <meta name="robots" content="index">
-    <meta name="msvalidate.01" content="9711E0529A53A545FFEC16864511D537" />
+    <meta name="msvalidate.01" content="9711E0529A53A545FFEC16864511D537"/>
 
-    <link type="text/css" rel="stylesheet" href="../js/cdn/bootstrapvue/bootstrapp.min.css" />
+    <link type="text/css" rel="stylesheet" href="../js/cdn/bootstrapvue/bootstrapp.min.css"/>
     <link rel="stylesheet" href="../js/cdn/bootstrapvue/bv.min.css">
-    <link rel="shortcut icon" type="image/png" href="../images/cigar.png" />
-    <meta name="theme-color" content="#000000" />
+    <link rel="shortcut icon" type="image/png" href="../images/cigar.png"/>
+    <meta name="theme-color" content="#000000"/>
     <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <style>
         body {
             padding-top: 60px;
         }
+
         [v-cloak] {
             display: none;
         }
@@ -29,34 +31,60 @@
 </head>
 
 <body data-spy="scroll" data-target="#site-navbar" data-offset="200">
-    <div id="app">
+<div id="app">
 
-        <navbar :user='user'></navbar>
+    <navbar :user='user'></navbar>
 
-        <div class="container-fluid">
+    <div class="container-fluid">
 
-            <b-card no-body style="max-width: 20rem;">
-                <h4 slot="header">Ben tornato {{user.username}}</h4>
-                <b-card-body>
-                    <p class="card-text">
-                        In this page you can see and manage your bookings and see if you have managed to
-                                                 book the panuozzo
-                    </p>
-                </b-card-body>
-                <b-list-group flush>
-                    <b-list-group-item>email : {{user.email}}</b-list-group-item>
-                    <b-list-group-item>roles : {{getUserRoles()}}</b-list-group-item>
-                </b-list-group>
+        <b-card-group deck>
+            <b-card :title="`Ben tornato ${this.user.username}`">
+                <p class="card-text">
+                    In this page you can see and manage your bookings and see if you have managed
+                    to book the panuozzo
+                </p>
+                <div slot="footer">
+                    <b-list-group flush>
+                        <b-list-group-item>email : {{user.email}}</b-list-group-item>
+                        <b-list-group-item>roles : {{getUserRoles()}}</b-list-group-item>
+                    </b-list-group>
+                </div>
             </b-card>
-        </div>
+            <b-card title="Title"
+                    img-src="https://picsum.photos/300/300/?image=41"
+                    img-alt="Img"
+                    img-top>
+                <p class="card-text">
+                    This card has supporting text below as a natural lead-in
+                    to additional content.
+                </p>
+                <div slot="footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </b-card>
+            <b-card title="Title"
+                    img-src="https://picsum.photos/300/300/?image=41"
+                    img-alt="Img"
+                    img-top>
+                <p class="card-text">
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This card has even longer content
+                    than the first to show that equal height action.
+                </p>
+                <div slot="footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </b-card>
+        </b-card-group>
     </div>
-    <script src="../js/cdn/vue.js"></script>
-    <script src="../js/cdn/bootstrapvue/bv.min.js"></script>
-    <script src="../js/modules/utils/userClass.js"></script>
-    <script src="../js/cdn/axios.min.js"></script>
-    <script src="../js/modules/components/navbar.js"></script>
-    <script src="../js/cdn/api.js"></script>
-    <script src="../js/modules/pages/user.js"></script>
+</div>
+<script src="../js/cdn/vue.js"></script>
+<script src="../js/cdn/bootstrapvue/bv.min.js"></script>
+<script src="../js/modules/utils/userClass.js"></script>
+<script src="../js/cdn/axios.min.js"></script>
+<script src="../js/modules/components/navbar.js"></script>
+<script src="../js/cdn/api.js"></script>
+<script src="../js/modules/pages/user.js"></script>
 
 
 </body>
