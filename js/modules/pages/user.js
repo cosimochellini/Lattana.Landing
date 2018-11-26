@@ -31,6 +31,24 @@ let vm = new Vue({
                 table: "prenotazioni",
                 username: this.user.username
             }).then(response => this.prenotazioniPanuozzo = response.data);
+        },
+        lastMonth(items = []) {
+            let lastMonthItems = [];
+            const differenceDay = 30;
+            const now = new Date();
+            let difference = window.dateFns.differenceInDays;
+            items.forEach(item => {
+                if (difference(now, item.date) < differenceDay) lastMonthItems.push(item);
+            });
+            return lastMonthItems;
+        }
+    },
+    computed: {
+        prenotazioniCiboMonth() {
+            return this.lastMonth(this.prenotazioniCibo).length;
+        },
+        prenotazioniPanuozzoMonth() {
+            return this.lastMonth(this.prenotazioniPanuozzo).length;
         }
     }
 

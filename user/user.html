@@ -57,7 +57,9 @@
                 <p class="card-text">
                     <b-list-group flush>
                         <b-list-group-item>You booked {{prenotazioniPanuozzo.length}} panuozzi</b-list-group-item>
+                        <b-list-group-item>Including {{prenotazioniPanuozzoMonth}} last month</b-list-group-item>
                         <b-list-group-item> Made {{prenotazioniCibo.length}} food reservations</b-list-group-item>
+                        <b-list-group-item>Including {{prenotazioniCiboMonth}} last month</b-list-group-item>
                     </b-list-group>
 
                 </p>
@@ -85,8 +87,12 @@
 <script src="../js/cdn/bootstrapvue/bv.min.js"></script>
 <script src="../js/modules/utils/userClass.js"></script>
 <script src="../js/cdn/axios.min.js"></script>
+<script src="../js/cdn/date-fns.js"></script>
+<script src="../js/cdn/date-utlis.js"></script>
 <script src="../js/modules/components/navbar.js"></script>
+<script src="../js/modules/components/mixin.js"></script>
 <script src="../js/cdn/api.js"></script>
+<script src="../js/cdn/vue.timepicker.min.js"></script>
 <script src="../js/modules/pages/user.js"></script>
 
 
