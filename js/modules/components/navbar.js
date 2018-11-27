@@ -1,5 +1,5 @@
 Vue.component('navbar', {
-    template:
+    template: //html
         `
     <b-navbar type="dark" variant="dark" toggleable fixed='top'>
     <b-navbar-toggle target="nav_dropdown_collapse"></b-navbar-toggle>

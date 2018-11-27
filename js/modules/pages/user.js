@@ -1,16 +1,35 @@
 Vue.use(bootstrapVue);
 
-let vm = new Vue({
+new Vue({
     el: '#app',
+    mixins: [mixin.mixin()],
     data: {
         user: new User(),
         prenotazioniPanuozzo: [],
-        prenotazioniCibo: []
+        prenotazioniCibo: [],
+        prenotazioneToday: {
+            persistent: false
+        }
     },
     mounted() {
         if (!this.user.logged) {
             // window.location.href = "./";
         }
+        const [dataInizio, dataFine] = window.generateStartEnd();
+
+        Api('data').post('find', {
+            query: {date: {$gte: dataInizio, $lt: dataFine}},
+            table: "prenotazioneCibo",
+            username: this.user.username
+        }).then(({data}) => {
+            if (!data.length) return;
+
+            const [prenotazione] = data;
+            const order = food.find(f => f.name === prenotazione.food);
+            this.prenotazioneToday = {...prenotazione, ...order, persistent: true};
+
+        });
+
         this.getAllPrenotazioni();
     },
     methods: {
@@ -55,3 +74,9 @@ let vm = new Vue({
 });
 
 window.netlifyIdentity.on("logout", () => window.location.href = "./");
+
+const food = [
+    {name: 'panuozzo', type: 0, price: 4},
+    {name: 'pizza', type: 0, price: 6},
+    {name: 'kebab', type: 1, price: 6},
+    {name: 'other', type: 1, price: 0}];

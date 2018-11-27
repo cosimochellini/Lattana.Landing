@@ -17,7 +17,7 @@ mixin.table = {
  * @returns {boolean}
  */
 mixin.showPagination = (items = []) => {
-    return items.length / parseInt(standard.table.perPage) > 1;
+    return items.length / parseInt(mixin.table.perPage) > 1;
 };
 
 
@@ -117,7 +117,7 @@ mixin.sort = (items = [], criterio = (a, b) => a - b) => {
         return items.sort(criterio);
     } catch (e) {
         return [];
-    }
+    }           
 };
 
 /**
@@ -134,8 +134,6 @@ mixin.mixin = () => {
                 items: [],
                 fieldException: [],
                 currentPage: 0,
-                loading: true,
-                datePicker: mixin.datePicker,
                 table: mixin.table
             }
         },

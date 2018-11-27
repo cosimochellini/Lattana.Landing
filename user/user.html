@@ -37,7 +37,55 @@
 
     <div class="container-fluid">
 
-        <b-card-group deck>
+        <b-card-group columns>
+            <b-card v-if="prenotazioneToday.persistent" title="Your reservation for today!">
+                <p class="card-text">
+                    This are the info for the reservation of today
+                </p>
+                <b-list-group>
+                    <b-list-group-item>
+                        <b-row>
+                            <b-col>
+                                Orario
+                            </b-col>
+                            <b-col>
+                                {{prenotazioneToday.date | date('HH:mm')}}
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+                    <b-list-group-item>
+                        <b-row>
+                            <b-col>
+                                Ordinazione
+                            </b-col>
+                            <b-col>
+                                {{prenotazioneToday.food }}
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+                    <b-list-group-item>
+                        <b-row>
+                            <b-col>
+                                Price
+                            </b-col>
+                            <b-col>
+                                {{prenotazioneToday.price }} €
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+                    <b-list-group-item v-if="prenotazioneToday.text">
+                        <b-row>
+                            <b-col>
+                                Text
+                            </b-col>
+                            <b-col>
+                                {{prenotazioneToday.text }} €
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+                </b-list-group>
+            </b-card>
+
             <b-card :title="`Ben tornato ${this.user.username}`">
                 <p class="card-text">
                     In this page you can see and manage your bookings and see if you have managed
