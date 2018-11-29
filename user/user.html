@@ -31,7 +31,7 @@
 </head>
 
 <body data-spy="scroll" data-target="#site-navbar" data-offset="200">
-<div id="app">
+<div id="app" v-cloak>
 
     <navbar :user='user'></navbar>
 
@@ -84,6 +84,16 @@
                         </b-row>
                     </b-list-group-item>
                 </b-list-group>
+                <div slot="footer">
+                    <b-button @click="editPrenotazione" v-b-tooltip.hover variant="warning"
+                              title="Modifica la prenotazione">
+                        <div class="container d-flex h-100">
+                            <div class="justify-content-center align-self-center">
+                                <i class="far fa-edit"></i>
+                            </div>
+                        </div>
+                    </b-button>
+                </div>
             </b-card>
 
             <b-card :title="`Ben tornato ${this.user.username}`">
