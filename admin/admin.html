@@ -114,8 +114,8 @@
     <b-modal ref="modalCommensali" title="Food to order" centered >
         <div class="d-block text-center">
             <b-list-group>
-                <b-list-group-item v-for="item in commensaliList" :key="item._id">
-                    <b-row>
+                <b-list-group-item v-for="item in commensaliList" :key="item._id" :variant="item.only ? 'warning' : ''">
+                    <b-row >
                         <b-col>
                             {{item.username}}
                         </b-col>

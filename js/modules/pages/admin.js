@@ -89,7 +89,7 @@ const _bindCommensali = (items = []) => {
 
     if (isOdd(pani.length)){
        const panoIndex = commensali.findIndex(c => c._id === pani[0]._id);
-       commensali[panoIndex] = {...commensali[panoIndex], price : 5};
+       commensali[panoIndex] = {...commensali[panoIndex], price : 5, only : true};
     }
 
         return commensali;
