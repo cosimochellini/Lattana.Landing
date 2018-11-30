@@ -4,4 +4,5 @@ window.foodGlobal = [
     {name: 'pizza margherita', type: 0, price: 6},
     {name: 'pizza nduja', type: 0, price: 7},
     {name: 'kebab', type: 1, price: 6},
+    {name: 'cibo da casa', type: 1, price: 0},
     {name: 'other', type: 1, price: 0}];
