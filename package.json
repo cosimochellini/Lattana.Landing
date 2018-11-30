@@ -1,0 +1,29 @@
+{
+  "name": "lattana",
+  "version": "0.0.3",
+  "description": "public website of lattana",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "netlify-lambda serve js/modules/lambda/src",
+    "build": "netlify-lambda build js/modules/lambda/src",
+    "debug": "netlify-lambda build js/modules/lambda/src && netlify-lambda serve js/modules/lambda/src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cosimochellini/LattanaWebsite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cosimochellini/LattanaWebsite/issues"
+  },
+  "homepage": "https://github.com/cosimochellini/LattanaWebsite#readme",
+  "dependencies": {
+    "date-fns": "^1.29.0",
+    "dotenv": "^6.1.0",
+    "mongoose": "^5.3.12",
+    "netlify-lambda": "^1.0.3",
+    "request": "^2.88.0"
+  }
+}

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lattana, Smoke & Food. Firenze, Since 2014</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Lattana, Smoke and food since 2014. Firenze, Come and taste the original taste, served with a little bit of smoke that is always good for health">
+    <meta name="keywords" content="Lattana,Lattana Firenze,Firenze,Smoke e Food, Food, Smoke, Ernesto Punti,Dong G">
+    <meta name="author" content="Cosimo Chellini">
+    <meta name="revisit-after" content="2 days">
+    <meta name="robots" content="index">
+    <meta name="msvalidate.01" content="9711E0529A53A545FFEC16864511D537"/>
+    <style>
+        body {
+            padding-top: 60px;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+    <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"
+            integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0"
+            crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="../js/cdn/bootstrapvue/bootstrapp.min.css"/>
+    <link rel="stylesheet" href="../js/cdn/bootstrapvue/bv.min.css">
+    <link rel="shortcut icon" type="image/png" href="../images/cigar.png"/>
+    <meta name="theme-color" content="#000000"/>
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+</head>
+
+<body data-spy="scroll" data-target="#site-navbar" data-offset="200">
+<div id="app" v-cloak>
+    <navbar :user='user'></navbar>
+
+    <br/>
+    <b-container>
+
+
+        <b-form inline responsive fixed striped class="justify-content-center">
+            <b-row align-v="center" class="mb-2 mr-sm-2 mb-sm-0">
+
+                <b-col md="auto" sm="4" class="form-group mb-2 mr-sm-2 mb-sm-0">
+                    <vuejs-datepicker :bootstrap-styling="true" placeholder="Data Inizio"
+                                      v-model="form.dataInizio">
+                    </vuejs-datepicker>
+                </b-col>
+
+                <b-col md="auto" sm="4" class="form-group mb-2 mr-sm-2 mb-sm-0">
+                    <vuejs-datepicker :bootstrap-styling="true" placeholder="Data Fine"
+                                      v-model="form.dataFine">
+                    </vuejs-datepicker>
+                </b-col>
+
+                <b-col md="auto" sm="4">
+                    <b-button type="reset" @click="form = {}; input = {};" v-b-tooltip.hover
+                              title="Resetta campi filtro">
+                        <div class="container d-flex h-100">
+                            <div class="justify-content-center align-self-center">
+                                <i class="fas fa-undo"></i>
+                            </div>
+                        </div>
+                    </b-button>
+
+                    <b-button @click="showCommensali" v-b-tooltip.hover variant="success"
+                              title="Genera lista commensali">
+                        <div class="container d-flex h-100">
+                            <div class="justify-content-center align-self-center">
+                                <i class="far fa-list-alt"></i>
+                            </div>
+                        </div>
+                    </b-button>
+
+                </b-col>
+
+            </b-row>
+        </b-form>
+    </b-container>
+    <br/>
+
+    <b-form-radio-group v-model="selezione" class="text-center" label="Tipo di dati">
+        <b-form-radio value="cibo">Prenotazioni Cibo</b-form-radio>
+        <b-form-radio value="panuozzo">Prenotazioni Panuozzo</b-form-radio>
+    </b-form-radio-group>
+
+    <br>
+
+    <h2 class="text-center">Prenotazioni {{selezione}}</h2>
+
+    <div v-if="computedItems.length">
+        <b-table hover responsive striped
+                 :sort-by.sync="table.sortBy"
+                 :sort-desc.sync="table.sortDesc"
+                 :per-page="parseInt(table.perPage)"
+                 :current-page="table.currentPage"
+                 :items="computedItems"
+                 :fields="tableFields(items[this.selezione][0])">
+
+            <template slot="date" slot-scope="data">
+                {{data.item.date| date }}
+            </template>
+
+        </b-table>
+    </div>
+
+    <div v-else>
+        <h2 class="text-center"> Nessun elemento per il range di date selezionato</h2>
+    </div>
+
+
+    <b-modal ref="modalCommensali" title="Food to order" centered >
+        <div class="d-block text-center">
+            <b-list-group>
+                <b-list-group-item v-for="item in commensaliList" :key="item._id" :variant="item.only ? 'warning' : ''">
+                    <b-row >
+                        <b-col>
+                            {{item.username}}
+                        </b-col>
+                        <b-col>
+                            {{item.food}}
+                        </b-col>
+                        <b-col>
+                            {{item.price}} €
+                        </b-col>
+                        <b-col title="Add to lista nnera">
+                            <b-button href="https://drive.google.com/keep" variant="warning">
+                                <i class="far fa-lightbulb"></i>
+                            </b-button>
+                        </b-col>
+
+                    </b-row>
+                </b-list-group-item>
+            </b-list-group>
+            <br>
+
+            <b-list-group>
+                <b-list-group-item>
+                    Totale :
+                    {{commensaliList.map(item => item.price).reduce((sum, x) => parseInt(sum) + parseInt(x),0)}}€
+                </b-list-group-item>
+            </b-list-group>
+        </div>
+    </b-modal>
+</div>
+
+<script src="../js/cdn/vue.js"></script>
+<script src="../js/cdn/bootstrapvue/bv.min.js"></script>
+<script src="../js/cdn/axios.min.js"></script>
+<script src="../js/cdn/api.js"></script>
+<script src="../js/cdn/date-fns.js"></script>
+<script src="../js/cdn/date-utlis.js"></script>
+<script src="../js/cdn/vue.timepicker.min.js"></script>
+<script src="../js/modules/utils/userClass.js"></script>
+<script src="../js/modules/components/navbar.js"></script>
+<script src="../js/modules/components/mixin.js"></script>
+<script src="../js/modules/utils/food.js"></script>
+<script src="../js/modules/pages/admin.js"></script>
+
+</body>
+</html>

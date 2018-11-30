@@ -85,7 +85,7 @@ $(document).ready(function($) {
 				$('.site-number').each(function(){
 					var $this = $(this),
 						num = $this.data('number');
-						console.log(num);
+
 					$this.animateNumber(
 					  {
 					    number: num,
@@ -152,14 +152,11 @@ $(document).ready(function($) {
 		    window.location.hash = hash;
 		  });
 
-
 		  if ( navToggler.is(':visible') ) {
 		  	navToggler.click();
 		  }
 		});
-		$('body').on('activate.bs.scrollspy', function () {
-		  console.log('nice');
-		})
+		$('body').on('activate.bs.scrollspy', function () {});
 	};
 	OnePageNav();
 

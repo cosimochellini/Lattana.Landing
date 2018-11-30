@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lattana, Smoke & Food. Firenze, Since 2014</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Lattana, Smoke and food since 2014. Firenze, Come and taste the original taste, served with a little bit of smoke that is always good for health">
+    <meta name="keywords" content="Lattana,Lattana Firenze,Firenze,Smoke e Food, Food, Smoke, Ernesto Punti,Dong G">
+    <meta name="author" content="Cosimo Chellini">
+    <meta name="revisit-after" content="2 days">
+    <meta name="robots" content="index">
+    <meta name="msvalidate.01" content="9711E0529A53A545FFEC16864511D537"/>
+
+    <link type="text/css" rel="stylesheet" href="../js/cdn/bootstrapvue/bootstrapp.min.css"/>
+    <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"
+            integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../js/cdn/bootstrapvue/bv.min.css">
+    <link rel="shortcut icon" type="image/png" href="../images/cigar.png"/>
+    <meta name="theme-color" content="#000000"/>
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <style>
+        body {
+            padding-top: 60px;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target="#site-navbar" data-offset="200">
+<div id="app" v-cloak>
+
+    <navbar :user='user'></navbar>
+
+    <div class="container-fluid">
+
+        <b-card-group columns>
+            <b-card v-show="prenotazioneToday.persistent" title="Your reservation for today!">
+                <p class="card-text">
+                    This are the info for the reservation of today
+                </p>
+                <b-list-group>
+                    <b-list-group-item>
+                        <b-row>
+                            <b-col>
+                                Orario
+                            </b-col>
+                            <b-col>
+                                {{prenotazioneToday.date | date('HH:mm')}}
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+                    <b-list-group-item>
+                        <b-row>
+                            <b-col>
+                                Ordinazione
+                            </b-col>
+                            <b-col>
+                                {{prenotazioneToday.food }}
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+                    <b-list-group-item>
+                        <b-row>
+                            <b-col>
+                                Price
+                            </b-col>
+                            <b-col>
+                                {{prenotazioneToday.price }} €
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+                    <b-list-group-item v-if="prenotazioneToday.text">
+                        <b-row>
+                            <b-col>
+                                Text
+                            </b-col>
+                            <b-col>
+                                {{prenotazioneToday.text }}
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+                </b-list-group>
+
+                <div slot="footer">
+                    <b-button @click="editPrenotazione" v-b-tooltip.hover variant="warning"
+                              title="Modifica la prenotazione">
+                        <div class="container d-flex h-100">
+                            <i class="far fa-edit"></i>
+                        </div>
+                    </b-button>
+                </div>
+
+            </b-card>
+
+            <b-card :title="`Ben tornato ${this.user.username}`">
+                <p class="card-text">
+                    In this page you can see and manage your bookings and see if you have managed
+                    to book the panuozzo
+                </p>
+                <div slot="footer">
+                    <b-list-group flush>
+                        <b-list-group-item>email : {{user.email}}</b-list-group-item>
+                        <b-list-group-item>roles : {{getUserRoles()}}</b-list-group-item>
+                    </b-list-group>
+                </div>
+            </b-card>
+            <b-card title="Stats"
+                    img-src="http://1.citynews-napolitoday.stgy.ovh/~media/original-hi/54767046521603/panuozzo-2.jpg"
+                    img-alt="Img"
+                    img-top>
+                <p class="card-text">
+                    <b-list-group flush>
+                        <b-list-group-item>You tried to book {{prenotazioniPanuozzo.length}} panuozzi</b-list-group-item>
+                        <b-list-group-item>Including {{prenotazioniPanuozzoMonth}} last month</b-list-group-item>
+                        <b-list-group-item> Made {{prenotazioniCibo.length}} food reservations</b-list-group-item>
+                        <b-list-group-item>Including {{prenotazioniCiboMonth}} last month</b-list-group-item>
+                    </b-list-group>
+
+                </p>
+                <div slot="footer">
+                    <small class="text-muted">Last updated Now.</small>
+                </div>
+            </b-card>
+            <b-card title="Title"
+                    img-src="https://picsum.photos/300/300/?image=41"
+                    img-alt="Img"
+                    img-top>
+                <p class="card-text">
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This card has even longer content
+                    than the first to show that equal height action.
+                </p>
+                <div slot="footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </b-card>
+        </b-card-group>
+    </div>
+</div>
+<script src="../js/cdn/vue.js"></script>
+<script src="../js/cdn/bootstrapvue/bv.min.js"></script>
+<script src="../js/modules/utils/userClass.js"></script>
+<script src="../js/cdn/axios.min.js"></script>
+<script src="../js/cdn/date-fns.js"></script>
+<script src="../js/cdn/date-utlis.js"></script>
+<script src="../js/modules/components/navbar.js"></script>
+<script src="../js/modules/components/mixin.js"></script>
+<script src="../js/modules/utils/food.js"></script>
+<script src="../js/cdn/api.js"></script>
+<script src="../js/cdn/vue.timepicker.min.js"></script>
+<script src="../js/modules/pages/user.js"></script>
+
+
+</body>
+
+</html>
