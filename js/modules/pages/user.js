@@ -76,7 +76,7 @@ new Vue({
 
 });
 
-window.netlifyIdentity.on("logout", () => window.location.href = "./");
+window.netlifyIdentity.on("logout", () => window.location.href = "/");
 
 const food = [
     {name: 'panuozzo', type: 0, price: 4},
