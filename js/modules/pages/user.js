@@ -17,6 +17,7 @@ new Vue({
         }
         const [dataInizio, dataFine] = window.generateStartEnd();
 
+        
         Api('data').post('find', {
             query: {date: {$gte: dataInizio, $lt: dataFine}},
             table: "prenotazioneCibo",
