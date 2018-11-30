@@ -49,7 +49,7 @@ new Vue({
             }).then((response) => this.items.panuozzo = response.data);
         },
         showCommensali() {
-            this.commensali.items = _bindCommensali(this.items.cibo, food);
+            this.commensali.items = _bindCommensali(this.items.cibo);
 
             this.$refs.modalCommensali.show()
         }
@@ -79,17 +79,19 @@ new Vue({
 
 window.netlifyIdentity.on("logout", () => window.location.href = "/");
 
-const food = [
-    {name: 'panuozzo', type: 0, price: 4},
-    {name: 'pizza', type: 0, price: 6},
-    {name: 'kebab', type: 1, price: 6},
-    {name: 'other', type: 1, price: 0}];
-
-const _bindCommensali = (items = [], food = []) => {
+const _bindCommensali = (items = []) => {
     let commensali = [];
     items.forEach(item => {
-        const _food = food.find(cibo => cibo.name === item.food);
+        const _food = window.foodGlobal.find(cibo => cibo.name === item.food);
         commensali.push({...item, ..._food});
     });
-    return commensali;
+    const pani = commensali.filter(c => c.food === 'panuozzo');
+
+    //if (isOdd(pani.length)){
+    //   const panoIndex = commensali.indexOf()
+    //}
+
+        return commensali;
 };
+
+const isOdd = (number) => number % 2;

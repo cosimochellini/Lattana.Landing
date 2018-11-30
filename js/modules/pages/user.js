@@ -28,7 +28,7 @@ new Vue({
             if (!data.length) return;
 
             const [prenotazione] = data;
-            const order = food.find(f => f.name === prenotazione.food);
+            const order = window.foodGlobal.find(f => f.name === prenotazione.food);
             this.prenotazioneToday = {...prenotazione, ...order, persistent: true};
 
         });
@@ -78,9 +78,3 @@ new Vue({
 });
 
 window.netlifyIdentity.on("logout", () => window.location.href = "/");
-
-const food = [
-    {name: 'panuozzo', type: 0, price: 4},
-    {name: 'pizza', type: 0, price: 6},
-    {name: 'kebab', type: 1, price: 6},
-    {name: 'other', type: 1, price: 0}];

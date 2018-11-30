@@ -114,13 +114,22 @@ let reservePanuozzo = () => {
     }
 
 };
+
+let htmlOptions = '';
+window.foodGlobal.forEach(food => {
+    htmlOptions = ` 
+        '${htmlOptions} <option value="${food.name}"> ${food.name} </option>';
+    `;
+});
+$('#panuozzoCibo').append(htmlOptions);
+
 if (new window.User().logged) {
 
     Api('auth').post('check').then((response) => {
         if (!response.data) netlifyIdentity.logout();
     });
-
 }
+
 getSession().then(month => $("#month").text(month));
 
 netlifyIdentity.on("init", () => checkUserStatus());
