@@ -47,12 +47,16 @@ new Vue({
         getAllPrenotazioni() {
             Api('data').post('find', {
                 table: "prenotazioneCibo",
-                username: this.user.username
+                query: {
+                    username: this.user.username
+                }
             }).then(response => this.prenotazioniCibo = response.data);
 
             Api('data').post('find', {
                 table: "prenotazioni",
-                username: this.user.username
+                query: {
+                    username: this.user.username
+                }
             }).then(response => this.prenotazioniPanuozzo = response.data);
         },
         lastMonth(items = []) {
