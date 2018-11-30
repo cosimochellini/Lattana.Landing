@@ -88,7 +88,7 @@ const _bindCommensali = (items = []) => {
     const pani = commensali.filter(c => c.food === 'panuozzo');
 
     if (isOdd(pani.length)){
-       const panoIndex = commensali.indexOf(c => c._id === pani[0]._id);
+       const panoIndex = commensali.findIndex(c => c._id === pani[0]._id);
        commensali[panoIndex] = {...commensali[panoIndex], price : 5};
     }
 
