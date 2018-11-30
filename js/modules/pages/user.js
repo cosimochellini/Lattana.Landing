@@ -17,11 +17,13 @@ new Vue({
         }
         const [dataInizio, dataFine] = window.generateStartEnd();
 
-        
+
         Api('data').post('find', {
-            query: {date: {$gte: dataInizio, $lt: dataFine}},
-            table: "prenotazioneCibo",
-            username: this.user.username
+            query: {
+                date: {$gte: dataInizio, $lt: dataFine},
+                username: this.user.username
+            },
+            table: "prenotazioneCibo"
         }).then(({data}) => {
             if (!data.length) return;
 
