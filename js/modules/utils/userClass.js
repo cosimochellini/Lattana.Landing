@@ -13,6 +13,7 @@ class User {
         }
 
         this.roles = currentUser.app_metadata.roles;
+        this.roles = this.roles || [];
         this.email = currentUser.email;
         this.username = currentUser.user_metadata.full_name;
         this.logged = true;

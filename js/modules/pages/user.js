@@ -37,6 +37,7 @@ new Vue({
     },
     methods: {
         getUserRoles() {
+
             if (!this.user.roles.length) {
                 return 'user';
             }
