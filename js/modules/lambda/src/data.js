@@ -4,7 +4,7 @@ require('dotenv').config();
 
 import {_response, importData} from "../../@api/core"
 
-import {queryFind} from "../../@api/controller/mongooseQuery";
+import {queryFind, queryUpdate} from "../../@api/controller/mongooseQuery";
 
 import {reservePanuozzoToday} from "../../@api/controller/prenotazioni";
 
@@ -17,6 +17,12 @@ exports.handler = async function (event, context) {
 
         case '/find':
             responseData = await queryFind(data);
+            break;
+        case '/update':
+            responseData = await queryUpdate(data);
+            break;
+        case '/delete':
+            console.log('da implementare');
             break;
         case '/reservePanuozzoToday':
             responseData = await reservePanuozzoToday(data);

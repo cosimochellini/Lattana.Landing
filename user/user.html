@@ -38,7 +38,7 @@
     <div class="container-fluid">
 
         <b-card-group columns>
-            <b-card v-if="prenotazioneToday.persistent" title="Your reservation for today!">
+            <b-card v-show="prenotazioneToday.persistent" title="Your reservation for today!">
                 <p class="card-text">
                     This are the info for the reservation of today
                 </p>
@@ -88,9 +88,7 @@
                     <b-button @click="editPrenotazione" v-b-tooltip.hover variant="warning"
                               title="Modifica la prenotazione">
                         <div class="container d-flex h-100">
-                            <div class="justify-content-center align-self-center">
-                                <i class="far fa-edit"></i>
-                            </div>
+                                <i class="fas fa-pen-square"></i>
                         </div>
                     </b-button>
                 </div>
