@@ -49,8 +49,6 @@ new Vue({
             }).then((response) => this.items.panuozzo = response.data);
         },
         showCommensali() {
-            this.commensali.items = _bindCommensali(this.items.cibo);
-
             this.$refs.modalCommensali.show()
         }
     },
@@ -64,6 +62,8 @@ new Vue({
                 const selezione = this.commensali.form.selezione;
                 commensali.push(item);
             });
+            commensali = _bindCommensali(this.items.cibo);
+
             return commensali;
         }
     },
@@ -87,12 +87,12 @@ const _bindCommensali = (items = []) => {
     });
     const pani = commensali.filter(c => c.food === 'panuozzo');
 
-    if (isOdd(pani.length)){
-       const panoIndex = commensali.findIndex(c => c._id === pani[0]._id);
-       commensali[panoIndex] = {...commensali[panoIndex], price : 5, only : true};
+    if (isOdd(pani.length)) {
+        const panoIndex = commensali.findIndex(c => c._id === pani[0]._id);
+        commensali[panoIndex] = {...commensali[panoIndex], price: 5, only: true};
     }
 
-        return commensali;
+    return commensali;
 };
 
 const isOdd = (number) => number % 2;
