@@ -68,11 +68,29 @@ new Vue({
             });
             return lastMonthItems;
         },
-        editPrenotazione() {
-            this.$refs.modalEditPrenotazione.show();
+        editPrenotazione(show = true) {
+
+            this.$refs.modalEditPrenotazione[show ? 'show' : 'hide']();
         },
         dateFormatter(date) {
             return mixin.toDate(date, 'DD/MM/YYYY HH:mm');
+        },
+        updatePrenotazione() {
+            const {food, text} = this.prenotazioneToday;
+            Api('data').post('findOneAndUpdate', {
+                table: "prenotazioneCibo",
+                update: {
+                    'food': food,
+                    'text': text
+                },
+                filter: {
+                    '_id': this.prenotazioneToday._id
+                }
+            }).then(response => {
+                this.editPrenotazione(false);
+                this.$mount();
+            });
+
         }
     },
     computed: {
