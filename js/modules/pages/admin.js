@@ -49,7 +49,7 @@ new Vue({
             }).then((response) => this.items.panuozzo = response.data);
         },
         showCommensali() {
-            this.$refs.modalCommensali.show()
+            this.$refs.modalCommensali.show();
         }
     },
     computed: {

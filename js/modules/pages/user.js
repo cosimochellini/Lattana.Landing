@@ -9,7 +9,8 @@ new Vue({
         prenotazioniCibo: [],
         prenotazioneToday: {
             persistent: false
-        }
+        },
+        foods: window.foodGlobal
     },
     mounted() {
         if (!this.user.logged) {
@@ -21,7 +22,7 @@ new Vue({
         Api('data').post('find', {
             query: {
                 date: {$gte: dataInizio, $lt: dataFine},
-                username: this.user.username
+                //username: this.user.username
             },
             table: "prenotazioneCibo"
         }).then(({data}) => {
@@ -38,9 +39,7 @@ new Vue({
     methods: {
         getUserRoles() {
 
-            if (!this.user.roles.length) {
-                return 'user';
-            }
+            if (!this.user.roles.length) return 'user';
 
             return this.user.roles.join(',');
         },
