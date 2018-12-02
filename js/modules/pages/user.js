@@ -22,14 +22,14 @@ new Vue({
         Api('data').post('find', {
             query: {
                 date: {$gte: dataInizio, $lt: dataFine},
-                //username: this.user.username
+                username: this.user.username
             },
             table: "prenotazioneCibo"
         }).then(({data}) => {
             if (!data.length) return;
 
             const [prenotazione] = data;
-            const order = window.foodGlobal.find(f => f.name === prenotazione.food);
+            const order = this.foods.find(f => f.name === prenotazione.food);
             this.prenotazioneToday = {...prenotazione, ...order, persistent: true};
 
         });
@@ -67,6 +67,12 @@ new Vue({
                 if (difference(now, item.date) < differenceDay) lastMonthItems.push(item);
             });
             return lastMonthItems;
+        },
+        editPrenotazione() {
+            this.$refs.modalEditPrenotazione.show();
+        },
+        dateFormatter(date) {
+            return mixin.toDate(date, 'DD/MM/YYYY HH:mm');
         }
     },
     computed: {
@@ -75,6 +81,14 @@ new Vue({
         },
         prenotazioniPanuozzoMonth() {
             return this.lastMonth(this.prenotazioniPanuozzo).length;
+        }
+    },
+    watch: {
+        'prenotazioneToday.food': {
+            handler: function (food) {
+                const order = this.foods.find(f => f.name === food);
+                this.prenotazioneToday.price = order.price;
+            }
         }
     }
 

@@ -117,7 +117,7 @@ mixin.sort = (items = [], criterio = (a, b) => a - b) => {
         return items.sort(criterio);
     } catch (e) {
         return [];
-    }           
+    }
 };
 
 /**
@@ -128,7 +128,6 @@ mixin.sort = (items = [], criterio = (a, b) => a - b) => {
  */
 mixin.mixin = () => {
     return {
-        el: '#app',
         data: () => {
             return {
                 items: [],
@@ -148,8 +147,7 @@ mixin.mixin = () => {
         computed: {
             showPagination() {
                 return mixin.showPagination(this.tableItems);
-            },
-
+            }
         },
         filters: {
             date: (item, format) => {

@@ -89,7 +89,7 @@
                 </b-list-group>
 
                 <div slot="footer">
-                    <b-button v-b-modal.modalEditPrenotazione variant="warning"
+                    <b-button @click="editPrenotazione" variant="warning"
                               title="Modifica la prenotazione">
                         <div class="container d-flex h-100">
                             <i class="far fa-edit"></i>
@@ -144,11 +144,19 @@
             </b-card>
         </b-card-group>
 
-        <b-modal id="modalEditPrenotazione" title="Edit your order" centered>
-            <b-form>
-                <b-form-group id="exampleInputGroup1" label="Date of prenotation:"
-                              description="We'll never share your email with anyone else.">
-                    <b-form-input type="text" v-model="prenotazioneToday.date" disabled>
+        <b-modal ref="modalEditPrenotazione" title="Edit your order" centered>
+
+            <b-form-group label="Username:"
+                          description="You cant edit the username of the prenotation">
+                <b-form-input type="text" v-model="prenotazioneToday.username" disabled>
+                </b-form-input>
+            </b-form-group>
+
+            <b-form v-if="prenotazioneToday.persistent">
+                <b-form-group label="Date of prenotation:"
+                              description="You cant edit the date of the prenotation">
+                    <b-form-input type="text" v-model="prenotazioneToday.date" :formatter="dateFormatter" lazy-formatter
+                                  disabled>
                     </b-form-input>
                 </b-form-group>
 
@@ -158,8 +166,21 @@
                                    v-model="prenotazioneToday.food">
                     </b-form-select>
                 </b-form-group>
-            </b-form>
 
+                <b-form-group label="Description of prenotation:">
+                    <b-form-input type="text" v-model="prenotazioneToday.text">
+                    </b-form-input>
+                </b-form-group>
+            </b-form>
+            <b-form-group label="Price (€):">
+                <b-form-input type="text" v-model="prenotazioneToday.price" disabled>
+                </b-form-input>
+            </b-form-group>
+            <div slot="modal-footer" class="w-100">
+                <b-btn size="sm" class="float-right" variant="primary" @click="updatePrenotazione">
+                    Update
+                </b-btn>
+            </div>
         </b-modal>
     </div>
 </div>
