@@ -115,15 +115,13 @@
 
         <div class="d-block text-center">
             <b-list-group>
-                <b-list-group-item>
-                    <b-form-group label="Button style radios">
-                        <b-form-radio-group buttons v-model="commensali.type">
-                            <b-radio :value="2" checked="true">Tutti </b-radio>
-                            <b-radio :value="0">PizzaMan </b-radio>
-                            <b-radio :value="1">Other </b-radio>
-                        </b-form-radio-group>
-                    </b-form-group>
-                </b-list-group-item>
+                <b-form-group>
+                    <b-form-radio-group buttons v-model="commensali.type">
+                        <b-radio :value="2" checked="true">Tutti</b-radio>
+                        <b-radio :value="0">PizzaMan</b-radio>
+                        <b-radio :value="1">Other</b-radio>
+                    </b-form-radio-group>
+                </b-form-group>
             </b-list-group>
 
         </div>
