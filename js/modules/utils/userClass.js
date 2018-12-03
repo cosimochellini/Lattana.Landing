@@ -23,7 +23,7 @@ class User {
             if (window.location.origin === "http://localhost:63342") {
                 return {
                     app_metadata: {
-                        roles: ["Admin"]
+                        roles: ["Admin", "User"]
                     },
                     user_metadata: {
                         full_name: "Cosimo"

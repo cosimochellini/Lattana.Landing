@@ -24,8 +24,8 @@ new Vue({
             fieldException: ['_id', 'prenotazioneId', '__v']
         },
     mounted() {
-        if (!this.user.logged) {
-            // window.location.href = "./";
+        if (!this.user.logged || !this.user.is(window.User.Type.Admin)) {
+            window.location.href = "/";
         }
         this.fetchData();
     },

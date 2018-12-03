@@ -14,7 +14,7 @@ new Vue({
     },
     mounted() {
         if (!this.user.logged) {
-            // window.location.href = "./";
+            window.location.href = "/";
         }
         const [dataInizio, dataFine] = window.generateStartEnd();
 

@@ -12,7 +12,7 @@ const options = { reconnectTries: 100, reconnectInterval: 500, poolSize: 10, buf
  * genera tutte le variabili di base per la chiamata
  * @param {Object} event 
  * @param {Object} context 
- * @returns {Object}
+ * @returns {Object<any>}
  */
 const importData = (event, context) => {
     let exportData = {};
@@ -50,10 +50,6 @@ const importData = (event, context) => {
     exportData.db.prenotazioni = mongoose.model('prenotazioni', prenotazioni, 'prenotazioni');
 
     exportData.db.prenotazioneCibo = mongoose.model('prenotazioneCibo', prenotazioneCibo, 'prenotazioneCibo');
-
-    //exportData.callback = callback;
-
-    // exportData.options = { reconnectTries: 100, reconnectInterval: 500, poolSize: 10, bufferMaxEntries: 0, useNewUrlParser: true };
 
     return exportData;
 };
