@@ -1,3 +1,22 @@
+const isOdd = (number) => number % 2;
+
+const _bindCommensali = (items = [], foods = []) => {
+    let commensali = [];
+    items.forEach(item => {
+        const _food = foods.find(cibo => cibo.name === item.food);
+        commensali.push({...item, ..._food});
+    });
+    const pani = commensali.filter(c => c.food === 'panuozzo');
+
+    if (isOdd(pani.length)) {
+        const panoIndex = commensali.findIndex(c => c._id === pani[0]._id);
+        commensali[panoIndex] = {...commensali[panoIndex], price: 5, only: true};
+    }
+
+    return commensali;
+};
+
+
 Vue.use(bootstrapVue);
 
 new Vue({
@@ -16,11 +35,10 @@ new Vue({
             },
             commensali: {
                 items: [],
-                form: {
-                    selezione: 2
-                }
+                type: 2
             },
             selezione: 'cibo',
+            foods : window.foodGlobal,
             fieldException: ['_id', 'prenotazioneId', '__v']
         },
     mounted() {
@@ -57,14 +75,12 @@ new Vue({
             return this.items[this.selezione];
         },
         commensaliList() {
-            let commensali = [];
-            this.commensali.items.forEach(item => {
-                const selezione = this.commensali.form.selezione;
-                commensali.push(item);
-            });
-            commensali = _bindCommensali(this.items.cibo);
+            let {type} = this.commensali;
+            let items = _bindCommensali(this.items.cibo, this.foods);
 
-            return commensali;
+            if (type === 2) return items;
+
+            return items.filter(item => item.type === type);
         }
     },
     watch: {
@@ -78,21 +94,3 @@ new Vue({
 });
 
 window.netlifyIdentity.on("logout", () => window.location.href = "/");
-
-const _bindCommensali = (items = []) => {
-    let commensali = [];
-    items.forEach(item => {
-        const _food = window.foodGlobal.find(cibo => cibo.name === item.food);
-        commensali.push({...item, ..._food});
-    });
-    const pani = commensali.filter(c => c.food === 'panuozzo');
-
-    if (isOdd(pani.length)) {
-        const panoIndex = commensali.findIndex(c => c._id === pani[0]._id);
-        commensali[panoIndex] = {...commensali[panoIndex], price: 5, only: true};
-    }
-
-    return commensali;
-};
-
-const isOdd = (number) => number % 2;
