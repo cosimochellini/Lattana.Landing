@@ -95,6 +95,12 @@
                             <i class="far fa-edit"></i>
                         </div>
                     </b-button>
+                    <b-button @click="deletePrenotazione" variant="danger"
+                              title="Elimina la prenotazione">
+                        <div class="container d-flex h-100">
+                            <i class="far fa-trash-alt"></i>
+                        </div>
+                    </b-button>
                 </div>
 
             </b-card>
@@ -179,6 +185,15 @@
             <div slot="modal-footer" class="w-100">
                 <b-btn size="sm" class="float-right" variant="primary" @click="updatePrenotazione">
                     Update
+                </b-btn>
+            </div>
+        </b-modal>
+
+        <b-modal ref="modalDeletePrenotazione" title="Delete your order" centered>
+            Attenzione stai eliminando la prenotazione fatta il {{prenotazioneToday.date | date}}
+            <div slot="modal-footer" class="w-100">
+                <b-btn size="sm" class="float-right" variant="danger" @click="deletePrenotazione(false, true)">
+                    Delete
                 </b-btn>
             </div>
         </b-modal>

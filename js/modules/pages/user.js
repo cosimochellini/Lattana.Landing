@@ -18,7 +18,6 @@ new Vue({
         }
         const [dataInizio, dataFine] = window.generateStartEnd();
 
-
         Api('data').post('find', {
             query: {
                 date: {$gte: dataInizio, $lt: dataFine},
@@ -31,31 +30,24 @@ new Vue({
             const [prenotazione] = data;
             const order = this.foods.find(f => f.name === prenotazione.food);
             this.prenotazioneToday = {...prenotazione, ...order, persistent: true};
-
         });
 
         this.getAllPrenotazioni();
     },
     methods: {
         getUserRoles() {
-
             if (!this.user.roles.length) return 'user';
-
             return this.user.roles.join(',');
         },
         getAllPrenotazioni() {
             Api('data').post('find', {
                 table: "prenotazioneCibo",
-                query: {
-                    username: this.user.username
-                }
+                query: {username: this.user.username}
             }).then(response => this.prenotazioniCibo = response.data);
 
             Api('data').post('find', {
                 table: "prenotazioni",
-                query: {
-                    username: this.user.username
-                }
+                query: {username: this.user.username}
             }).then(response => this.prenotazioniPanuozzo = response.data);
         },
         lastMonth(items = []) {
@@ -69,8 +61,19 @@ new Vue({
             return lastMonthItems;
         },
         editPrenotazione(show = true) {
-
             this.$refs.modalEditPrenotazione[show ? 'show' : 'hide']();
+        },
+        deletePrenotazione(show = true, goDelete = false) {
+            this.$refs.modalDeletePrenotazione[show ? 'show' : 'hide']();
+            if (!goDelete) return;
+
+            Api('data').post('findOneAndDelete', {
+                table: "prenotazioneCibo",
+                filter: {'_id': this.prenotazioneToday._id}
+            }).then(() => {
+                this.prenotazioneToday.persistent = false;
+                this.$mount()
+            });
         },
         dateFormatter(date) {
             return mixin.toDate(date, 'DD/MM/YYYY HH:mm');
@@ -86,11 +89,10 @@ new Vue({
                 filter: {
                     '_id': this.prenotazioneToday._id
                 }
-            }).then(response => {
+            }).then(() => {
                 this.editPrenotazione(false);
                 this.$mount();
             });
-
         }
     },
     computed: {
