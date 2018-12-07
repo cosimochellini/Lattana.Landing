@@ -1,5 +1,5 @@
 window.foodGlobal = [
-    {name: 'panuozzo', type: 0, price: 4},
+    {name: 'mezzo panuozzo', type: 0, price: 4},
     {name: 'panuozzo intero', type: 0, price: 8},
     {name: 'pizza margherita', type: 0, price: 6},
     {name: 'pizza nduja', type: 0, price: 7},

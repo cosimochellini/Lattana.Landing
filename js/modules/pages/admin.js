@@ -6,7 +6,7 @@ const _bindCommensali = (items = [], foods = []) => {
         const _food = foods.find(cibo => cibo.name === item.food);
         commensali.push({...item, ..._food});
     });
-    const pani = commensali.filter(c => c.food === 'panuozzo');
+    const pani = commensali.filter(c => c.food === 'mezzo panuozzo');
 
     if (isOdd(pani.length)) {
         const panoIndex = commensali.findIndex(c => c._id === pani[0]._id);
@@ -19,7 +19,7 @@ const _bindCommensali = (items = [], foods = []) => {
 
 Vue.use(bootstrapVue);
 
-new Vue({
+const vm = new Vue({
     el: '#app',
     mixins: [mixin.mixin()],
     data:
@@ -38,7 +38,8 @@ new Vue({
                 type: 2
             },
             selezione: 'cibo',
-            foods : window.foodGlobal,
+            foods: window.foodGlobal,
+            riassuntoOrdineVisibile : false,
             fieldException: ['_id', 'prenotazioneId', '__v']
         },
     mounted() {
@@ -81,7 +82,21 @@ new Vue({
             if (type === 2) return items;
 
             return items.filter(item => item.type === type);
+        },
+        ordine(){
+            let ordine = {};
+            const commensali  = this.commensaliList || [];
+
+            ordine.mezzoPanuozzo = isOdd(commensali.filter(c => c.food === 'mezzo panuozzo').length) ? 1 : 0;
+            ordine.panuozzo8Pezzi = parseInt(commensali.filter(c => c.food === 'mezzo panuozzo').length/2);
+            ordine.panuozzo4Pezzi = parseInt(commensali.filter(c => c.food === 'panuozzo intero').length);
+            ordine.pizzaMargherita = parseInt(commensali.filter(c => c.food === 'pizza margherita').length);
+            ordine.pizzaNduja = parseInt(commensali.filter(c => c.food === 'pizza nduja').length);
+
+            return ordine;
+
         }
+
     },
     watch: {
         form: {
@@ -94,3 +109,7 @@ new Vue({
 });
 
 window.netlifyIdentity.on("logout", () => window.location.href = "/");
+
+setInterval(()=> {
+    vm.$mount();
+},5000);

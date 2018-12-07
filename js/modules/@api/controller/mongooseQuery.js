@@ -60,9 +60,31 @@ const findOneAndDelete = async ({body, db}) => {
     }
 };
 
+/**
+ * esegue l'eliminazione di un oggetto tramite la libreria mongoodse
+ * @param {Object} param0 l'oggetto data generato da importData(...)
+ * @param {Object} param0.body
+ * @param {Object} param0.db
+ * @param {Model<any, {}>} param0.db.prenotazioneCibo context della tabella prenotazioneCibo
+ * @param {Model<any, {}>} param0.db.prenotazioni context della tabella prenotazioni
+ * @returns {Object} l'esito
+ */
+const create = async ({body, db}) => {
+    try {
+        const {table, data} = body;
+
+        return await db[table].create(data);
+
+    } catch (e) {
+        console.log('create => eccezione', e);
+        return [];
+    }
+};
+
 
 export {
     find,
+    create,
     findOneAndUpdate,
     findOneAndDelete
 }
