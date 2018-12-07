@@ -139,12 +139,104 @@
                         <b-col>
                             {{item.price}} €
                         </b-col>
-
-
                     </b-row>
                 </b-list-group-item>
             </b-list-group>
             <br>
+
+            <b-list-group>
+                <b-list-group-item>
+                    <b-button variant="success" @click="riassuntoOrdineVisibile = !riassuntoOrdineVisibile"
+                              title="Aggiorna commensali">
+                        {{riassuntoOrdineVisibile ? 'Nascondi' : 'Visualizza'}} Riassunto Ordine
+                        <i class="fas fa-list-ul"></i>
+                    </b-button>
+
+                    <br/>
+                </b-list-group-item>
+                <b-list-group v-show="riassuntoOrdineVisibile">
+                    <b-list-group-item v-if="ordine.panuozzo8Pezzi">
+                        <b-row>
+                            <b-col>
+                                Panuozzo (8 Pezzi)
+                            </b-col>
+
+                            <b-col>
+                                <b-badge variant="primary">
+                                    {{ordine.panuozzo8Pezzi}}
+                                </b-badge>
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+
+                    <b-list-group-item v-if="ordine.mezzoPanuozzo">
+                        <b-row>
+                            <b-col>
+                                Mezzi Panuozzi Singoli
+                            </b-col>
+
+                            <b-col>
+                                <b-badge variant="primary">
+                                    {{ordine.mezzoPanuozzo}}
+                                </b-badge>
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+
+                    <b-list-group-item v-if="ordine.panuozzo4Pezzi">
+                        <b-row>
+                            <b-col>
+                                Panuozzo (4 Pezzi)
+                            </b-col>
+
+                            <b-col>
+                                <b-badge variant="primary">
+                                    {{ordine.panuozzo4Pezzi}}
+                                </b-badge>
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+
+                    <b-list-group-item v-if="ordine.pizzaMargherita">
+                        <b-row>
+                            <b-col>
+                                Pizze Margherite
+                            </b-col>
+                            <b-col>
+                                <b-badge variant="primary">
+                                    {{ordine.pizzaMargherita}}
+                                </b-badge>
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+
+                    <b-list-group-item v-if="ordine.pizzaNduja">
+                        <b-row>
+                            <b-col>
+                                Pizze Nduja
+                            </b-col>
+                            <b-col>
+                                <b-badge variant="primary">
+                                    {{ordine.pizzaNduja}}
+                                </b-badge>
+                            </b-col>
+                        </b-row>
+                    </b-list-group-item>
+
+                </b-list-group>
+
+            </b-list-group>
+
+            <br/>
+
+            <b-list-group>
+                <b-list-group-item>
+                    Totale :
+                    {{commensaliList.map(item => item.price).reduce((sum, x) => parseInt(sum) + parseInt(x),0)}}€
+                </b-list-group-item>
+            </b-list-group>
+
+            <br/>
 
             <b-list-group>
                 <b-list-group-item>
@@ -157,99 +249,6 @@
                         </b-col>
                     </b-row>
 
-                </b-list-group-item>
-            </b-list-group>
-            <br/>
-
-            <b-list-group>
-                <b-list-group-item>
-                    <b-button variant="success" @click="riassuntoOrdineVisibile = !riassuntoOrdineVisibile"
-                              title="Aggiorna commensali">
-                        {{riassuntoOrdineVisibile ? 'Nascondi' : 'Visualizza'}} Riassunto Ordine
-                        <i class="fas fa-list-ul"></i>
-                    </b-button>
-
-                    <br/>
-                </b-list-group-item>
-                    <b-list-group v-show="riassuntoOrdineVisibile">
-                        <b-list-group-item v-if="ordine.panuozzo8Pezzi">
-                            <b-row>
-                                <b-col>
-                                    Panuozzo (8 Pezzi)
-                                </b-col>
-
-                                <b-col>
-                                    <b-badge variant="primary">
-                                        {{ordine.panuozzo8Pezzi}}
-                                    </b-badge>
-                                </b-col>
-                            </b-row>
-                        </b-list-group-item>
-
-                        <b-list-group-item v-if="ordine.mezzoPanuozzo">
-                            <b-row>
-                                <b-col>
-                                    Mezzi Panuozzi Singoli
-                                </b-col>
-
-                                <b-col>
-                                    <b-badge variant="primary">
-                                        {{ordine.mezzoPanuozzo}}
-                                    </b-badge>
-                                </b-col>
-                            </b-row>
-                        </b-list-group-item>
-
-                        <b-list-group-item v-if="ordine.panuozzo4Pezzi">
-                            <b-row>
-                                <b-col>
-                                    Panuozzo (4 Pezzi)
-                                </b-col>
-
-                                <b-col>
-                                    <b-badge variant="primary">
-                                        {{ordine.panuozzo4Pezzi}}
-                                    </b-badge>
-                                </b-col>
-                            </b-row>
-                        </b-list-group-item>
-
-                        <b-list-group-item v-if="ordine.pizzaMargherita">
-                            <b-row>
-                                <b-col>
-                                    Pizze Margherite
-                                </b-col>
-                                <b-col>
-                                    <b-badge variant="primary">
-                                        {{ordine.pizzaMargherita}}
-                                    </b-badge>
-                                </b-col>
-                            </b-row>
-                        </b-list-group-item>
-
-                        <b-list-group-item v-if="ordine.pizzaNduja">
-                            <b-row>
-                                <b-col>
-                                    Pizze Nduja
-                                </b-col>
-                                <b-col>
-                                    <b-badge variant="primary">
-                                        {{ordine.pizzaNduja}}
-                                    </b-badge>
-                                </b-col>
-                            </b-row>
-                        </b-list-group-item>
-
-                    </b-list-group>
-
-            </b-list-group>
-
-            <br/>
-
-            <b-list-group>
-                <b-list-group-item>
-                    Totale :
-                    {{commensaliList.map(item => item.price).reduce((sum, x) => parseInt(sum) + parseInt(x),0)}}€
                 </b-list-group-item>
             </b-list-group>
 
