@@ -4,7 +4,7 @@ require('dotenv').config();
 
 import {_response, importData} from "../../@api/core"
 
-import {find, findOneAndUpdate, findOneAndDelete} from "../../@api/controller/mongooseQuery";
+import {find, findOneAndUpdate, findOneAndDelete, create} from "../../@api/controller/mongooseQuery";
 
 import {reservePanuozzoToday} from "../../@api/controller/prenotazioni";
 
@@ -17,6 +17,9 @@ exports.handler = async function (event, context) {
 
         case '/find':
             responseData = await find(data);
+            break;
+        case '/create':
+            responseData = await create(data);
             break;
         case '/findOneAndUpdate':
             responseData = await findOneAndUpdate(data);
