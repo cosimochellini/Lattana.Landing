@@ -39,8 +39,8 @@ const vm = new Vue({
             },
             selezione: 'cibo',
             foods: window.foodGlobal,
-            riassuntoOrdineVisibile : false,
-            fieldException: ['_id', 'prenotazioneId','email','date' , '__v']
+            riassuntoOrdineVisibile: false,
+            fieldException: ['_id', 'prenotazioneId', 'email', 'date', '__v']
         },
     mounted() {
         if (!this.user.logged || !this.user.is(window.User.Type.Admin)) {
@@ -83,31 +83,37 @@ const vm = new Vue({
 
             return items.filter(item => item.type === type);
         },
-        ordine(){
+        ordine() {
             let ordine = [];
-            let commensali  = this.commensaliList || [];
+            let commensali = this.commensaliList || [];
 
             commensali = commensali.filter(item => item.type === 0);
 
-            const cibiDaOrdinare = [... new Set(commensali.map(cibo => cibo.name))];
+            const cibiDaOrdinare = [...new Set(commensali.map(cibo => cibo.name))];
 
             cibiDaOrdinare.forEach(cibo => {
-                if(cibo !== 'mezzo panuozzo'){
+                if (cibo !== 'mezzo panuozzo') {
                     ordine.push({
-                        name : cibo, quantity : commensali.filter(i => i.food === cibo).length
+                        name: cibo, quantity: commensali.filter(i => i.food === cibo).length
                     });
                 }
             });
 
             const mezzoPanuozzoQuantity = parseInt(commensali.filter(c => c.food === 'mezzo panuozzo').length);
 
-            if(isOdd(mezzoPanuozzoQuantity)){
-                ordine.push({name : 'mezzo panuozzo', quantity : 1})
+            if (isOdd(mezzoPanuozzoQuantity)) {
+                ordine.push({name: 'mezzo panuozzo', quantity: 1})
             }
 
-            if(mezzoPanuozzoQuantity > 1){
-                ordine.push({name : 'panuozzo 8 pezzi' , quantity:  parseInt(mezzoPanuozzoQuantity/2)});
+            if (mezzoPanuozzoQuantity > 1) {
+                ordine.push({name: 'panuozzo 8 pezzi', quantity: parseInt(mezzoPanuozzoQuantity / 2)});
             }
+
+            ordine = ordine.sort((a, b) => {
+                if (a.name < b.name) return -1;
+                if (a.name > b.name) return 1;
+                return 0;
+            });
 
             return ordine;
 
@@ -126,6 +132,6 @@ const vm = new Vue({
 
 window.netlifyIdentity.on("logout", () => window.location.href = "/");
 
-setInterval(()=> {
+setInterval(() => {
     vm.$mount();
-},5000);
+}, 5000);
