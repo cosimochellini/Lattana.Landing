@@ -40,7 +40,7 @@ const vm = new Vue({
             selezione: 'cibo',
             foods: window.foodGlobal,
             riassuntoOrdineVisibile : false,
-            fieldException: ['_id', 'prenotazioneId','email' , '__v']
+            fieldException: ['_id', 'prenotazioneId','email','date' , '__v']
         },
     mounted() {
         if (!this.user.logged || !this.user.is(window.User.Type.Admin)) {
