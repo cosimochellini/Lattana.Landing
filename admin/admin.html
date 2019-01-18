@@ -39,7 +39,6 @@
     <br/>
     <b-container>
 
-
         <b-form inline responsive fixed striped class="justify-content-center">
             <b-row align-v="center" class="mb-2 mr-sm-2 mb-sm-0">
 
@@ -153,69 +152,15 @@
                     <br/>
                 </b-list-group-item>
                 <b-list-group v-show="riassuntoOrdineVisibile">
-                    <b-list-group-item v-if="ordine.panuozzo8Pezzi">
+                    <b-list-group-item v-for="cibo in ordine" :key="cibo.name">
                         <b-row>
                             <b-col>
-                                Panuozzo (8 Pezzi)
+                                {{cibo.name}}
                             </b-col>
 
                             <b-col>
                                 <b-badge variant="primary">
-                                    {{ordine.panuozzo8Pezzi}}
-                                </b-badge>
-                            </b-col>
-                        </b-row>
-                    </b-list-group-item>
-
-                    <b-list-group-item v-if="ordine.mezzoPanuozzo">
-                        <b-row>
-                            <b-col>
-                                Mezzi Panuozzi Singoli
-                            </b-col>
-
-                            <b-col>
-                                <b-badge variant="primary">
-                                    {{ordine.mezzoPanuozzo}}
-                                </b-badge>
-                            </b-col>
-                        </b-row>
-                    </b-list-group-item>
-
-                    <b-list-group-item v-if="ordine.panuozzo4Pezzi">
-                        <b-row>
-                            <b-col>
-                                Panuozzo (4 Pezzi)
-                            </b-col>
-
-                            <b-col>
-                                <b-badge variant="primary">
-                                    {{ordine.panuozzo4Pezzi}}
-                                </b-badge>
-                            </b-col>
-                        </b-row>
-                    </b-list-group-item>
-
-                    <b-list-group-item v-if="ordine.pizzaMargherita">
-                        <b-row>
-                            <b-col>
-                                Pizze Margherite
-                            </b-col>
-                            <b-col>
-                                <b-badge variant="primary">
-                                    {{ordine.pizzaMargherita}}
-                                </b-badge>
-                            </b-col>
-                        </b-row>
-                    </b-list-group-item>
-
-                    <b-list-group-item v-if="ordine.pizzaNduja">
-                        <b-row>
-                            <b-col>
-                                Pizze Nduja
-                            </b-col>
-                            <b-col>
-                                <b-badge variant="primary">
-                                    {{ordine.pizzaNduja}}
+                                    {{cibo.quantity}}
                                 </b-badge>
                             </b-col>
                         </b-row>

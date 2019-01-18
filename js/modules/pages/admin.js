@@ -84,14 +84,30 @@ const vm = new Vue({
             return items.filter(item => item.type === type);
         },
         ordine(){
-            let ordine = {};
-            const commensali  = this.commensaliList || [];
+            let ordine = [];
+            let commensali  = this.commensaliList || [];
 
-            ordine.mezzoPanuozzo = isOdd(commensali.filter(c => c.food === 'mezzo panuozzo').length) ? 1 : 0;
-            ordine.panuozzo8Pezzi = parseInt(commensali.filter(c => c.food === 'mezzo panuozzo').length/2);
-            ordine.panuozzo4Pezzi = parseInt(commensali.filter(c => c.food === 'panuozzo intero').length);
-            ordine.pizzaMargherita = parseInt(commensali.filter(c => c.food === 'pizza margherita').length);
-            ordine.pizzaNduja = parseInt(commensali.filter(c => c.food === 'pizza nduja').length);
+            commensali = commensali.filter(item => item.type === 0);
+
+            const cibiDaOrdinare = [... new Set(commensali.map(cibo => cibo.name))];
+
+            cibiDaOrdinare.forEach(cibo => {
+                if(cibo !== 'mezzo panuozzo'){
+                    ordine.push({
+                        name : cibo, quantity : commensali.filter(i => i.food === cibo).length
+                    });
+                }
+            });
+
+            const mezzoPanuozzoQuantity = parseInt(commensali.filter(c => c.food === 'mezzo panuozzo').length);
+
+            if(isOdd(mezzoPanuozzoQuantity)){
+                ordine.push({name : 'mezzo panuozzo', quantity : 1})
+            }
+
+            if(mezzoPanuozzoQuantity > 1){
+                ordine.push({name : 'panuozzo 8 pezzi' , quantity:  parseInt(mezzoPanuozzoQuantity/2)});
+            }
 
             return ordine;
 
