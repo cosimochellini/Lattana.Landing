@@ -65,8 +65,7 @@
                         </div>
                     </b-button>
 
-                    <b-button @click="showCommensali" v-b-tooltip.hover variant="success"
-                              title="Genera lista commensali">
+                    <b-button @click="showCommensali" variant="success">
                         <div class="container d-flex h-100">
                             <div class="justify-content-center align-self-center">
                                 <i class="far fa-list-alt"></i>
@@ -109,7 +108,7 @@
     <div v-else>
         <h2 class="text-center"> Nessun elemento per il range di date selezionato</h2>
     </div>
-    
+
     <b-modal ref="modalCommensali" title="Food to order" centered>
 
         <div class="d-block text-center">
