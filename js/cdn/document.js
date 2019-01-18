@@ -77,7 +77,7 @@ let openReservePanuozzo = async () => {
 };
 
 let reservePanuozzo = () => {
-    const prenotazionePezzi = parseInt($('#panuozzoPiece').val());
+    const prenotazionePezzi = 1;
 
     const prenotazioneCibo = $('#panuozzoCibo').val();
 
