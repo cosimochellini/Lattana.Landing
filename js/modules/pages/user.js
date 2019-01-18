@@ -29,7 +29,7 @@ new Vue({
 
             const [prenotazione] = data;
             const order = this.foods.find(f => f.name === prenotazione.food);
-            this.prenotazioneToday = {...prenotazione, ...order, persistent: true};
+            this.prenotazioneToday = { ...order, ...prenotazione, persistent: true};
         });
 
         this.getAllPrenotazioni();
