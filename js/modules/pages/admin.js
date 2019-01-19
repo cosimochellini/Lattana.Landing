@@ -134,4 +134,4 @@ window.netlifyIdentity.on("logout", () => window.location.href = "/");
 
 setInterval(() => {
     vm.$mount();
-}, 5000);
+}, 10000);
