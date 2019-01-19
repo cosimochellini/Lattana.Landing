@@ -12,6 +12,7 @@
         body {
             font: normal 10px Montserrat, Arial, sans-serif;
         }
+
     </style>
 </head>
 <body>
@@ -21,14 +22,35 @@
 
 <div id="app">
     <vs-navbar v-model="activeItem" type="gradient" class="nabarx">
-        <vs-icon  type="gradient" :radius="false" size="large" color="#FFDE03" icon="local_pizza"></vs-icon>
+        <vs-icon type="gradient" :radius="false" size="large" color="#FFDE03" icon="local_pizza"></vs-icon>
 
         <vs-navbar-title>
             Prenotazione per stasera
         </vs-navbar-title>
 
     </vs-navbar>
-    <!-- Buefy components goes here -->
+
+    <br>
+    <br>
+
+    <h1>
+        Ordine
+    </h1>
+    <vs-list>
+        <vs-list-header title="" color="primary"></vs-list-header>
+
+        <vs-list-item :title="prenotazione.name" :subtitle="prenotazione.text" v-for="prenotazione in ordine"
+                      :key="prenotazione._id">
+            <template slot="avatar">
+                <vs-avatar :text="prenotazione.quantity.toString()" :color="prenotazione.color" size="large"></vs-avatar>
+            </template>
+
+            <vs-checkbox color="primary"></vs-checkbox>
+
+        </vs-list-item>
+
+    </vs-list>
+
 </div>
 
 <script src="../js/cdn/vue.js"></script>
