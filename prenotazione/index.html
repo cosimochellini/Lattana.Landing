@@ -34,21 +34,27 @@
     <br>
 
     <h1>
-        Ordine
+        Ordine per oggi alle {{oraPrenotazione | ora}}
     </h1>
     <vs-list>
-        <vs-list-header title="" color="primary"></vs-list-header>
+        <vs-list-header title="Riepilogo" color="primary"></vs-list-header>
 
-        <vs-list-item :title="prenotazione.name" :subtitle="prenotazione.text" v-for="prenotazione in ordine"
+        <vs-list-item :subtitle="prenotazione.name" v-for="prenotazione in ordine"
                       :key="prenotazione._id">
             <template slot="avatar">
-                <vs-avatar :text="prenotazione.quantity.toString()" :color="prenotazione.color" size="large"></vs-avatar>
+                <vs-avatar :text="prenotazione.quantity.toString()" :color="prenotazione.color"
+                           size="large"></vs-avatar>
             </template>
 
             <vs-checkbox color="primary"></vs-checkbox>
 
         </vs-list-item>
-
+        <vs-list-header title="Totale" color="success"></vs-list-header>
+        <vs-list-item title="" :subtitle="`Totale : ${totale} €`">
+            <template slot="avatar">
+                <vs-avatar icon="euro_symbol" color="success" size="large"></vs-avatar>
+            </template>
+        </vs-list-item>
     </vs-list>
 
 </div>

@@ -1,13 +1,27 @@
+const urlsParams = location.href.split('?');
+
+if (urlsParams.length < 2) location.href = "/";
+
+let timestamp;
+
+try {
+    timestamp = parseInt(atob(urlsParams[1]));
+} catch (e) {
+    location.href = "/";
+}
+
+if (isNaN(timestamp)) location.href = "/";
+
 let vm = new Vue({
     el: '#app',
     data: {
         prenotazioni: [],
         foods: window.foodGlobal,
-        activeItem: 0
+        activeItem: 0,
+        oraPrenotazione: new Date(timestamp)
     },
     mounted() {
         this.fetchData({onMounted: true});
-
     },
     methods: {
         fetchData(params = {}) {
@@ -23,6 +37,13 @@ let vm = new Vue({
                     });
                 }
                 this.prenotazioni = response.data
+            }).catch(error => {
+                this.$vs.notify({
+                    title: 'Error',
+                    color: 'danger',
+                    text: error.message,
+                    icon: 'check_box'
+                });
             });
         },
         bindCommensali() {
@@ -76,7 +97,7 @@ let vm = new Vue({
                 ordine.push({
                     name: 'panuozzo 8 pezzi',
                     quantity: parseInt(mezzoPanuozzoQuantity / 2),
-                    color : '#8e0000'
+                    color: '#8e0000'
                 });
             }
 
@@ -87,6 +108,17 @@ let vm = new Vue({
             });
 
             return ordine;
+        },
+        totale() {
+            let commensali = this.bindCommensali();
+
+            return commensali.map(c => c.price).reduce((a, b) => a + b, 0);
+        }
+    },
+    filters: {
+        ora(date) {
+            if (!date) return '';
+            return window.dateFns.format(date, 'HH:mm');
         }
     }
 });
