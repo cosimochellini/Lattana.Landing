@@ -69,6 +69,9 @@ const vm = new Vue({
         },
         showCommensali() {
             this.$refs.modalCommensali.show();
+        },
+        openUrlOrdine(){
+
         }
     },
     computed: {

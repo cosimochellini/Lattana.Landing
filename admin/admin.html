@@ -72,6 +72,14 @@
                         </div>
                     </b-button>
 
+                    <b-button @click="openUrlOrdine" variant="info">
+                        <div class="container d-flex h-100">
+                            <div class="justify-content-center align-self-center">
+                                <i class="far fa-list-alt"></i>
+                            </div>
+                        </div>
+                    </b-button>
+
                 </b-col>
 
             </b-row>
@@ -108,21 +116,8 @@
         <h2 class="text-center"> Nessun elemento per il range di date selezionato</h2>
     </div>
 
-    <b-modal ref="modalCommensali" title="Food to order" centered>
+    <b-modal ref="modalCommensali" size="lg" title="Food to order" hide-footer centered>
 
-        <div class="d-block text-center">
-            <b-list-group>
-                <b-form-group>
-                    <b-form-radio-group buttons v-model="commensali.type">
-                        <b-radio :value="2" checked="true">Tutti</b-radio>
-                        <b-radio :value="0">PizzaMan</b-radio>
-                        <b-radio :value="1">Other</b-radio>
-                    </b-form-radio-group>
-                </b-form-group>
-            </b-list-group>
-
-        </div>
-        <br/>
         <div class="d-block text-center">
             <b-list-group>
                 <b-list-group-item v-for="item in commensaliList" :key="item._id" :variant="item.only ? 'warning' : ''">
@@ -169,7 +164,6 @@
                 </b-list-group>
 
             </b-list-group>
-
             <br/>
 
             <b-list-group>
@@ -180,28 +174,6 @@
             </b-list-group>
 
             <br/>
-
-            <b-list-group>
-                <b-list-group-item>
-                    <b-row>
-                        <b-col title="Add to lista nnera">
-                            <b-button href="https://drive.google.com/keep" variant="warning">
-                                Vai su Keep
-                                <i class="far fa-lightbulb"></i>
-                            </b-button>
-                        </b-col>
-                    </b-row>
-
-                </b-list-group-item>
-            </b-list-group>
-
-        </div>
-        <div slot="modal-footer">
-            <b-button @click="fetchData" variant="success" title="Aggiorna commensali">
-                <div class="container d-flex h-100">
-                    <i class="fas fa-redo-alt"></i>
-                </div>
-            </b-button>
         </div>
 
     </b-modal>
