@@ -25,8 +25,10 @@ let vm = new Vue({
     },
     methods: {
         fetchData(params = {}) {
+            const [dataInizio, dataFine] = window.generateStartEnd();
 
             Api('data').post('find', {
+                query: {date: {"$gte": dataInizio, "$lt": dataFine}},
                 table: "prenotazioneCibo"
             }).then((response) => {
                 if (params.onMounted) {
