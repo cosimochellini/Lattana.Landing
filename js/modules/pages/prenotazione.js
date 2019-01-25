@@ -12,6 +12,11 @@ try {
 
 if (isNaN(timestamp)) location.href = "/";
 
+if(new Date().toDateString() !== new Date(timestamp).toDateString()){
+    alert("La prenotazione non è valida per oggi");
+    location.href = "/";
+}
+
 let vm = new Vue({
     el: '#app',
     data: {
