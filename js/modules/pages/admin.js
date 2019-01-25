@@ -37,6 +37,10 @@ const vm = new Vue({
                 items: [],
                 type: 2
             },
+            prenotazioneAggiuntiva: {
+                food: 'mezzo panuozzo nutella',
+                email: 'cosimo.chellini@gmail.com'
+            },
             selezione: 'cibo',
             foods: window.foodGlobal,
             orarioPrenotazione: "20:00",
@@ -73,6 +77,25 @@ const vm = new Vue({
         },
         openPrenotazione() {
             window.open(this.linkPrenotazione, '_blank');
+        },
+        salvaPrenotazione() {
+            const utente = this.commensaliList.find(utente => utente.email === this.prenotazioneAggiuntiva.email);
+
+            Api('data').post('create', {
+                data: {
+                    food: this.prenotazioneAggiuntiva.food,
+                    username: utente.username,
+                    email: utente.email,
+                    text: 'generato da pagina admin',
+                    date: new Date()
+                },
+                table: "prenotazioneCibo"
+            }).then(() => {
+                this.fetchData();
+
+                this.$refs.modalprenotazioneaggiuntiva.hide()
+            });
+
         }
     },
     computed: {
