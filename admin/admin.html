@@ -72,13 +72,13 @@
                         </div>
                     </b-button>
 
-                    <b-button @click="openUrlOrdine" variant="info">
+                    <b-btn v-b-modal.modalpizzaman variant="info">
                         <div class="container d-flex h-100">
                             <div class="justify-content-center align-self-center">
-                                <i class="far fa-list-alt"></i>
+                                <i class="far fa-clock"></i>
                             </div>
                         </div>
-                    </b-button>
+                    </b-btn>
 
                 </b-col>
 
@@ -177,6 +177,26 @@
         </div>
 
     </b-modal>
+
+    <b-modal id="modalpizzaman" size="lg" title="Prenotazione per pizzaman" hide-footer centered>
+
+        <div>
+
+            <b-form-select v-model="orarioPrenotazione" label="Orario Prenotazione:" class="mb-3">
+                <option value="19:00" selected>19:00</option>
+                <option value="19:30">19:30</option>
+                <option value="20:00">20:00</option>
+                <option value="20:30">20:30</option>
+            </b-form-select>
+
+        </div>
+
+        <b-btn @click="openPrenotazione">
+            open
+        </b-btn>
+
+    </b-modal>
+
 </div>
 
 <script src="../js/cdn/vue.js"></script>

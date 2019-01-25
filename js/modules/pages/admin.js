@@ -39,6 +39,7 @@ const vm = new Vue({
             },
             selezione: 'cibo',
             foods: window.foodGlobal,
+            orarioPrenotazione: "20:00",
             riassuntoOrdineVisibile: false,
             fieldException: ['_id', 'prenotazioneId', 'email', 'date', '__v']
         },
@@ -70,8 +71,8 @@ const vm = new Vue({
         showCommensali() {
             this.$refs.modalCommensali.show();
         },
-        openUrlOrdine(){
-
+        openPrenotazione() {
+            window.open(this.linkPrenotazione, '_blank');
         }
     },
     computed: {
@@ -119,7 +120,15 @@ const vm = new Vue({
             });
 
             return ordine;
+        },
+        linkPrenotazione() {
+            const today = new Date();
 
+            const date = `${window.dateFns.format(today, "MM/DD/YYYY")} ${this.orarioPrenotazione}`;
+
+            const dateCrypted = btoa(new Date(date).getTime());
+
+            return `${origin}\\prenotazione?${dateCrypted}`;
         }
 
     },
