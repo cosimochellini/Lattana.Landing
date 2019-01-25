@@ -16,7 +16,6 @@ const _bindCommensali = (items = [], foods = []) => {
     return commensali;
 };
 
-
 Vue.use(bootstrapVue);
 
 const vm = new Vue({
@@ -152,6 +151,13 @@ const vm = new Vue({
             const dateCrypted = btoa(new Date(date).getTime());
 
             return `${origin}\\prenotazione?${dateCrypted}`;
+        },
+        prezzoPanuozzo() {
+            const connteggioCommensali = [...new Set(this.commensaliList.map(cibo => cibo.username))].length;
+
+            const conteggioPaniNutella = this.commensaliList.filter(item => item.food = 'mezzo panuozzo nutella').length;
+
+            return (conteggioPaniNutella * 4) / connteggioCommensali;
         }
 
     },

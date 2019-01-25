@@ -174,10 +174,18 @@
             </b-list-group>
             <br/>
 
-            <b-list-group>
+            <b-list-group class="mb-3">
                 <b-list-group-item>
                     Totale :
                     {{commensaliList.map(item => item.price).reduce((sum, x) => parseInt(sum) + parseInt(x),0)}}€
+                </b-list-group-item>
+            </b-list-group>
+
+
+            <b-list-group v-show="commensaliList.find(f => f.food === 'mezzo panuozzo nutella')">
+                <b-list-group-item>
+                    Prezzo panuozzi alla nutella :
+                    {{ prezzoPanuozzo }}€
                 </b-list-group-item>
             </b-list-group>
 
@@ -212,7 +220,8 @@
     </b-modal>
 
 
-    <b-modal id="modalprenotazioneaggiuntiva" ref="modalprenotazioneaggiuntiva" size="lg" title="Prenotazione Aggiuntiva" hide-footer centered>
+    <b-modal id="modalprenotazioneaggiuntiva" ref="modalprenotazioneaggiuntiva" size="lg"
+             title="Prenotazione Aggiuntiva" hide-footer centered>
 
         <b-form>
             <b-form-group label="Utente prenotazione aggiuntiva:">
