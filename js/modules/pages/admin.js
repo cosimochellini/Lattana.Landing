@@ -1,21 +1,5 @@
 const isOdd = (number) => number % 2;
 
-const _bindCommensali = (items = [], foods = []) => {
-    let commensali = [];
-    items.forEach(item => {
-        const _food = foods.find(cibo => cibo.name === item.food);
-        commensali.push({...item, ..._food});
-    });
-    const pani = commensali.filter(c => c.food === 'mezzo panuozzo');
-
-    if (isOdd(pani.length)) {
-        const panoIndex = commensali.findIndex(c => c._id === pani[0]._id);
-        commensali[panoIndex] = {...commensali[panoIndex], price: 5, only: true};
-    }
-
-    return commensali;
-};
-
 Vue.use(bootstrapVue);
 
 const vm = new Vue({
@@ -56,6 +40,22 @@ const vm = new Vue({
         getUserRoles() {
             if (!this.user.roles.length) return 'user';
             return this.user.roles.join(',');
+        },
+
+        bindCommensali(items = [], foods = []) {
+            let commensali = [];
+            items.forEach(item => {
+                const _food = foods.find(cibo => cibo.name === item.food);
+                commensali.push({...item, ..._food});
+            });
+            const pani = commensali.filter(c => c.food === 'mezzo panuozzo');
+
+            if (isOdd(pani.length)) {
+                const panoIndex = commensali.findIndex(c => c._id === pani[0]._id);
+                commensali[panoIndex] = {...commensali[panoIndex], price: 5, only: true};
+            }
+
+            return commensali;
         },
         fetchData() {
 
@@ -103,7 +103,7 @@ const vm = new Vue({
         },
         commensaliList() {
             let {type} = this.commensali;
-            let items = _bindCommensali(this.items.cibo, this.foods);
+            let items = this.bindCommensali(this.items.cibo, this.foods);
 
             if (type === 2) return items;
 
@@ -155,7 +155,7 @@ const vm = new Vue({
         prezzoPanuozzo() {
             const connteggioCommensali = [...new Set(this.commensaliList.map(cibo => cibo.username))].length;
 
-            const conteggioPaniNutella = this.commensaliList.filter(item => item.food = 'mezzo panuozzo nutella').length;
+            const conteggioPaniNutella = this.commensaliList.filter(item => item.food === 'mezzo panuozzo nutella').length;
 
             return (conteggioPaniNutella * 4) / connteggioCommensali;
         }
