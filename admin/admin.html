@@ -180,20 +180,27 @@
 
     <b-modal id="modalpizzaman" size="lg" title="Prenotazione per pizzaman" hide-footer centered>
 
-        <div>
+        <b-form>
+            <b-form-group label="Orario Prenotazione:">
 
-            <b-form-select v-model="orarioPrenotazione" label="Orario Prenotazione:" class="mb-3">
-                <option value="19:00" selected>19:00</option>
-                <option value="19:30">19:30</option>
-                <option value="20:00">20:00</option>
-                <option value="20:30">20:30</option>
-            </b-form-select>
+                <b-form-select v-model="orarioPrenotazione" class="mb-3">
+                    <option value="19:00" selected>19:00</option>
+                    <option value="19:30">19:30</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:30">20:30</option>
+                </b-form-select>
 
+            </b-form-group>
+
+        </b-form>
+
+        <div class="text-center">
+            <b-btn @click="openPrenotazione" variant="info">
+                Open link
+                <i class="fab fa-chrome"></i>
+            </b-btn>
         </div>
 
-        <b-btn @click="openPrenotazione">
-            open
-        </b-btn>
 
     </b-modal>
 
