@@ -55,16 +55,8 @@
                 </b-col>
 
                 <b-col md="auto" sm="4">
-                    <b-button type="reset" @click="form = {}; input = {};" v-b-tooltip.hover
-                              title="Resetta campi filtro">
-                        <div class="container d-flex h-100">
-                            <div class="justify-content-center align-self-center">
-                                <i class="fas fa-undo"></i>
-                            </div>
-                        </div>
-                    </b-button>
 
-                    <b-button @click="showCommensali" variant="success">
+                    <b-button v-b-modal.modalcommensali variant="success">
                         <div class="container d-flex h-100">
                             <div class="justify-content-center align-self-center">
                                 <i class="far fa-list-alt"></i>
@@ -88,6 +80,14 @@
                         </div>
                     </b-btn>
 
+                    <b-btn v-b-modal.modalspesautente variant="info">
+                        <div class="container d-flex h-100">
+                            <div class="justify-content-center align-self-center">
+                                <i class="far fa-user"></i>
+                            </div>
+                        </div>
+                    </b-btn>
+
                 </b-col>
 
             </b-row>
@@ -95,23 +95,20 @@
     </b-container>
     <br/>
 
-    <b-form-radio-group v-model="selezione" class="text-center" label="Tipo di dati">
-        <b-form-radio value="cibo">Prenotazioni Cibo</b-form-radio>
-        <b-form-radio value="panuozzo">Prenotazioni Panuozzo</b-form-radio>
-    </b-form-radio-group>
+
+    <h2 class="text-center">Prenotazioni </h2>
 
     <br>
 
-    <h2 class="text-center">Prenotazioni {{selezione}}</h2>
 
-    <div v-if="computedItems.length">
+    <div v-if="items.length">
         <b-table hover responsive striped
                  :sort-by.sync="table.sortBy"
                  :sort-desc.sync="table.sortDesc"
                  :per-page="parseInt(table.perPage)"
                  :current-page="table.currentPage"
-                 :items="computedItems"
-                 :fields="tableFields(items[this.selezione][0])">
+                 :items="items"
+                 :fields="tableFields(items[0])">
 
             <template slot="date" slot-scope="data">
                 {{data.item.date| date }}
@@ -124,19 +121,19 @@
         <h2 class="text-center"> Nessun elemento per il range di date selezionato</h2>
     </div>
 
-    <b-modal ref="modalCommensali" size="lg" title="Food to order" hide-footer centered>
+    <b-modal id="modalcommensali" size="lg" title="Food to order" hide-footer centered>
 
         <div class="d-block text-center">
             <b-list-group>
                 <b-list-group-item v-for="item in commensaliList" :key="item._id" :variant="item.only ? 'warning' : ''">
                     <b-row>
-                        <b-col>
+                        <b-col cols="3">
                             {{item.username}}
                         </b-col>
-                        <b-col>
+                        <b-col cols="7">
                             {{item.food}}
                         </b-col>
-                        <b-col>
+                        <b-col cols="2">
                             {{item.price}} €
                         </b-col>
                     </b-row>
@@ -148,7 +145,7 @@
                 <b-list-group-item>
                     <b-button variant="success" @click="riassuntoOrdineVisibile = !riassuntoOrdineVisibile"
                               title="Aggiorna commensali">
-                        {{riassuntoOrdineVisibile ? 'Nascondi' : 'Visualizza'}} Riassunto Ordine
+                        {{riassuntoOrdineVisibile ? 'Nascondi' : 'Visualizza'}} riassunto ordine
                         <i class="fas fa-list-ul"></i>
                     </b-button>
 
@@ -216,6 +213,37 @@
                 <i class="fab fa-chrome"></i>
             </b-btn>
         </div>
+
+    </b-modal>
+
+    <b-modal id="modalspesautente" size="lg" title="Calcolo spesa utente" hide-footer centered>
+
+        <b-form>
+            <b-form-group label="Utente prenotazione aggiuntiva:">
+
+                <b-form-select v-model="spesaUtente.utente" class="mb-3">
+                    <option :value="commensale.username" v-for="commensale in commensaliList">{{commensale.username}}
+                    </option>
+                </b-form-select>
+
+            </b-form-group>
+
+            <b-form-group label="Cibo prenotazione aggiuntiva:">
+
+                <b-form-select v-model="prenotazioneAggiuntiva.food" class="mb-3">
+                    <option :value="f.name" v-for="f in foods">{{f.name}}</option>
+                </b-form-select>
+
+            </b-form-group>
+
+            <div class="text-center">
+                <b-btn @click="salvaPrenotazione" variant="success">
+                    Salva Prenotazione
+                    <i class="fas fa-utensils"></i>
+                </b-btn>
+            </div>
+
+        </b-form>
 
     </b-modal>
 

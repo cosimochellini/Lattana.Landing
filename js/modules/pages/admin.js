@@ -12,10 +12,7 @@ const vm = new Vue({
                 dataInizio: new Date(),
                 dataFine: new Date(),
             },
-            items: {
-                cibo: [],
-                panuozzo: [],
-            },
+            items: [],
             commensali: {
                 items: [],
                 type: 2
@@ -24,7 +21,9 @@ const vm = new Vue({
                 food: 'mezzo panuozzo nutella',
                 email: 'cosimo.chellini@gmail.com'
             },
-            selezione: 'cibo',
+            spesaUtente: {
+                username : ''
+            },
             foods: window.foodGlobal,
             orarioPrenotazione: "20:00",
             riassuntoOrdineVisibile: false,
@@ -64,15 +63,8 @@ const vm = new Vue({
             Api('data').post('find', {
                 query: {date: {$gte: dataInizio, $lt: dataFine}},
                 table: "prenotazioneCibo"
-            }).then((response) => this.items.cibo = response.data);
+            }).then((response) => this.items = response.data);
 
-            Api('data').post('find', {
-                query: {date: {"$gte": dataInizio, "$lt": dataFine}},
-                table: "prenotazioni"
-            }).then((response) => this.items.panuozzo = response.data);
-        },
-        showCommensali() {
-            this.$refs.modalCommensali.show();
         },
         openPrenotazione() {
             window.open(this.linkPrenotazione, '_blank');
@@ -91,19 +83,15 @@ const vm = new Vue({
                 table: "prenotazioneCibo"
             }).then(() => {
                 this.fetchData();
-
                 this.$refs.modalprenotazioneaggiuntiva.hide()
             });
 
         }
     },
     computed: {
-        computedItems() {
-            return this.items[this.selezione];
-        },
         commensaliList() {
             let {type} = this.commensali;
-            let items = this.bindCommensali(this.items.cibo, this.foods);
+            let items = this.bindCommensali(this.items, this.foods);
 
             if (type === 2) return items;
 
@@ -174,5 +162,5 @@ const vm = new Vue({
 window.netlifyIdentity.on("logout", () => window.location.href = "/");
 
 setInterval(() => {
-    vm.$mount();
-}, 10000);
+    vm.fetchData();
+}, 20000);
