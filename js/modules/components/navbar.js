@@ -9,7 +9,7 @@ Vue.component('navbar', {
       <b-navbar-nav>
         <b-nav-item href="/user/user">Profilo</b-nav-item>
         <b-nav-item href="/">Home</b-nav-item>
-        <b-nav-item href="/admin/admin" v-if="isAdmin">Admin</b-nav-item>
+        <b-nav-item href="/admin" v-if="isAdmin">Admin</b-nav-item>
         <b-nav-item href="#" @click="logout">Logout</b-nav-item>
         <!-- Navbar dropdowns -->
         </b-navbar-nav>
