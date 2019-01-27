@@ -7,7 +7,7 @@ Vue.component('navbar', {
 
     <b-collapse is-nav id="nav_dropdown_collapse">
       <b-navbar-nav>
-        <b-nav-item href="/user/user">Profilo</b-nav-item>
+        <b-nav-item href="/user">Profilo</b-nav-item>
         <b-nav-item href="/">Home</b-nav-item>
         <b-nav-item href="/admin" v-if="isAdmin">Admin</b-nav-item>
         <b-nav-item href="#" @click="logout">Logout</b-nav-item>
