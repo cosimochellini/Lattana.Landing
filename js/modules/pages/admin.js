@@ -13,13 +13,9 @@ const vm = new Vue({
                 dataFine: new Date(),
             },
             items: [],
-            commensali: {
-                items: [],
-                type: 2
-            },
             prenotazioneAggiuntiva: {
                 food: 'mezzo panuozzo nutella',
-                email: 'cosimo.chellini@gmail.com'
+                username: 'Cosimo'
             },
             spesaUtente: {
                 username: ''
@@ -40,22 +36,6 @@ const vm = new Vue({
             if (!this.user.roles.length) return 'user';
             return this.user.roles.join(',');
         },
-
-        bindCommensali(items = [], foods = []) {
-            let commensali = [];
-            items.forEach(item => {
-                const _food = foods.find(cibo => cibo.name === item.food);
-                commensali.push({...item, ..._food});
-            });
-            const pani = commensali.filter(c => c.food === 'mezzo panuozzo');
-
-            if (isOdd(pani.length)) {
-                const panoIndex = commensali.findIndex(c => c._id === pani[0]._id);
-                commensali[panoIndex] = {...commensali[panoIndex], price: 5, only: true};
-            }
-
-            return commensali;
-        },
         fetchData() {
 
             const [dataInizio, dataFine] = window.generateStartEnd(this.form.dataInizio, this.form.dataFine);
@@ -70,7 +50,7 @@ const vm = new Vue({
             window.open(this.linkPrenotazione, '_blank');
         },
         salvaPrenotazione() {
-            const utente = this.commensaliList.find(utente => utente.email === this.prenotazioneAggiuntiva.email);
+            const utente = this.commensaliList.find(utente => utente.username === this.prenotazioneAggiuntiva.username);
 
             Api('data').post('create', {
                 data: {
@@ -90,12 +70,21 @@ const vm = new Vue({
     },
     computed: {
         commensaliList() {
-            let {type} = this.commensali;
-            let items = this.bindCommensali(this.items, this.foods);
+            let commensali = [];
 
-            if (type === 2) return items;
+            this.items.forEach(item => {
+                const food = this.foods.find(cibo => cibo.name === item.food);
+                commensali.push({...item, ...food});
+            });
 
-            return items.filter(item => item.type === type);
+            const pani = commensali.filter(c => c.food === 'mezzo panuozzo');
+
+            if (isOdd(pani.length)) {
+                const panoIndex = commensali.findIndex(c => c._id === pani[pani.length - 1]._id);
+                commensali[panoIndex] = {...commensali[panoIndex], price: 5, only: true};
+            }
+
+            return commensali;
         },
         ordine() {
             let ordine = [];
@@ -150,12 +139,15 @@ const vm = new Vue({
         spesaUtenteSingolo() {
             if (!this.items || !this.spesaUtente.username) return 0;
 
-            const conteggioElementiSpesa = this.commensaliList.filter(item => item.username === this.spesaUtente.username);
+            const conteggioElementiSpesa = this.commensaliList.filter(item => item.username === this.spesaUtente.username && item.food !== 'mezzo panuozzo nutella');
 
             const spesaParziale = conteggioElementiSpesa.map(item => item.price).reduce((sum, x) => parseInt(sum) + parseInt(x), 0);
 
             return spesaParziale + parseFloat(this.prezzoPanuozziNutella);
 
+        },
+        listaUtenti() {
+            return [...new Set(this.items.map(i => i.username))];
         }
 
     },
@@ -173,4 +165,4 @@ window.netlifyIdentity.on("logout", () => window.location.href = "/");
 
 setInterval(() => {
     vm.fetchData();
-}, 20000);
+}, 1000);

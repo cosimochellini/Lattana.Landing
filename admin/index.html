@@ -103,10 +103,6 @@
 
     <div v-if="items.length">
         <b-table hover responsive striped
-                 :sort-by.sync="table.sortBy"
-                 :sort-desc.sync="table.sortDesc"
-                 :per-page="parseInt(table.perPage)"
-                 :current-page="table.currentPage"
                  :items="items"
                  :fields="tableFields(items[0])">
 
@@ -221,8 +217,8 @@
         <b-form>
             <b-form-group label="Utente prenotazione aggiuntiva:">
 
-                <b-form-select v-model="spesaUtente.utente" class="mb-3">
-                    <option :value="commensale.username" v-for="commensale in commensaliList">{{commensale.username}}
+                <b-form-select v-model="spesaUtente.username" class="mb-3">
+                    <option :value="commensale" v-for="commensale in listaUtenti">{{commensale}}
                     </option>
                 </b-form-select>
 
@@ -245,8 +241,8 @@
         <b-form>
             <b-form-group label="Utente prenotazione aggiuntiva:">
 
-                <b-form-select v-model="prenotazioneAggiuntiva.email" class="mb-3">
-                    <option :value="commensale.email" v-for="commensale in commensaliList">{{commensale.username}}
+                <b-form-select v-model="prenotazioneAggiuntiva.username" class="mb-3">
+                    <option :value="commensale" v-for="commensale in listaUtenti">{{commensale}}
                     </option>
                 </b-form-select>
 

@@ -2,38 +2,6 @@
 const mixin = {};
 
 /**
- * impostazioni standard che tutte le tabelle usano,
- * per fare un override delle impostazioni usare
- * Object.assign(standard.table, { sortBy: 'Id', sortDesc: true, fixed: true });
- */
-mixin.table = {
-    perPage: 20,
-    small: true
-};
-
-/**
- * funzione che ritorna se visualizzare o meno i pulsanti per navigare la tabella
- * @param {Array<Object<>>} items
- * @returns {boolean}
- */
-mixin.showPagination = (items = []) => {
-    return items.length / parseInt(mixin.table.perPage) > 1;
-};
-
-
-/**
- * funzione che data una stringa, separe con spazi le lettere in maiuscolo
- *
- * @param {string} item una stringa in camel case
- *
- * @return {string} stringa "umanizzata"
- */
-mixin.humanize = (item) => {
-    if (!item) return '';
-    return item.match(/[A-Z][a-z]+/g).join(' ');
-};
-
-/**
  *funzione che dato un oggetto, genera un array di stringhe con i nome delle sue proprietà,
  * se viene passsato exceptions non aggiungerà quelle proprietà nel array di ritorno
  *
@@ -45,41 +13,11 @@ mixin.humanize = (item) => {
 mixin.fields = (item, exceptions = []) => {
     const fields = [];
 
-    // ReSharper disable once MissingHasOwnPropertyInForeach
     for (let prop in item) {
         if (!exceptions.includes(prop))
-            fields.push({key: prop, sortable: true, class: mixin.classField(prop)});
+            fields.push({key: prop, sortable: true});
     }
     return fields;
-};
-
-/**
- * Array di campi che non devono essere allineati al centro,
- * ma con la classe specificata
- */
-mixin.centeredFieldException = [
-    {
-        prop: 'note',
-        class: 'left-center'
-    }];
-
-/**
- * ottimizza l'array centeredFieldException di oggetto ritornando un array di stringhe,
- * più veloce durante l'esecuzione
- */
-mixin.mapperCenteredFieldException = mixin.centeredFieldException.map(x => x.prop);
-
-/**
- * Ritorna la classe corretta per la visualizzazione della tabella
- * @param {string} prop
- *
- * @return {string}
- */
-mixin.classField = prop => {
-    //controllo con l'array mappato per una questione di velocità
-    return !mixin.mapperCenteredFieldException.includes(prop.toLowerCase())
-        ? 'text-center'
-        : mixin.centeredFieldException.find(item => item.prop === prop.toLowerCase()).class || '';
 };
 
 /**
@@ -130,9 +68,7 @@ mixin.mixin = () => {
     return {
         data: () => {
             return {
-                items: [],
                 fieldException: [],
-                currentPage: 0,
                 table: mixin.table
             }
         },
@@ -144,17 +80,9 @@ mixin.mixin = () => {
                 return mixin.fields(items, this.fieldException);
             }
         },
-        computed: {
-            showPagination() {
-                return mixin.showPagination(this.tableItems);
-            }
-        },
         filters: {
             date: (item, format) => {
                 return mixin.toDate(item, format);
-            },
-            humanize: item => {
-                return mixin.humanize(item);
             }
         },
         components: {
