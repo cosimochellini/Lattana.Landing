@@ -182,7 +182,7 @@
             <b-list-group v-show="commensaliList.find(f => f.food === 'mezzo panuozzo nutella')">
                 <b-list-group-item>
                     Prezzo panuozzi alla nutella :
-                    {{ prezzoPanuozzo }}€
+                    {{ prezzoPanuozziNutella }}€
                 </b-list-group-item>
             </b-list-group>
 
@@ -228,20 +228,11 @@
 
             </b-form-group>
 
-            <b-form-group label="Cibo prenotazione aggiuntiva:">
-
-                <b-form-select v-model="prenotazioneAggiuntiva.food" class="mb-3">
-                    <option :value="f.name" v-for="f in foods">{{f.name}}</option>
-                </b-form-select>
-
+            <b-form-group label="Spesa:">
+                <div class="text-center">
+                    {{spesaUtenteSingolo}} €
+                </div>
             </b-form-group>
-
-            <div class="text-center">
-                <b-btn @click="salvaPrenotazione" variant="success">
-                    Salva Prenotazione
-                    <i class="fas fa-utensils"></i>
-                </b-btn>
-            </div>
 
         </b-form>
 

@@ -22,7 +22,7 @@ const vm = new Vue({
                 email: 'cosimo.chellini@gmail.com'
             },
             spesaUtente: {
-                username : ''
+                username: ''
             },
             foods: window.foodGlobal,
             orarioPrenotazione: "20:00",
@@ -140,12 +140,22 @@ const vm = new Vue({
 
             return `${origin}\\prenotazione?${dateCrypted}`;
         },
-        prezzoPanuozzo() {
+        prezzoPanuozziNutella() {
             const connteggioCommensali = [...new Set(this.commensaliList.map(cibo => cibo.username))].length;
 
             const conteggioPaniNutella = this.commensaliList.filter(item => item.food === 'mezzo panuozzo nutella').length;
 
             return (conteggioPaniNutella * 4) / connteggioCommensali;
+        },
+        spesaUtenteSingolo() {
+            if (!this.items || !this.spesaUtente.username) return 0;
+
+            const conteggioElementiSpesa = this.commensaliList.filter(item => item.username === this.spesaUtente.username);
+
+            const spesaParziale = conteggioElementiSpesa.map(item => item.price).reduce((sum, x) => parseInt(sum) + parseInt(x), 0);
+
+            return spesaParziale + parseFloat(this.prezzoPanuozziNutella);
+
         }
 
     },
