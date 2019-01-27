@@ -18,7 +18,7 @@ const vm = new Vue({
                 username: 'Cosimo'
             },
             spesaUtente: {
-                username: ''
+                username: 'Cosimo'
             },
             foods: window.foodGlobal,
             orarioPrenotazione: "20:00",
