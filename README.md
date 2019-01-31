@@ -6,6 +6,9 @@ public website of lattana
 [![Website Weigth](https://img.shields.io/github/languages/code-size/cosimochellini/lattana.svg?style=flat)](https://app.netlify.com/sites/lattana/deploys)
 [![Website issue](https://img.shields.io/bitbucket/issues-raw/cosimochellini/lattana.svg?style=flat)](https://app.netlify.com/sites/lattana/deploys)
 [![Depency](https://img.shields.io/david/cosimochellini/lattana.svg?style=flat)](https://app.netlify.com/sites/lattana/deploys)
+[![jquery](https://img.shields.io/badge/jquery-schifo-red.svg)](https://app.netlify.com/sites/lattana/deploys)
+[![Depency](https://img.shields.io/badge/java-schifo-red.svg)](https://app.netlify.com/sites/lattana/deploys)
+
 
 ## Quick Start
 
