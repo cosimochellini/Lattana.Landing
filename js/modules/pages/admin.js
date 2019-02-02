@@ -127,7 +127,11 @@ const vm = new Vue({
 
             const dateCrypted = btoa(new Date(date).getTime());
 
-            return `${origin}\\prenotazione?${dateCrypted}`;
+            const urlPrenotazione = `${origin}\\prenotazione?${dateCrypted}`;
+
+            const phone = '393200631573';
+
+            return `https://wa.me/${phone}?text=${encodeURI(urlPrenotazione)}`;
         },
         prezzoPanuozziNutella() {
             const connteggioCommensali = [...new Set(this.commensaliList.map(cibo => cibo.username))].length;
