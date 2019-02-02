@@ -150,11 +150,11 @@
                 <b-list-group v-show="riassuntoOrdineVisibile">
                     <b-list-group-item v-for="cibo in ordine" :key="cibo.name">
                         <b-row>
-                            <b-col>
+                            <b-col cols="9">
                                 {{cibo.name}}
                             </b-col>
 
-                            <b-col>
+                            <b-col cols="3">
                                 <b-badge variant="primary">
                                     {{cibo.quantity}}
                                 </b-badge>
