@@ -95,14 +95,14 @@ let reservePanuozzo = () => {
         }).then(response => {
             $('.modal').modal('hide');
             $('#esitoPrenotazione').modal('show');
-            const $titoloEsito = $('#titoloEsito');
+            //const $titoloEsito = $('#titoloEsito');
             const $testoEsito = $('#testoEsito');
             let date = false;
             if (response.data || response.data.date) {
                 date = response.data.date;
             }
-            $titoloEsito.html(date ? 'Your reservation has been completed ' : 'Ops, during your reservation something has gone wrong');
-            $testoEsito.html(date ? `Your reservation has been completed at ${window.dateFns.format(date, 'HH:mm:ss')}` : '¯\\_(ツ)_/¯');
+            //$titoloEsito.html(date ? 'Your reservation has been completed ' : 'Ops, during your reservation something has gone wrong');
+            $testoEsito.html(date ? `Reservation completed` : '¯\\_(ツ)_/¯');
         });
     } catch (e) {
         $('.modal').modal('hide');
