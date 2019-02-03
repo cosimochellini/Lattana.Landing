@@ -12,7 +12,9 @@
         body {
             font: normal 10px Montserrat, Arial, sans-serif;
         }
-
+        [v-cloak] {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -20,7 +22,7 @@
 
 <div class="line"></div>
 
-<div id="app">
+<div id="app" v-cloak>
     <vs-navbar v-model="activeItem" type="gradient" class="nabarx">
         <vs-icon type="gradient" :radius="false" size="large" color="#FFDE03" icon="local_pizza"></vs-icon>
 
