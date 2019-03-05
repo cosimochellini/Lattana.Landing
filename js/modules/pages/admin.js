@@ -127,7 +127,7 @@ const vm = new Vue({
 
             const dateCrypted = btoa(new Date(date).getTime());
 
-            const urlPrenotazione = `${origin}\\prenotazione?${dateCrypted}`;
+            const urlPrenotazione = `${origin}//prenotazione?${dateCrypted}`;
 
             const phone = '393200631573';
 
