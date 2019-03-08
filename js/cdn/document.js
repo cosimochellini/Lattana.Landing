@@ -36,7 +36,7 @@ let getCurrentPrenotazione = async () => {
     });
 };
 
-let openReservePanuozzo =  () => {
+let openReservePanuozzo = async () => {
     let currentUser = new User();
     let $alertReservePanuozzo = $("#alertReservePanuozzo");
     let $formServePanuozzo = $("#formServePanuozzo");
