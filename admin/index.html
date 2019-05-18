@@ -106,8 +106,14 @@
                  :items="items"
                  :fields="tableFields(items[0])">
 
-            <template slot="date" slot-scope="data">
-                {{data.item.date| date }}
+            <template slot="action" slot-scope="data">
+                <b-btn variant="secondary" @click="openEditModal(data.item)" size="sm">
+                    <div class="container d-flex h-100">
+                        <div class="justify-content-center align-self-center">
+                            <i class="far fa-edit"></i>
+                        </div>
+                    </div>
+                </b-btn>
             </template>
 
         </b-table>
@@ -237,7 +243,6 @@
 
     </b-modal>
 
-
     <b-modal id="modalprenotazioneaggiuntiva" ref="modalprenotazioneaggiuntiva" size="lg"
              title="Prenotazione Aggiuntiva" hide-footer centered>
 
@@ -265,6 +270,56 @@
                     <i class="fas fa-utensils"></i>
                 </b-btn>
             </div>
+
+        </b-form>
+
+    </b-modal>
+
+    <b-modal id="modalEditPrenotazione" ref="modalEditPrenotazione" size="lg"
+             title="Modifica Prenotazione" hide-footer centered>
+
+        <b-form>
+            <b-form-group label="Utente prenotazione">
+
+                <b-form-select v-model="modalEditPrenotazione.username" class="mb-3">
+                    <option :value="commensale" v-for="commensale in listaUtenti">{{commensale}}
+                    </option>
+                </b-form-select>
+
+            </b-form-group>
+
+            <b-form-group label="Cibo prenotazione">
+
+                <b-form-select v-model="modalEditPrenotazione.food" class="mb-3">
+                    <option :value="f.name" v-for="f in foods">{{f.name}}</option>
+                </b-form-select>
+
+            </b-form-group>
+
+            <b-form-group label="Descrizione prenotazione">
+
+                <b-form-textarea
+                        v-model="modalEditPrenotazione.text"
+                        rows="3"
+                        max-rows="6"
+                ></b-form-textarea>
+
+            </b-form-group>
+
+            <div class="text-center">
+                <b-btn @click="aggiornaPrenotazione" variant="success">
+                    Aggiorna Prenotazione
+                    <i class="fas fa-utensils"></i>
+                </b-btn>
+                <br/>
+                <br/>
+
+                <b-btn @click="eliminaPrenotazione" variant="danger">
+                    Elimina Prenotazione
+                    <i class="fas fa-trash"></i>
+                </b-btn>
+            </div>
+
 
         </b-form>
 

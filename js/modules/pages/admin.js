@@ -23,6 +23,7 @@ const vm = new Vue({
             foods: window.foodGlobal,
             orarioPrenotazione: "20:00",
             riassuntoOrdineVisibile: false,
+            modalEditPrenotazione: {},
             fieldException: ['_id', 'prenotazioneId', 'email', 'date', '__v']
         },
     mounted() {
@@ -43,7 +44,12 @@ const vm = new Vue({
             Api('data').post('find', {
                 query: {date: {$gte: dataInizio, $lt: dataFine}},
                 table: "prenotazioneCibo"
-            }).then((response) => this.items = response.data);
+            }).then((response) => {
+                if (response.data.length) {
+                    response.data[0].action = {};
+                }
+                this.items = response.data
+            });
 
         },
         openPrenotazione() {
@@ -66,6 +72,40 @@ const vm = new Vue({
                 this.$refs.modalprenotazioneaggiuntiva.hide()
             });
 
+        },
+        aggiornaPrenotazione() {
+            const utente = this.commensaliList.find(utente => utente.username === this.modalEditPrenotazione.username);
+
+            Api('data').post('findOneAndUpdate', {
+                table: "prenotazioneCibo",
+                update: {
+                    username: utente.username,
+                    email: utente.email,
+                    text: this.modalEditPrenotazione.text,
+                    food: this.modalEditPrenotazione.food,
+                },
+                filter: {
+                    '_id': this.modalEditPrenotazione._id
+                }
+            }).then(() => {
+                this.fetchData();
+                this.$refs.modalEditPrenotazione.hide()
+            });
+        },
+        eliminaPrenotazione() {
+            Api('data').post('findOneAndDelete', {
+                table: "prenotazioneCibo",
+                filter: {'_id': this.modalEditPrenotazione._id}
+            }).then(() => {
+                this.fetchData();
+                this.$refs.modalEditPrenotazione.hide()
+            });
+        },
+        openEditModal(item) {
+
+            this.modalEditPrenotazione = item;
+
+            this.$refs.modalEditPrenotazione.show();
         }
     },
     computed: {
@@ -169,4 +209,4 @@ window.netlifyIdentity.on("logout", () => window.location.href = "/");
 
 setInterval(() => {
     vm.fetchData();
-}, 1000);
+}, 10000);
