@@ -42,7 +42,8 @@ class User {
             "Admin": "Admin",
             "User": "User",
             "Collaborator": "Collaborator",
-            "Other": "Other"
+            "Other": "Other",
+            "Casta": "casta"
         }
     }
 

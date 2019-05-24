@@ -107,7 +107,7 @@
                  :fields="tableFields(items[0])">
 
             <template slot="action" slot-scope="data">
-                <b-btn variant="secondary" @click="openEditModal(data.item)" size="sm">
+                <b-btn variant="secondary" @click="openEditModal(data.item)" size="sm" :disabled="user.is(User.Type.Casta)">
                     <div class="container d-flex h-100">
                         <div class="justify-content-center align-self-center">
                             <i class="far fa-edit"></i>

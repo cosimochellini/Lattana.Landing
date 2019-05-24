@@ -103,8 +103,10 @@ const vm = new Vue({
         },
         openEditModal(item) {
 
-            this.modalEditPrenotazione = item;
+            if (!this.user.is(window.User.Type.Casta)) return;
 
+            this.modalEditPrenotazione = item;
+            
             this.$refs.modalEditPrenotazione.show();
         }
     },
