@@ -106,7 +106,7 @@ const vm = new Vue({
             if (!this.user.is(window.User.Type.Casta)) return;
 
             this.modalEditPrenotazione = item;
-            
+
             this.$refs.modalEditPrenotazione.show();
         }
     },
