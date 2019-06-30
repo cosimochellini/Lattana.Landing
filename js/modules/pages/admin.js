@@ -123,7 +123,7 @@ const vm = new Vue({
                             "title": "Prenotazione per stasera",
                             "body": "This is an FCM Message",
                             "icon": "./img/icons/android-chrome-192x192.png"     ,
-                            click_action	:  '/home?ciao=1234'
+                            click_action	:  '/home?prenotazione=' + new Date().getTime()
                         },
 
                     }, {
