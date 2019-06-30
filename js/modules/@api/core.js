@@ -8,7 +8,7 @@ const prenotazioneCibo = require('../schema/prenotazioneCibo');
 
 const firebaseUser = require('../schema/firebaseUser');
 
-const options = { reconnectTries: 100, reconnectInterval: 500, poolSize: 10, bufferMaxEntries: 0, useNewUrlParser: true };
+const options = { reconnectTries: 100, reconnectInterval: 500, poolSize: 10, bufferMaxEntries: 0, useNewUrlParser: true, keepAlive : false };
 
 /**
  * genera tutte le variabili di base per la chiamata
