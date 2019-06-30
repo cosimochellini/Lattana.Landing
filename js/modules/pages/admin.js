@@ -118,12 +118,14 @@ const vm = new Vue({
                 const tokens = response.data;
                 for (const token of tokens) {
                     window.axios.post('https://fcm.googleapis.com/fcm/send', {
-
                         "to": token.token,
                         "notification": {
-                            "title": "FCM Message",
+                            "title": "Prenotazione per stasera",
                             "body": "This is an FCM Message",
                             "icon": "./img/icons/android-chrome-192x192.png"
+                        },
+                        fcm_options: {
+                            link: 'https://example.com/'
                         }
                     }, {
                         headers: {
