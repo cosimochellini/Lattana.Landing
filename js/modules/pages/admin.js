@@ -108,6 +108,35 @@ const vm = new Vue({
             this.modalEditPrenotazione = item;
 
             this.$refs.modalEditPrenotazione.show();
+        },
+        sendNotification() {
+            Api('data').post('find', {
+                    "query": {token: {$exists: true}},
+                    "table": "firebaseUser"
+                }
+            ).then((response) => {
+                const tokens = response.data;
+                for (const token of tokens) {
+                    window.axios.post('https://fcm.googleapis.com/fcm/send', {
+
+                        "to": token.token,
+                        "notification": {
+                            "title": "FCM Message",
+                            "body": "This is an FCM Message",
+                            "icon": "./img/icons/android-chrome-192x192.png"
+                        }
+                    }, {
+                        headers: {
+                            "Authorization": "key=AAAA7O6ZJeU:APA91bHQtkO0QhSOCcYihran4ArnRH3tRJovtDeke_bF2PDbU5rCHXXME9LPYFS284f2PSeRhpSmW9gHOQajRZ5Ull2hkBycQ87diD2gs-2mO-urCgwy2E0Y25sFRIKt3RpBPiuAtLUp",
+                            "Content-Type": "application/json"
+                        },
+
+                    })
+
+
+                }
+
+            });
         }
     },
     computed: {

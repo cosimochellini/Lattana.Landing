@@ -7,7 +7,7 @@ const Api = (controller) => {
     let _baseUrl = '';
 
     if (origin.includes('localhost') || origin.includes('file:')) {
-        _baseUrl = `http://localhost:9000/${controller}?action=`;
+        _baseUrl = `https://cors-anywhere.herokuapp.com/https://lattana.org/.netlify/functions/${controller}?action=`;
     } else {
         _baseUrl = `${origin}/.netlify/functions/${controller}?action=`;
     }
