@@ -6,6 +6,8 @@ const prenotazioni = require('../schema/prenotazioni');
 
 const prenotazioneCibo = require('../schema/prenotazioneCibo');
 
+const firebaseUser = require('../schema/firebaseUser');
+
 const options = { reconnectTries: 100, reconnectInterval: 500, poolSize: 10, bufferMaxEntries: 0, useNewUrlParser: true };
 
 /**
@@ -50,6 +52,8 @@ const importData = (event, context) => {
     exportData.db.prenotazioni = mongoose.model('prenotazioni', prenotazioni, 'prenotazioni');
 
     exportData.db.prenotazioneCibo = mongoose.model('prenotazioneCibo', prenotazioneCibo, 'prenotazioneCibo');
+
+    exportData.db.firebaseUser = mongoose.model('firebaseUser', firebaseUser, 'firebaseUser');
 
     return exportData;
 };
