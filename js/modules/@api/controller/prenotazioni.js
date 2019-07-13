@@ -42,8 +42,8 @@ const reservePanuozzoToday = async ({currentUser, body, db}) => {
 
             prenotazioneCibo = new db.prenotazioneCibo({
                 food: body.cibo,
-                username: currentUser.username,
-                email: currentUser.email,
+                username: body.username,
+                email: body.email,
                 date: new Date(),
                 text: body.note,
                 prenotazioneId: prenotazione.id

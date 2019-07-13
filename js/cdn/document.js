@@ -123,12 +123,12 @@ window.foodGlobal.forEach(food => {
 });
 $('#panuozzoCibo').append(htmlOptions);
 
-if (new window.User().logged) {
+// if (new window.User().logged) {
 
-    Api('auth').post('check').then((response) => {
-        if (!response.data) netlifyIdentity.logout();
-    });
-}
+//     Api('auth').post('check').then((response) => {
+//         if (!response.data) netlifyIdentity.logout();
+//     });
+// }
 
 getSession().then(month => $("#month").text(month));
 
