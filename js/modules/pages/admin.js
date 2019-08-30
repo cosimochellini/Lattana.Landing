@@ -136,7 +136,7 @@ const vm = new Vue({
                             this.$bvToast.toast(`Notification sent!`, {
                                 title: 'Notification sent!',
                                 autoHideDelay: 5000,
-                                appendToast: append
+                                appendToast: true
                             })
                         })
 
