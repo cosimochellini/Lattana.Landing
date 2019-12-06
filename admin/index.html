@@ -6,12 +6,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="Lattana, Smoke and food since 2014. Firenze, Come and taste the original taste, served with a little bit of smoke that is always good for health">
+        content="Lattana, Smoke and food since 2014. Firenze, Come and taste the original taste, served with a little bit of smoke that is always good for health">
     <meta name="keywords" content="Lattana,Lattana Firenze,Firenze,Smoke e Food, Food, Smoke, Ernesto Punti,Dong G">
     <meta name="author" content="Cosimo Chellini">
     <meta name="revisit-after" content="2 days">
     <meta name="robots" content="index">
-    <meta name="msvalidate.01" content="9711E0529A53A545FFEC16864511D537"/>
+    <meta name="msvalidate.01" content="9711E0529A53A545FFEC16864511D537" />
     <style>
         body {
             padding-top: 60px;
@@ -22,328 +22,325 @@
         }
     </style>
     <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"
-            integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0"
-            crossorigin="anonymous"></script>
-    <link type="text/css" rel="stylesheet" href="../js/cdn/bootstrapvue/bootstrapp.min.css"/>
+        integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0"
+        crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="../js/cdn/bootstrapvue/bootstrapp.min.css" />
     <link rel="stylesheet" href="../js/cdn/bootstrapvue/bv.min.css">
-    <link rel="shortcut icon" type="image/png" href="../images/cigar.png"/>
-    <meta name="theme-color" content="#000000"/>
+    <link rel="shortcut icon" type="image/png" href="../images/cigar.png" />
+    <meta name="theme-color" content="#000000" />
     <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 </head>
 
 <body data-spy="scroll" data-target="#site-navbar" data-offset="200">
-<div id="app" v-cloak>
-    <navbar :user='user'></navbar>
+    <div id="app" v-cloak>
+        <navbar :user='user'></navbar>
 
-    <br/>
-    <b-container>
+        <br />
+        <b-container>
 
-        <b-form inline responsive fixed striped class="justify-content-center">
-            <b-row align-v="center" class="mb-2 mr-sm-2 mb-sm-0">
+            <b-form inline responsive fixed striped class="justify-content-center">
+                <b-row align-v="center" class="mb-2 mr-sm-2 mb-sm-0">
 
-                <b-col md="auto" sm="4" class="form-group mb-2 mr-sm-2 mb-sm-0">
-                    <vuejs-datepicker :bootstrap-styling="true" placeholder="Data Inizio"
-                                      v-model="form.dataInizio">
-                    </vuejs-datepicker>
-                </b-col>
+                    <b-col md="auto" sm="4" class="form-group mb-2 mr-sm-2 mb-sm-0">
+                        <vuejs-datepicker :bootstrap-styling="true" placeholder="Data Inizio" v-model="form.dataInizio">
+                        </vuejs-datepicker>
+                    </b-col>
 
-                <b-col md="auto" sm="4" class="form-group mb-2 mr-sm-2 mb-sm-0">
-                    <vuejs-datepicker :bootstrap-styling="true" placeholder="Data Fine"
-                                      v-model="form.dataFine">
-                    </vuejs-datepicker>
-                </b-col>
+                    <b-col md="auto" sm="4" class="form-group mb-2 mr-sm-2 mb-sm-0">
+                        <vuejs-datepicker :bootstrap-styling="true" placeholder="Data Fine" v-model="form.dataFine">
+                        </vuejs-datepicker>
+                    </b-col>
 
-                <b-col md="auto" sm="4">
+                    <b-col md="auto" sm="4">
 
-                    <b-button v-b-modal.modalcommensali variant="success">
-                        <div class="container d-flex h-100">
-                            <div class="justify-content-center align-self-center">
-                                <i class="far fa-list-alt"></i>
+                        <b-button v-b-modal.modalcommensali variant="success">
+                            <div class="container d-flex h-100">
+                                <div class="justify-content-center align-self-center">
+                                    <i class="far fa-list-alt"></i>
+                                </div>
                             </div>
-                        </div>
-                    </b-button>
+                        </b-button>
 
-                    <b-btn v-b-modal.modalpizzaman variant="info">
+                        <b-btn v-b-modal.modalpizzaman variant="info">
+                            <div class="container d-flex h-100">
+                                <div class="justify-content-center align-self-center">
+                                    <i class="far fa-clock"></i>
+                                </div>
+                            </div>
+                        </b-btn>
+
+                        <b-btn v-b-modal.modalprenotazioneaggiuntiva>
+                            <div class="container d-flex h-100">
+                                <div class="justify-content-center align-self-center">
+                                    <i class="fas fa-plus-square"></i>
+                                </div>
+                            </div>
+                        </b-btn>
+
+                        <b-btn v-b-modal.modalspesautente variant="info">
+                            <div class="container d-flex h-100">
+                                <div class="justify-content-center align-self-center">
+                                    <i class="far fa-user"></i>
+                                </div>
+                            </div>
+                        </b-btn>
+                        <b-btn @click="sendNotification" variant="info">
+                            <div class="container d-flex h-100">
+                                T
+                            </div>
+                        </b-btn>
+
+                    </b-col>
+
+                </b-row>
+            </b-form>
+        </b-container>
+        <br />
+
+
+        <!-- <h2 class="text-center">Prenotazioni </h2> -->
+
+        <br>
+
+
+        <div v-if="items.length">
+            <b-table hover responsive striped :items="items" :fields="tableFields(items[0])">
+
+                <template slot="action" slot-scope="data">
+                    <b-btn variant="secondary" @click="openEditModal(data.item)" size="sm"
+                        :disabled="!user.is('casta')">
                         <div class="container d-flex h-100">
                             <div class="justify-content-center align-self-center">
-                                <i class="far fa-clock"></i>
+                                <i class="far fa-edit"></i>
                             </div>
                         </div>
                     </b-btn>
+                </template>
 
-                    <b-btn v-b-modal.modalprenotazioneaggiuntiva>
-                        <div class="container d-flex h-100">
-                            <div class="justify-content-center align-self-center">
-                                <i class="fas fa-plus-square"></i>
-                            </div>
-                        </div>
-                    </b-btn>
+            </b-table>
+        </div>
 
-                    <b-btn v-b-modal.modalspesautente variant="info">
-                        <div class="container d-flex h-100">
-                            <div class="justify-content-center align-self-center">
-                                <i class="far fa-user"></i>
-                            </div>
-                        </div>
-                    </b-btn>
-                    <b-btn @click="sendNotification" variant="info">
-                        <div class="container d-flex h-100">
-                          T
-                        </div>
-                    </b-btn>
+        <div v-else>
+            <h2 class="text-center"> Nessun elemento per il range di date selezionato</h2>
+        </div>
 
-                </b-col>
+        <b-modal id="modalcommensali" size="lg" title="Food to order" hide-footer centered>
 
-            </b-row>
-        </b-form>
-    </b-container>
-    <br/>
-
-
-    <!-- <h2 class="text-center">Prenotazioni </h2> -->
-
-    <br>
-
-
-    <div v-if="items.length">
-        <b-table hover responsive striped
-                 :items="items"
-                 :fields="tableFields(items[0])">
-
-            <template slot="action" slot-scope="data">
-                <b-btn variant="secondary" @click="openEditModal(data.item)" size="sm" :disabled="!user.is('casta')">
-                    <div class="container d-flex h-100">
-                        <div class="justify-content-center align-self-center">
-                            <i class="far fa-edit"></i>
-                        </div>
-                    </div>
-                </b-btn>
-            </template>
-
-        </b-table>
-    </div>
-
-    <div v-else>
-        <h2 class="text-center"> Nessun elemento per il range di date selezionato</h2>
-    </div>
-
-    <b-modal id="modalcommensali" size="lg" title="Food to order" hide-footer centered>
-
-        <div class="d-block text-center">
-            <b-list-group>
-                <b-list-group-item v-for="item in commensaliList" :key="item._id" :variant="item.only ? 'warning' : ''">
-                    <b-row>
-                        <b-col cols="3">
-                            {{item.username}}
-                        </b-col>
-                        <b-col cols="7">
-                            {{item.food}}
-                        </b-col>
-                        <b-col cols="2">
-                            {{item.price}} €
-                        </b-col>
-                    </b-row>
-                </b-list-group-item>
-            </b-list-group>
-            <br>
-
-            <b-list-group>
-                <b-list-group-item>
-                    <b-button variant="success" @click="riassuntoOrdineVisibile = !riassuntoOrdineVisibile"
-                              title="Aggiorna commensali">
-                        {{riassuntoOrdineVisibile ? 'Nascondi' : 'Visualizza'}} riassunto ordine
-                        <i class="fas fa-list-ul"></i>
-                    </b-button>
-
-                    <br/>
-                </b-list-group-item>
-                <b-list-group v-show="riassuntoOrdineVisibile">
-                    <b-list-group-item v-for="cibo in ordine" :key="cibo.name">
+            <div class="d-block text-center">
+                <b-list-group>
+                    <b-list-group-item v-for="item in commensaliList" :key="item._id"
+                        :variant="item.only ? 'warning' : ''">
                         <b-row>
-                            <b-col cols="9">
-                                {{cibo.name}}
-                            </b-col>
-
                             <b-col cols="3">
-                                <b-badge variant="primary">
-                                    {{cibo.quantity}}
-                                </b-badge>
+                                {{item.username}}
+                            </b-col>
+                            <b-col cols="7">
+                                {{item.food}}
+                            </b-col>
+                            <b-col cols="2">
+                                {{item.price}} €
                             </b-col>
                         </b-row>
                     </b-list-group-item>
+                </b-list-group>
+                <br>
+
+                <b-list-group>
+                    <b-list-group-item>
+                        <b-button variant="success" @click="riassuntoOrdineVisibile = !riassuntoOrdineVisibile"
+                            title="Aggiorna commensali">
+                            {{riassuntoOrdineVisibile ? 'Nascondi' : 'Visualizza'}} riassunto ordine
+                            <i class="fas fa-list-ul"></i>
+                        </b-button>
+
+                        <br />
+                    </b-list-group-item>
+                    <b-list-group v-show="riassuntoOrdineVisibile">
+                        <b-list-group-item v-for="cibo in ordine" :key="cibo.name">
+                            <b-row>
+                                <b-col cols="9">
+                                    {{cibo.name}}
+                                </b-col>
+
+                                <b-col cols="3">
+                                    <b-badge variant="primary">
+                                        {{cibo.quantity}}
+                                    </b-badge>
+                                </b-col>
+                            </b-row>
+                        </b-list-group-item>
+
+                    </b-list-group>
 
                 </b-list-group>
+                <br />
 
-            </b-list-group>
-            <br/>
-
-            <b-list-group class="mb-3">
-                <b-list-group-item>
-                    Totale :
-                    {{commensaliList.map(item => item.price).reduce((sum, x) => parseInt(sum) + parseInt(x),0)}}€
-                </b-list-group-item>
-            </b-list-group>
+                <b-list-group class="mb-3">
+                    <b-list-group-item>
+                        Totale :
+                        {{commensaliList.map(item => item.price).reduce((sum, x) => parseInt(sum) + parseInt(x),0)}}€
+                    </b-list-group-item>
+                </b-list-group>
 
 
-            <b-list-group v-show="commensaliList.find(f => f.food === 'mezzo panuozzo nutella')">
-                <b-list-group-item>
-                    Prezzo panuozzi alla nutella :
-                    {{ prezzoPanuozziNutella }}€
-                </b-list-group-item>
-            </b-list-group>
+                <b-list-group v-show="commensaliList.find(f => f.food === 'mezzo panuozzo nutella')">
+                    <b-list-group-item>
+                        Prezzo panuozzi alla nutella :
+                        {{ prezzoPanuozziNutella }}€
+                    </b-list-group-item>
+                </b-list-group>
 
-            <br/>
-        </div>
+                <br />
+            </div>
 
-    </b-modal>
+        </b-modal>
 
-    <b-modal id="modalpizzaman" size="lg" title="Prenotazione per pizzaman" hide-footer centered>
+        <b-modal id="modalpizzaman" size="lg" title="Prenotazione per pizzaman" hide-footer centered>
 
-        <b-form>
-            <b-form-group label="Orario Prenotazione:">
+            <b-form>
+                <b-form-group label="Orario Prenotazione:">
 
-                <b-form-select v-model="orarioPrenotazione" class="mb-3">
-                    <option value="19:00">19:00</option>
-                    <option value="19:15">19:15</option>
-                    <option value="19:30">19:30</option>
-                    <option value="19:45">19:45</option>
-                    <option value="20:00">20:00</option>
-                    <option value="20:15">20:15</option>
-                    <option value="20:30">20:30</option>
-                    <option value="20:45">20:45</option>
-                </b-form-select>
+                    <b-form-select v-model="orarioPrenotazione" class="mb-3">
+                        <option value="19:00">19:00</option>
+                        <option value="19:15">19:15</option>
+                        <option value="19:30">19:30</option>
+                        <option value="19:45">19:45</option>
+                        <option value="20:00">20:00</option>
+                        <option value="20:15">20:15</option>
+                        <option value="20:30">20:30</option>
+                        <option value="20:45">20:45</option>
+                        <option value="21:00">21:00</option>
+                        <option value="21:15">21:15</option>
+                    </b-form-select>
 
-            </b-form-group>
+                </b-form-group>
 
-        </b-form>
+            </b-form>
 
-        <div class="text-center">
-            <b-btn @click="openPrenotazione" pill variant="success">
-                <i class="fab fa-lg fa-whatsapp"></i>
-            </b-btn>
-        </div>
+            <div class="text-center">
+                <b-btn @click="openPrenotazione" pill variant="success">
+                    <i class="fab fa-lg fa-whatsapp"></i>
+                </b-btn>
+            </div>
 
-    </b-modal>
+        </b-modal>
 
-    <b-modal id="modalspesautente" size="lg" title="Calcolo spesa utente" hide-footer centered>
+        <b-modal id="modalspesautente" size="lg" title="Calcolo spesa utente" hide-footer centered>
 
-        <b-form>
-            <b-form-group label="Utente prenotazione aggiuntiva:">
+            <b-form>
+                <b-form-group label="Utente prenotazione aggiuntiva:">
 
-                <b-form-select v-model="spesaUtente.username" class="mb-3">
-                    <option :value="commensale" v-for="commensale in listaUtenti">{{commensale}}
-                    </option>
-                </b-form-select>
+                    <b-form-select v-model="spesaUtente.username" class="mb-3">
+                        <option :value="commensale" v-for="commensale in listaUtenti">{{commensale}}
+                        </option>
+                    </b-form-select>
 
-            </b-form-group>
+                </b-form-group>
 
-            <b-form-group label="Spesa:">
+                <b-form-group label="Spesa:">
+                    <div class="text-center">
+                        {{spesaUtenteSingolo}} €
+                    </div>
+                </b-form-group>
+
+            </b-form>
+
+        </b-modal>
+
+        <b-modal id="modalprenotazioneaggiuntiva" ref="modalprenotazioneaggiuntiva" size="lg"
+            title="Prenotazione Aggiuntiva" hide-footer centered>
+
+            <b-form>
+                <b-form-group label="Utente prenotazione aggiuntiva:">
+
+                    <b-form-select v-model="prenotazioneAggiuntiva.username" class="mb-3">
+                        <option :value="commensale" v-for="commensale in listaUtenti">{{commensale}}
+                        </option>
+                    </b-form-select>
+
+                </b-form-group>
+
+                <b-form-group label="Cibo prenotazione aggiuntiva:">
+
+                    <b-form-select v-model="prenotazioneAggiuntiva.food" class="mb-3">
+                        <option :value="f.name" v-for="f in foods">{{f.name}}</option>
+                    </b-form-select>
+
+                </b-form-group>
+
                 <div class="text-center">
-                    {{spesaUtenteSingolo}} €
+                    <b-btn @click="salvaPrenotazione" variant="success">
+                        Salva Prenotazione
+                        <i class="fas fa-utensils"></i>
+                    </b-btn>
                 </div>
-            </b-form-group>
 
-        </b-form>
+            </b-form>
 
-    </b-modal>
+        </b-modal>
 
-    <b-modal id="modalprenotazioneaggiuntiva" ref="modalprenotazioneaggiuntiva" size="lg"
-             title="Prenotazione Aggiuntiva" hide-footer centered>
+        <b-modal id="modalEditPrenotazione" ref="modalEditPrenotazione" size="lg" title="Modifica Prenotazione"
+            hide-footer centered>
 
-        <b-form>
-            <b-form-group label="Utente prenotazione aggiuntiva:">
+            <b-form>
+                <b-form-group label="Utente prenotazione">
 
-                <b-form-select v-model="prenotazioneAggiuntiva.username" class="mb-3">
-                    <option :value="commensale" v-for="commensale in listaUtenti">{{commensale}}
-                    </option>
-                </b-form-select>
+                    <b-form-select v-model="modalEditPrenotazione.username" class="mb-3">
+                        <option :value="commensale" v-for="commensale in listaUtenti">{{commensale}}
+                        </option>
+                    </b-form-select>
 
-            </b-form-group>
+                </b-form-group>
 
-            <b-form-group label="Cibo prenotazione aggiuntiva:">
+                <b-form-group label="Cibo prenotazione">
 
-                <b-form-select v-model="prenotazioneAggiuntiva.food" class="mb-3">
-                    <option :value="f.name" v-for="f in foods">{{f.name}}</option>
-                </b-form-select>
+                    <b-form-select v-model="modalEditPrenotazione.food" class="mb-3">
+                        <option :value="f.name" v-for="f in foods">{{f.name}}</option>
+                    </b-form-select>
 
-            </b-form-group>
+                </b-form-group>
 
-            <div class="text-center">
-                <b-btn @click="salvaPrenotazione" variant="success">
-                    Salva Prenotazione
-                    <i class="fas fa-utensils"></i>
-                </b-btn>
-            </div>
+                <b-form-group label="Descrizione prenotazione">
 
-        </b-form>
+                    <b-form-textarea v-model="modalEditPrenotazione.text" rows="3" max-rows="6"></b-form-textarea>
 
-    </b-modal>
+                </b-form-group>
 
-    <b-modal id="modalEditPrenotazione" ref="modalEditPrenotazione" size="lg"
-             title="Modifica Prenotazione" hide-footer centered>
+                <div class="text-center">
+                    <b-btn @click="aggiornaPrenotazione" variant="success">
+                        Aggiorna Prenotazione
+                        <i class="fas fa-utensils"></i>
+                    </b-btn>
+                    <br />
+                    <br />
 
-        <b-form>
-            <b-form-group label="Utente prenotazione">
-
-                <b-form-select v-model="modalEditPrenotazione.username" class="mb-3">
-                    <option :value="commensale" v-for="commensale in listaUtenti">{{commensale}}
-                    </option>
-                </b-form-select>
-
-            </b-form-group>
-
-            <b-form-group label="Cibo prenotazione">
-
-                <b-form-select v-model="modalEditPrenotazione.food" class="mb-3">
-                    <option :value="f.name" v-for="f in foods">{{f.name}}</option>
-                </b-form-select>
-
-            </b-form-group>
-
-            <b-form-group label="Descrizione prenotazione">
-
-                <b-form-textarea
-                        v-model="modalEditPrenotazione.text"
-                        rows="3"
-                        max-rows="6"
-                ></b-form-textarea>
-
-            </b-form-group>
-
-            <div class="text-center">
-                <b-btn @click="aggiornaPrenotazione" variant="success">
-                    Aggiorna Prenotazione
-                    <i class="fas fa-utensils"></i>
-                </b-btn>
-                <br/>
-                <br/>
-
-                <b-btn @click="eliminaPrenotazione" variant="danger">
-                    Elimina Prenotazione
-                    <i class="fas fa-trash"></i>
-                </b-btn>
-            </div>
+                    <b-btn @click="eliminaPrenotazione" variant="danger">
+                        Elimina Prenotazione
+                        <i class="fas fa-trash"></i>
+                    </b-btn>
+                </div>
 
 
-        </b-form>
+            </b-form>
 
-    </b-modal>
+        </b-modal>
 
-</div>
+    </div>
 
-<script src="../js/cdn/vue.js"></script>
-<script src="../js/cdn/bootstrapvue/bv.min.js"></script>
-<script src="../js/cdn/axios.min.js"></script>
-<script src="../js/cdn/api.js"></script>
-<script src="../js/cdn/date-fns.js"></script>
-<script src="../js/cdn/date-utlis.js"></script>
-<script src="../js/cdn/vue.timepicker.min.js"></script>
-<script src="../js/modules/utils/userClass.js"></script>
-<script src="../js/modules/components/navbar.js"></script>
-<script src="../js/modules/components/mixin.js"></script>
-<script src="../js/modules/utils/food.js"></script>
-<script src="../js/modules/pages/admin.js"></script>
+    <script src="../js/cdn/vue.js"></script>
+    <script src="../js/cdn/bootstrapvue/bv.min.js"></script>
+    <script src="../js/cdn/axios.min.js"></script>
+    <script src="../js/cdn/api.js"></script>
+    <script src="../js/cdn/date-fns.js"></script>
+    <script src="../js/cdn/date-utlis.js"></script>
+    <script src="../js/cdn/vue.timepicker.min.js"></script>
+    <script src="../js/modules/utils/userClass.js"></script>
+    <script src="../js/modules/components/navbar.js"></script>
+    <script src="../js/modules/components/mixin.js"></script>
+    <script src="../js/modules/utils/food.js"></script>
+    <script src="../js/modules/pages/admin.js"></script>
 
 </body>
+
 </html>
