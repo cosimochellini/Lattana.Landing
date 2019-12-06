@@ -6,26 +6,26 @@ const vm = new Vue({
     el: '#app',
     mixins: [mixin.mixin()],
     data:
-        {
-            user: new User(),
-            form: {
-                dataInizio: new Date(),
-                dataFine: new Date(),
-            },
-            items: [],
-            prenotazioneAggiuntiva: {
-                food: 'mezzo panuozzo nutella',
-                username: 'Cosimo'
-            },
-            spesaUtente: {
-                username: 'Cosimo'
-            },
-            foods: window.foodGlobal,
-            orarioPrenotazione: "20:00",
-            riassuntoOrdineVisibile: false,
-            modalEditPrenotazione: {},
-            fieldException: ['_id', 'prenotazioneId', 'email', 'date', '__v']
+    {
+        user: new User(),
+        form: {
+            dataInizio: new Date(),
+            dataFine: new Date(),
         },
+        items: [],
+        prenotazioneAggiuntiva: {
+            food: 'mezzo panuozzo nutella',
+            username: 'Cosimo'
+        },
+        spesaUtente: {
+            username: 'Cosimo'
+        },
+        foods: window.foodGlobal,
+        orarioPrenotazione: "20:00",
+        riassuntoOrdineVisibile: false,
+        modalEditPrenotazione: {},
+        fieldException: ['_id', 'prenotazioneId', 'email', 'date', '__v']
+    },
     mounted() {
         if (!this.user.logged || !this.user.is(window.User.Type.Admin)) {
             window.location.href = "/";
@@ -42,7 +42,7 @@ const vm = new Vue({
             const [dataInizio, dataFine] = window.generateStartEnd(this.form.dataInizio, this.form.dataFine);
 
             Api('data').post('find', {
-                query: {date: {$gte: dataInizio, $lt: dataFine}},
+                query: { date: { $gte: dataInizio, $lt: dataFine } },
                 table: "prenotazioneCibo"
             }).then((response) => {
                 if (response.data.length) {
@@ -95,7 +95,7 @@ const vm = new Vue({
         eliminaPrenotazione() {
             Api('data').post('findOneAndDelete', {
                 table: "prenotazioneCibo",
-                filter: {'_id': this.modalEditPrenotazione._id}
+                filter: { '_id': this.modalEditPrenotazione._id }
             }).then(() => {
                 this.fetchData();
                 this.$refs.modalEditPrenotazione.hide()
@@ -111,9 +111,9 @@ const vm = new Vue({
         },
         sendNotification() {
             Api('data').post('find', {
-                    "query": {token: {$exists: true}},
-                    "table": "firebaseUser"
-                }
+                "query": { token: { $exists: true } },
+                "table": "firebaseUser"
+            }
             ).then((response) => {
                 const tokens = response.data;
                 for (const token of tokens) {
@@ -122,17 +122,23 @@ const vm = new Vue({
                         "notification": {
                             "title": "Prenotazione per stasera",
                             "body": "This is an FCM Message",
-                            "icon": "./img/icons/android-chrome-192x192.png"     ,
-                            click_action	:  '/home?prenotazione=' + new Date().getTime()
+                            "icon": "./img/icons/android-chrome-192x192.png",
+                            click_action: '/home?prenotazione=' + new Date().getTime()
                         },
 
                     }, {
-                        headers: {
-                            "Authorization": "key=AAAA7O6ZJeU:APA91bHQtkO0QhSOCcYihran4ArnRH3tRJovtDeke_bF2PDbU5rCHXXME9LPYFS284f2PSeRhpSmW9gHOQajRZ5Ull2hkBycQ87diD2gs-2mO-urCgwy2E0Y25sFRIKt3RpBPiuAtLUp",
-                            "Content-Type": "application/json"
-                        },
+                            headers: {
+                                "Authorization": "key=AAAA7O6ZJeU:APA91bHQtkO0QhSOCcYihran4ArnRH3tRJovtDeke_bF2PDbU5rCHXXME9LPYFS284f2PSeRhpSmW9gHOQajRZ5Ull2hkBycQ87diD2gs-2mO-urCgwy2E0Y25sFRIKt3RpBPiuAtLUp",
+                                "Content-Type": "application/json"
+                            },
 
-                    })
+                        }).then(response => {
+                            this.$bvToast.toast(`Notification sent!`, {
+                                title: 'Notification sent!',
+                                autoHideDelay: 5000,
+                                appendToast: true
+                            })
+                        })
 
 
                 }
@@ -146,14 +152,14 @@ const vm = new Vue({
 
             this.items.forEach(item => {
                 const food = this.foods.find(cibo => cibo.name === item.food);
-                commensali.push({...item, ...food});
+                commensali.push({ ...item, ...food });
             });
 
             const pani = commensali.filter(c => c.food === 'mezzo panuozzo');
 
             if (isOdd(pani.length)) {
                 const panoIndex = commensali.findIndex(c => c._id === pani[pani.length - 1]._id);
-                commensali[panoIndex] = {...commensali[panoIndex], price: 5, only: true};
+                commensali[panoIndex] = { ...commensali[panoIndex], price: 5, only: true };
             }
 
             return commensali;
@@ -177,11 +183,11 @@ const vm = new Vue({
             const mezzoPanuozzoQuantity = parseInt(commensali.filter(c => c.food === 'mezzo panuozzo').length);
 
             if (isOdd(mezzoPanuozzoQuantity)) {
-                ordine.push({name: 'mezzo panuozzo', quantity: 1})
+                ordine.push({ name: 'mezzo panuozzo', quantity: 1 })
             }
 
             if (mezzoPanuozzoQuantity > 1) {
-                ordine.push({name: 'panuozzo 8 pezzi', quantity: parseInt(mezzoPanuozzoQuantity / 2)});
+                ordine.push({ name: 'panuozzo 8 pezzi', quantity: parseInt(mezzoPanuozzoQuantity / 2) });
             }
 
             ordine = ordine.sort((a, b) => {
