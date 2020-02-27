@@ -24,6 +24,7 @@
     "dotenv": "^8.0.0",
     "mongoose": "5.7.5",
     "netlify-lambda": "^1.4.10",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "sort-es": "^0.2.10"
   }
 }
