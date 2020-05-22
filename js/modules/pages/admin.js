@@ -207,7 +207,7 @@ const vm = new Vue({
 
             const urlPrenotazione = `${origin}//prenotazione?${dateCrypted}`;
 
-            const phone = '393200631573';
+            const phone = '393385901152';
 
             return `https://wa.me/${phone}?text=${encodeURI(urlPrenotazione)}`;
         },
