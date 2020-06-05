@@ -3,6 +3,7 @@ window.foodGlobal = [
     {name: 'panuozzo intero', type: 0, price: 8, color: '#001970'},
     {name: 'mezzo panuozzo nutella', type: 0, price: 4, color: '#009970'},
     {name: 'pizza margherita', type: 0, price: 6, color: '#8c0032'},
+    {name: 'pizza bufalina', type: 0, price: 8, color: '#8c0002'},
     {name: 'pizza nduja', type: 0, price: 7, color: '#002171'},
     {name: 'pizza burrata', type: 0, price: 9, color: '#005b4f'},
     {name: 'pizza diavola', type: 0, price: 8.5, color: '#016b3f'},
