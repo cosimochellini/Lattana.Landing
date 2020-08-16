@@ -26,5 +26,8 @@
     "netlify-lambda": "^2.0.1",
     "request": "^2.88.2",
     "sort-es": "^1.1.2"
+  },
+  "engines": {
+    "node": ">=v10.21.0"
   }
 }
