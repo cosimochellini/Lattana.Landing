@@ -1,14 +1,13 @@
-const mongoose = require('mongoose');
-
+import mongoose from 'mongoose';
 import user from "../utils/userClass";
 
-const prenotazioni = require('../schema/prenotazioni');
+import prenotazioni from '../schema/prenotazioni';
 
 const prenotazioneCibo = require('../schema/prenotazioneCibo');
 
 const firebaseUser = require('../schema/firebaseUser');
 
-const options = { reconnectTries: 100, reconnectInterval: 500, poolSize: 10, bufferMaxEntries: 0, useNewUrlParser: true, keepAlive : false };
+const options = { useNewUrlParser: true, useUnifiedTopology: true };
 
 /**
  * genera tutte le variabili di base per la chiamata

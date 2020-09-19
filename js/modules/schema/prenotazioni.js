@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import { Schema } from 'mongoose';
 
 const prenotazioni = new Schema({
     username: String,
@@ -8,4 +7,4 @@ const prenotazioni = new Schema({
     email: String
 });
 
-module.exports = prenotazioni;
+export default prenotazioni;
