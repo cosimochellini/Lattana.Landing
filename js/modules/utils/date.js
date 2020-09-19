@@ -37,8 +37,9 @@ const getLastMoment = (date = new Date()) => {
  * @param {Date} dataFine
  * @returns {Array<Date>} [DataInizio, DataFine]
  */
-const generateStartEnd = (dataInizio = new Date(), dataFine = dataInizio) => {
-  return [getFirstMoment(dataInizio), getLastMoment(dataFine)];
-};
+const generateStartEnd = (dataInizio = new Date(), dataFine = dataInizio) => [
+  getFirstMoment(dataInizio),
+  getLastMoment(dataFine),
+];
 
 export { getFirstMoment, getLastMoment, generateStartEnd };
