@@ -24,9 +24,9 @@
     "dotenv": "^8.2.0",
     "mongodb-client-encryption": "^1.1.0",
     "mongoose": "5.10.6",
-    "netlify-lambda": "^2.0.1",
+    "netlify-lambda": "^2.0.3",
     "request": "^2.88.2",
     "saslprep": "^1.0.3",
-    "sort-es": "^1.1.4"
+    "sort-es": "^1.1.11"
   }
 }
