@@ -27,6 +27,6 @@
     "netlify-lambda": "^2.0.15",
     "request": "^2.88.2",
     "saslprep": "^1.0.3",
-    "sort-es": "^1.4.3"
+    "sort-es": "^1.4.5"
   }
 }
