@@ -21,12 +21,12 @@
   "homepage": "https://github.com/cosimochellini/LattanaWebsite#readme",
   "dependencies": {
     "date-fns": "^2.28.0",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.1",
     "mongodb-client-encryption": "^1.2.7",
-    "mongoose": "6.2.10",
+    "mongoose": "6.3.3",
     "netlify-lambda": "^2.0.15",
     "request": "^2.88.2",
     "saslprep": "^1.0.3",
-    "sort-es": "^1.4.9"
+    "sort-es": "^1.4.10"
   }
 }
