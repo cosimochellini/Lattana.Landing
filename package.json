@@ -23,7 +23,7 @@
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "mongodb-client-encryption": "^2.7.1",
-    "mongoose": "7.0.3",
+    "mongoose": "7.3.3",
     "netlify-lambda": "^2.0.16",
     "request": "^2.88.2",
     "saslprep": "^1.0.3",
